@@ -121,7 +121,6 @@ return {
 				"golangci-lint",
 				"jdtls",
 				"tsserver",
-				"emmet_language_server",
 				"html",
 				"markdownlint",
 			})
