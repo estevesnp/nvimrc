@@ -3,9 +3,6 @@ require("lazy").setup({
 	----------------------------
 	-- LSP / LINTER / FORMATTING
 
-	-- nvim-treesitter/nvim-treesitter
-	require("esteves/plugins/treesitter"),
-
 	-- neovim/nvim-lspconfig
 	require("esteves/plugins/lsp-config"),
 
@@ -22,7 +19,7 @@ require("lazy").setup({
 	require("esteves/plugins/dap"),
 
 	-- crispgm/nvim-go
-	require("esteves/plugins/nvim-go"),
+	require("esteves/plugins/golang"),
 
 	-- mrcjkb/rustaceanvim
 	require("esteves/plugins/rustacean"),
@@ -31,7 +28,7 @@ require("lazy").setup({
 	require("esteves/plugins/crates"),
 
 	-- mfussenegger/nvim-jdtls
-	require("esteves/plugins/nvim-jdtls"),
+	require("esteves/plugins/jdtls"),
 
 	-------
 	-- UTIL
@@ -49,7 +46,10 @@ require("lazy").setup({
 	require("esteves/plugins/oil"),
 
 	-- refractalize/oil-git-status.nvim
-	require("esteves/plugins/oil-git-status"),
+	require("esteves/plugins/oil-git"),
+
+	-- lewis6991/gitsigns.nvim
+	require("esteves/plugins/gitsigns"),
 
 	-- gbprod/yanky.nvim
 	require("esteves/plugins/yanky"),
@@ -60,12 +60,6 @@ require("lazy").setup({
 	-- github/copilot.vim
 	require("esteves/plugins/copilot"),
 
-	-- nvim-treesitter/nvim-treesitter-context
-	require("esteves/plugins/treesitter-context"),
-
-	-- lewis6991/gitsigns.nvim
-	require("esteves/plugins/gitsigns"),
-
 	-- tpope/vim-commentary
 	require("esteves/plugins/commentary"),
 
@@ -75,23 +69,20 @@ require("lazy").setup({
 	-- windwp/nvim-autopairs
 	require("esteves/plugins/autopairs"),
 
-	-- nvim-pack/nvim-spectre
-	require("esteves/plugins/spectre"),
-
-	-- nvim-tree/nvim-tree.lua
-	require("esteves/plugins/nvim-tree"),
-
 	---------
 	-- VISUAL
+
+	-- nvim-treesitter/nvim-treesitter
+	require("esteves/plugins/treesitter"),
+
+	-- nvim-treesitter/nvim-treesitter-context
+	require("esteves/plugins/treesitter-context"),
 
 	-- nvim-lualine/lualine.nvim
 	require("esteves/plugins/lualine"),
 
 	-- lukas-reineke/indent-blankline.nvim
 	require("esteves/plugins/indent"),
-
-	-- folke/noice.nvim
-	require("esteves/plugins/noice"),
 
 	-- rose-pine/neovim
 	require("esteves/plugins/rose-pine"),
