@@ -1,6 +1,6 @@
 # My neovim config
 
-Could be a bit leaner, but there's a branch for that.
+The bulkier branch. Has some overly fancy extensions.
 
 ## Dependencies
 
