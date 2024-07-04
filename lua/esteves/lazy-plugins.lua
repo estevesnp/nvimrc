@@ -6,26 +6,20 @@ require("lazy").setup({
 	-- neovim/nvim-lspconfig
 	require("esteves/plugins/lsp-config"),
 
-	-- mfussenegger/nvim-lint
-	require("esteves/plugins/lint"),
-
 	-- hrsh7th/nvim-cmp
 	require("esteves/plugins/cmp"),
 
 	-- stevearc/conform.nvim
 	require("esteves/plugins/conform"),
 
-	-- mfussenegger/nvim-dap
-	require("esteves/plugins/dap"),
-
 	-- crispgm/nvim-go
-	require("esteves/plugins/golang"),
+	require("esteves/plugins/golang") or {},
 
 	-- saecki/crates.nvim
-	require("esteves/plugins/crates"),
+	EnabledFeats.rust and require("esteves/plugins/crates") or {},
 
 	-- mfussenegger/nvim-jdtls
-	require("esteves/plugins/jdtls"),
+	EnabledFeats.java and require("esteves/plugins/jdtls") or {},
 
 	-------
 	-- UTIL
@@ -42,20 +36,11 @@ require("lazy").setup({
 	-- stevearc/oil.nvim
 	require("esteves/plugins/oil"),
 
-	-- refractalize/oil-git-status.nvim
-	require("esteves/plugins/oil-git"),
-
-	-- lewis6991/gitsigns.nvim
-	require("esteves/plugins/gitsigns"),
-
 	-- gbprod/yanky.nvim
 	require("esteves/plugins/yanky"),
 
 	-- jiaoshijie/undotree
 	require("esteves/plugins/undotree"),
-
-	-- github/copilot.vim
-	require("esteves/plugins/copilot"),
 
 	-- tpope/vim-commentary
 	require("esteves/plugins/commentary"),
@@ -66,20 +51,20 @@ require("lazy").setup({
 	-- windwp/nvim-autopairs
 	require("esteves/plugins/autopairs"),
 
+	-- lewis6991/gitsigns.nvim
+	EnabledFeats.git and require("esteves/plugins/gitsigns") or {},
+
+	-- refractalize/oil-git-status.nvim
+	EnabledFeats.git and require("esteves/plugins/oil-git") or {},
+
 	---------
 	-- VISUAL
 
 	-- nvim-treesitter/nvim-treesitter
 	require("esteves/plugins/treesitter"),
 
-	-- nvim-treesitter/nvim-treesitter-context
-	require("esteves/plugins/treesitter-context"),
-
 	-- nvim-lualine/lualine.nvim
 	require("esteves/plugins/lualine"),
-
-	-- lukas-reineke/indent-blankline.nvim
-	require("esteves/plugins/indent"),
 
 	-- rose-pine/neovim
 	require("esteves/plugins/rose-pine"),

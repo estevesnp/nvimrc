@@ -17,6 +17,22 @@ function CreateNamedMap(sect)
 	end
 end
 
+---@param str string
+---@return boolean
+local function isEnabled(str)
+	return string.lower(os.getenv("NVIM_" .. string.upper(str)) or "") == "true"
+end
+
+---@type string[]
+local toCheck = { "rust", "java", "git" }
+
+---@type table<string, boolean>
+EnabledFeats = {}
+
+for _, v in pairs(toCheck) do
+	EnabledFeats[v] = isEnabled(v)
+end
+
 require("esteves.options")
 require("esteves.keymaps")
 require("esteves.lazy")

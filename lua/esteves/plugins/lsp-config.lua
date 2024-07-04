@@ -74,19 +74,6 @@ return {
 				},
 			},
 
-			rust_analyzer = {
-				settings = {
-					["rust-analyzer"] = {
-						cargo = {
-							allFeatures = true,
-						},
-						checkOnSave = {
-							command = "clippy",
-						},
-					},
-				},
-			},
-
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -106,13 +93,14 @@ return {
 			"gopls",
 			"gofumpt",
 			"goimports",
-			"golangci-lint",
-			"jdtls",
-			"tsserver",
-			"html",
-			"markdownlint",
-			"rust_analyzer",
 		})
+
+		if EnabledFeats.rust then
+			vim.list_extend(ensure_installed, { "rust_analyzer" })
+		end
+		if EnabledFeats.java then
+			vim.list_extend(ensure_installed, { "jdtls" })
+		end
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({

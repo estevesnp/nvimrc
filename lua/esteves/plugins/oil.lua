@@ -14,7 +14,7 @@ return {
 				end,
 			},
 			win_options = {
-				signcolumn = "yes:2",
+				signcolumn = EnabledFeats.git and "yes:2" or "no",
 			},
 			keymaps = {
 				["<C-c>"] = false,
