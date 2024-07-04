@@ -1,3 +1,5 @@
+--- @param sect string
+--- @return function
 function CreateNamedMap(sect)
 	--- @param mode string|string[]: The mode(s) for the keymap ('n', 'v', { 'n', 'i' }, etc.).
 	--- @param keys string: The keys to map.
