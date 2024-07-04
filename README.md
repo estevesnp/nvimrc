@@ -1,6 +1,16 @@
 # My neovim config
 
-Could be a bit leaner, but there's a branch for that.
+The leaner branch. Gets rid of some extensions.
+
+## Configuration
+
+You can set any of the following variables to add some extra extensions:
+
+```bash
+NVIM_RUST=true
+NVIM_JAVA=true
+NVIM_GIT=true
+```
 
 ## Dependencies
 
