@@ -21,9 +21,6 @@ require("lazy").setup({
 	-- crispgm/nvim-go
 	require("esteves/plugins/golang"),
 
-	-- mrcjkb/rustaceanvim
-	require("esteves/plugins/rustacean"),
-
 	-- saecki/crates.nvim
 	require("esteves/plugins/crates"),
 
