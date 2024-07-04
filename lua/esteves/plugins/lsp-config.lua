@@ -107,11 +107,11 @@ return {
 			"gofumpt",
 			"goimports",
 			"golangci-lint",
+			"rust_analyzer",
 			"jdtls",
 			"tsserver",
 			"html",
 			"markdownlint",
-			"rust_analyzer",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
