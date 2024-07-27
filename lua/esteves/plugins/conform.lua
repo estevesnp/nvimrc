@@ -21,6 +21,10 @@ return {
 				lua = { "stylua" },
 				go = { "goimports", "gofumpt" },
 				markdown = { "markdownlint" },
+				javascript = { "prettierd" },
+				typescript = { "prettierd" },
+				html = { "prettierd" },
+				css = { "prettierd" },
 			},
 		})
 
