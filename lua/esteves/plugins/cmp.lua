@@ -17,9 +17,7 @@ return {
 				{
 					"rafamadriz/friendly-snippets",
 					config = function()
-						require("luasnip.loaders.from_vscode").lazy_load({
-							include = { "html" },
-						})
+						require("luasnip.loaders.from_vscode").lazy_load()
 					end,
 				},
 			},
@@ -52,7 +50,7 @@ return {
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-e>"] = cmp.mapping.scroll_docs(4),
 
-				-- Accept ([y]es) the completion.
+				-- Accept ([y]/[f]es) the completion.
 				--  This will auto-import if your LSP supports it.
 				--  This will expand snippets if the LSP sent a snippet.
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
@@ -74,13 +72,20 @@ return {
 						luasnip.jump(-1)
 					end
 				end, { "i", "s" }),
+
+				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
+				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 			}),
 			sources = {
+				{
+					name = "lazydev",
+					-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
+					group_index = 0,
+				},
 				{ name = "nvim_lsp" },
+				{ name = "luasnip" },
 				{ name = "path" },
 				{ name = "buffer" },
-				{ name = "luasnip" },
-				{ name = "lazydev", group_index = 0 },
 			},
 		})
 	end,

@@ -10,7 +10,7 @@ require("lazy").setup({
 	require("esteves/plugins/lint"),
 
 	-- hrsh7th/nvim-cmp
-	require("esteves/plugins/cmp"),
+	require("esteves.plugins.cmp"),
 
 	-- stevearc/conform.nvim
 	require("esteves/plugins/conform"),
@@ -65,6 +65,9 @@ require("lazy").setup({
 
 	-- windwp/nvim-autopairs
 	require("esteves/plugins/autopairs"),
+
+	-- nvim-neo-tree/neo-tree.nvim
+	require("esteves/plugins/neo-tree"),
 
 	---------
 	-- VISUAL
