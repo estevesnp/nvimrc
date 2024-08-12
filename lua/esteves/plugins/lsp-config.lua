@@ -132,6 +132,7 @@ return {
 			"gofumpt",
 			"goimports",
 			"golangci-lint",
+			"zls",
 			"rust_analyzer",
 			"jdtls",
 			"tsserver",
