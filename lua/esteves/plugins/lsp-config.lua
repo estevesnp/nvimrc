@@ -89,7 +89,6 @@ return {
 				settings = {
 					gopls = {
 						analyses = {
-							fieldalignment = true,
 							useany = true,
 						},
 						semanticTokens = true,
