@@ -111,6 +111,10 @@ return {
 				},
 			},
 
+			clangd = {
+				cmd = { "clangd", "--offset-encoding=utf-16" },
+			},
+
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -133,6 +137,7 @@ return {
 			"golangci-lint",
 			"zls",
 			"rust_analyzer",
+			"clangd",
 			"jdtls",
 			"ts_ls",
 			"html",

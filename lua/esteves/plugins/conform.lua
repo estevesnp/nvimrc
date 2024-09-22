@@ -10,8 +10,9 @@ return {
 					return
 				end
 				-- Disable "format_on_save lsp_fallback" for languages that don't
-				-- have a well standardized coding style.
-				local disable_filetypes = { c = true, cpp = true }
+				-- have a well standardized coding style. Example:
+				-- local disable_filetypes = { c = true, cpp = true }
+				local disable_filetypes = {}
 				return {
 					timeout_ms = 500,
 					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
