@@ -1,7 +1,7 @@
 return {
 	"github/copilot.vim",
 	config = function()
-		vim.g.copilot_enabled = true
+		vim.g.copilot_enabled = false
 
 		local function toggle_copilot()
 			vim.g.copilot_enabled = not vim.g.copilot_enabled
