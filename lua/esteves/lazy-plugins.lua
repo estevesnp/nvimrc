@@ -84,6 +84,12 @@ require("lazy").setup({
 	-- lukas-reineke/indent-blankline.nvim
 	require("esteves/plugins/indent"),
 
+	-- iamcco/markdown-preview.nvim
+	require("esteves/plugins/markdown-preview"),
+
+	-- meanderingprogrammer/render-markdown.nvim
+	require("esteves/plugins/render-markdown"),
+
 	-- rose-pine/neovim
 	require("esteves/plugins/rose-pine"),
 })
