@@ -143,6 +143,7 @@ return {
 			"html",
 			"cssls",
 			"prettierd",
+			"jsonls",
 			"markdownlint",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
@@ -151,7 +152,7 @@ return {
 			handlers = {
 				function(server_name)
 					-- jdtls is already configured by nvim-jdtls
-					if server_name == "jdtls" then
+					if server_name == "jdtls" or server_name == "kotlin_language_server" then
 						return
 					end
 
@@ -164,5 +165,7 @@ return {
 				end,
 			},
 		})
+
+		require("lspconfig").kotlin_language_server.setup({})
 	end,
 }
