@@ -139,7 +139,6 @@ return {
 			"zls",
 			"rust_analyzer",
 			"clangd",
-			"jdtls",
 			"ts_ls",
 			"html",
 			"cssls",
@@ -152,11 +151,6 @@ return {
 		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)
-					-- jdtls is already configured by nvim-jdtls
-					if server_name == "jdtls" or server_name == "kotlin_language_server" then
-						return
-					end
-
 					local server = servers[server_name] or {}
 					-- This handles overriding only values explicitly passed
 					-- by the server configuration above. Useful when disabling
