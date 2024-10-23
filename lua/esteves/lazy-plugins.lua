@@ -24,9 +24,6 @@ require("lazy").setup({
 	-- saecki/crates.nvim
 	require("esteves/plugins/crates"),
 
-	-- mfussenegger/nvim-jdtls
-	require("esteves/plugins/jdtls"),
-
 	-------
 	-- UTIL
 
