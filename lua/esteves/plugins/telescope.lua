@@ -28,7 +28,7 @@ return {
 		map("n", "<leader>ss", builtin.builtin, "[S]earch [S]elect Telescope")
 		map("n", "<leader>sw", builtin.grep_string, "[S]earch current [W]ord")
 		map("n", "<leader>sd", builtin.diagnostics, "[S]earch [D]iagnostics")
-		map("n", "<leader>s.", builtin.oldfiles, '[S]earch Recent Files ("." for repeat)')
+		map("n", "<leader>so", builtin.oldfiles, "[S]earch [O]ld Files")
 
 		map("n", "<leader>/", function()
 			builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
