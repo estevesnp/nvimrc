@@ -58,7 +58,7 @@ return {
 				["<S-Tab>"] = cmp.mapping.confirm({ select = true }),
 
 				-- Manually trigger a completion from nvim-cmp.
-				["<C-Space>"] = cmp.mapping.complete({}),
+				["<C-q>"] = cmp.mapping.complete({}),
 
 				-- Think of <c-l> as moving to the right of your snippet expansion.
 				-- <c-h> is similar, except moving you backwards.
