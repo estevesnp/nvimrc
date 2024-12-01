@@ -102,6 +102,14 @@ return {
 				},
 			},
 
+			zls = {
+				settings = {
+					enable_build_on_save = true,
+					build_on_save_step = "check",
+					enable_argument_placeholders = false,
+				},
+			},
+
 			rust_analyzer = {
 				settings = {
 					["rust-analyzer"] = {
