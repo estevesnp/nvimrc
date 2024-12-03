@@ -47,6 +47,9 @@ return {
 				-- Select the [p]revious item
 				["<C-p>"] = cmp.mapping.select_prev_item(),
 
+				-- [q]uit the completion window
+				["<C-q>"] = cmp.mapping.close(),
+
 				-- Scroll the documentation window [b]ack / [e]orward
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-e>"] = cmp.mapping.scroll_docs(4),
@@ -58,8 +61,8 @@ return {
 				["<C-f>"] = cmp.mapping.confirm({ select = true }),
 				["<S-Tab>"] = cmp.mapping.confirm({ select = true }),
 
-				-- Manually trigger a completion from nvim-cmp.
-				["<C-q>"] = cmp.mapping.complete({}),
+				-- Manually [t]rigger a completion from nvim-cmp.
+				["<C-t>"] = cmp.mapping.complete({}),
 
 				-- Think of <c-l> as moving to the right of your snippet expansion.
 				-- <c-h> is similar, except moving you backwards.
