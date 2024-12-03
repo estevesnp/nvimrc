@@ -1,0 +1,9 @@
+snippet arena
+        var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+        defer arena.deinit();
+
+snippet gpa
+        var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+
+snippet allocator
+        const allocator = ${1}.allocator();
