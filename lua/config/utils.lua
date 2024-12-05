@@ -1,6 +1,8 @@
---- @param sect string
---- @return function
-function CreateNamedMap(sect)
+local M = {}
+
+--- @param namespace string: The namespace for the mappings.
+--- @return function: The set function with the namespace in the description.
+M.namespaced_set = function(namespace)
 	--- @param mode string|string[]: The mode(s) for the keymap ('n', 'v', { 'n', 'i' }, etc.).
 	--- @param keys string: The keys to map.
 	--- @param func function|string: The function to call when the keymap is triggered.
@@ -10,14 +12,11 @@ function CreateNamedMap(sect)
 		local finalOpts = vim.deepcopy(opts or {})
 
 		if desc and not finalOpts.desc then
-			finalOpts.desc = sect .. ": " .. desc
+			finalOpts.desc = namespace .. ": " .. desc
 		end
 
 		vim.keymap.set(mode, keys, func, finalOpts)
 	end
 end
 
-require("esteves.options")
-require("esteves.keymaps")
-require("esteves.lazy")
-require("esteves.lazy-plugins")
+return M
