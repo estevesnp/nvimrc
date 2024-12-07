@@ -9,9 +9,9 @@ snippet allocator
         const allocator = ${1}.allocator();
 
 snippet array_list
-        var ${1} = std.ArrayList(${2}).init(${3});
+        var ${1} = std.ArrayList(${2:type}).init(${3:allocator});
         defer ${1}.deinit();
 
 snippet auto_hash_map
-        var ${1} = std.AutoHashMap(${2}, ${3}).init(${4});
+        var ${1} = std.AutoHashMap(${2:key}, ${3:value}).init(${4:allocator});
         defer ${1}.deinit();
