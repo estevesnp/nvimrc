@@ -13,7 +13,7 @@ My go-to neovim config, not too lean, not too bulky.
 
 - [ ] tmux
 - [ ] treesitter-context
-- [ ] telescope
+- [x] telescope
 - [ ] harpoon
 - [ ] surround/nvim-surround
 - [ ] indent-line
