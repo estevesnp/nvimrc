@@ -11,16 +11,14 @@ My go-to neovim config, not too lean, not too bulky.
 
 ## TODO
 
-- [ ] tmux
+- [x] tmux
 - [ ] treesitter-context
 - [x] telescope
-- [ ] harpoon
-- [ ] surround/nvim-surround
+- [x] harpoon
+- [?] surround/nvim-surround
 - [ ] indent-line
 - [ ] yanky
-- [ ] LSP
-    - lspconfig (maybe finally get kotlin working?)
-    - mason
+- [?] LSP - Kotlin, cmp support
 - [ ] cmp
     - investigate snippets better
 - [ ] formatting
@@ -30,7 +28,7 @@ My go-to neovim config, not too lean, not too bulky.
     - crates?
     - investigate zig
 - [ ] gitsigns? fugitive?
-- [ ] lualine?
+- [x] lualine?
 - [ ] markdown?
 - [ ] neotree?
 - [ ] dap?

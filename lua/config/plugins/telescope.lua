@@ -1,24 +1,27 @@
 return {
   {
-    'nvim-telescope/telescope.nvim', 
+    'nvim-telescope/telescope.nvim',
     tag = '0.1.8',
-    dependencies = { 
+    dependencies = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
     },
-    config = function() 
-
+    config = function()
       require("telescope").setup {
-        defaults = {
-          mappings = {
-            n = {
-              ["<C-x>"] = require("telescope.actions").delete_buffer,
+        -- ivy as default picker theme
+        defaults = vim.tbl_extend(
+          "force",
+          require("telescope.themes").get_ivy(),
+          {
+            mappings = {
+              n = {
+                ["<C-x>"] = require("telescope.actions").delete_buffer,
+              },
+              i = {
+                ["<C-x>"] = require("telescope.actions").delete_buffer,
+              },
             },
-            i = {
-              ["<C-x>"] = require("telescope.actions").delete_buffer,
-            },
-          },
-        },
+          }),
         extensions = {
           fzf = {},
         },
@@ -47,12 +50,11 @@ return {
       end, "[/] Fuzzily search in current buffer")
 
       map("n", "<leader>sn", function()
-        builtin.find_files({
+        builtin.find_files {
           cwd = vim.fn.stdpath("config"),
           prompt_title = "Neovim Files",
-        })
+        }
       end, "[S]earch [N]eovim files")
-
     end,
   }
 }
