@@ -46,4 +46,10 @@ return {
 			map("n", "<leader>-", oil.toggle_float, "Toggle oil float")
 		end,
 	},
+
+	{
+		"refractalize/oil-git-status.nvim",
+		dependencies = { "stevearc/oil.nvim" },
+		config = true,
+	},
 }
