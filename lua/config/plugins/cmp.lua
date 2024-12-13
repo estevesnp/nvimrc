@@ -1,6 +1,7 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = {
 			{
 				"L3MON4D3/LuaSnip",
@@ -36,6 +37,12 @@ return {
 			luasnip.config.setup({})
 
 			cmp.setup({
+				snippet = {
+					expand = function(args)
+						luasnip.lsp_expand(args.body)
+					end,
+				},
+
 				completion = { completeopt = "menu,menuone,noinsert" },
 
 				mapping = cmp.mapping.preset.insert({
