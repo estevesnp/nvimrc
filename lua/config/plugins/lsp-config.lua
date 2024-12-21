@@ -6,8 +6,7 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
+			{ "saghen/blink.cmp" },
 
 			-- LSP Status Updates
 			{ "j-hui/fidget.nvim", opts = {} },
@@ -30,7 +29,7 @@ return {
 
 			local servers = require("config.lsp.servers")
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 			require("mason").setup()
 			require("mason-tool-installer").setup({ ensure_installed = servers.ensure_installed })

@@ -1,0 +1,40 @@
+{
+    "arena": {
+        "prefix": "arena",
+        "body": [
+            "var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);",
+            "defer arena.deinit();"
+        ],
+        "description": "Initialize and deinitialize an ArenaAllocator."
+    },
+    "gpa": {
+        "prefix": "gpa",
+        "body": [
+            "var gpa = std.heap.GeneralPurposeAllocator(.{}){};"
+        ],
+        "description": "Initialize a GeneralPurposeAllocator."
+    },
+    "allocator": {
+        "prefix": "allocator",
+        "body": [
+            "const allocator = ${1:allocator}.allocator();"
+        ],
+        "description": "Access the allocator property."
+    },
+    "array_list": {
+        "prefix": "array_list",
+        "body": [
+            "var ${1:arrayList} = std.ArrayList(${2:type}).init(${3:allocator});",
+            "defer ${1}.deinit();"
+        ],
+        "description": "Initialize and deinitialize an ArrayList."
+    },
+    "auto_hash_map": {
+        "prefix": "auto_hash_map",
+        "body": [
+            "var ${1:map} = std.AutoHashMap(${2:key}, ${3:value}).init(${4:allocator});",
+            "defer ${1}.deinit();"
+        ],
+        "description": "Initialize and deinitialize an AutoHashMap."
+    }
+}
