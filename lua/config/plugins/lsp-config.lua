@@ -28,8 +28,6 @@ return {
 			require("config.lsp.autocmds").setup()
 
 			local servers = require("config.lsp.servers")
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 			require("mason").setup()
 			require("mason-tool-installer").setup({ ensure_installed = servers.ensure_installed })
@@ -39,7 +37,7 @@ return {
 				handlers = {
 					function(server_name)
 						local server = servers.configs[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+						server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
 						require("lspconfig")[server_name].setup(server)
 					end,
 				},

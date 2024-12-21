@@ -10,6 +10,9 @@ return {
 			require("telescope").setup({
 				-- ivy as default picker theme
 				defaults = vim.tbl_extend("force", require("telescope.themes").get_ivy(), {
+					layout_config = {
+						height = 35,
+					},
 					mappings = {
 						n = {
 							["<C-x>"] = require("telescope.actions").delete_buffer,
