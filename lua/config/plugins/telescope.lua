@@ -26,7 +26,6 @@ return {
 					fzf = {},
 				},
 			})
-
 			require("telescope").load_extension("fzf")
 
 			local builtin = require("telescope.builtin")
@@ -42,6 +41,7 @@ return {
 			map("n", "<leader>sw", builtin.grep_string, "[S]earch current [W]ord")
 			map("n", "<leader>so", builtin.oldfiles, "[S]earch [O]ld Files")
 			map("n", "<leader>ss", builtin.builtin, "[S]earch [S]elect Telescope")
+			map("n", "<leader>sh", builtin.help_tags, "[S]earch [H]elp")
 
 			map("n", "<leader>/", function()
 				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
