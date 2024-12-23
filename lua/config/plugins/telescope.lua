@@ -10,6 +10,9 @@ return {
 			require("telescope").setup({
 				-- ivy as default picker theme
 				defaults = vim.tbl_extend("force", require("telescope.themes").get_ivy(), {
+					layout_config = {
+						height = 35,
+					},
 					mappings = {
 						n = {
 							["<C-x>"] = require("telescope.actions").delete_buffer,
@@ -39,6 +42,7 @@ return {
 			map("n", "<leader>sw", builtin.grep_string, "[S]earch current [W]ord")
 			map("n", "<leader>so", builtin.oldfiles, "[S]earch [O]ld Files")
 			map("n", "<leader>ss", builtin.builtin, "[S]earch [S]elect Telescope")
+			map("n", "<leader>sh", builtin.help_tags, "[S]earch [H]elp")
 
 			map("n", "<leader>/", function()
 				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
