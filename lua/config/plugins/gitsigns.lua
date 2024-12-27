@@ -33,6 +33,7 @@ return {
 						gitsigns.nav_hunk("prev")
 					end
 				end, "Jump to previous git change")
+				map("n", "<leader>gq", gitsigns.setqflist, "[g]it set [q]uickfix list")
 
 				-- Actions
 				map("v", "<leader>gr", function()

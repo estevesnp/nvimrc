@@ -34,6 +34,7 @@ return {
 
 			map("n", "<leader>sf", builtin.find_files, "[S]earch [F]iles")
 			map("n", "<leader>gf", builtin.git_files, "Search [G]it [F]iles")
+			map("n", "<leader>gs", builtin.git_status, "Search [G]it [S]tatus")
 			map("n", "<leader>sg", builtin.live_grep, "[S]earch [G]rep")
 			map("n", "<leader>sd", builtin.diagnostics, "[S]earch [D]iagnostics")
 			map("n", "<leader>sk", builtin.keymaps, "[S]earch [K]eymaps")
