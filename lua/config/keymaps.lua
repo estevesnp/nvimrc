@@ -40,6 +40,12 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Better N" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Better <C-d>" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Better <C-u>" })
 
+-- Quickfix
+vim.keymap.set("n", "co", ":copen<CR>", { desc = "Open Quickfix List" })
+vim.keymap.set("n", "cq", ":cclose<CR>", { desc = "Close Quickfix List" })
+vim.keymap.set("n", "cn", ":cnext<CR>", { desc = "Next Quickfix Item" })
+vim.keymap.set("n", "cp", ":cprev<CR>", { desc = "Previous Quickfix Item" })
+
 -- Diagnostics
 vim.keymap.set("n", "<leader>pd", vim.diagnostic.goto_prev, { desc = "Go to [P]revious [D]iagnostic message" })
 vim.keymap.set("n", "<leader>nd", vim.diagnostic.goto_next, { desc = "Go to [N]ext [D]iagnostic message" })
