@@ -35,6 +35,9 @@ vim.opt.scrolloff = 10
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
 
+-- Disable folds by default
+vim.opt.foldenable = false
+
 -- Disable the mode indicator (lualine already shows it)
 vim.opt.showmode = false
 
@@ -50,21 +53,21 @@ vim.opt.undofile = true
 
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 -- Prettier error diagnostics
 vim.diagnostic.config({
-  float = {
-    focusable = false,
-    style = "minimal",
-    border = "rounded",
-    source = true,
-    header = "",
-    prefix = "",
-  },
+	float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = true,
+		header = "",
+		prefix = "",
+	},
 })
