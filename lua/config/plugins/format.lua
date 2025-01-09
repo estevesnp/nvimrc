@@ -20,6 +20,8 @@ return {
 					markdown = { "markdownlint" },
 					javascript = { "prettierd" },
 					typescript = { "prettierd" },
+					javascriptreact = { "prettierd" },
+					typescriptreact = { "prettierd" },
 					html = { "prettierd" },
 					css = { "prettierd" },
 				},
