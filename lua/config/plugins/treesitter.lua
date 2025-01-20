@@ -13,6 +13,7 @@ return {
 				"vim",
 				"vimdoc",
 				"gitcommit",
+				"git_rebase",
 			},
 			auto_install = true,
 			highlight = {
