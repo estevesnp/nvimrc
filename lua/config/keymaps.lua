@@ -25,7 +25,8 @@ vim.keymap.set("n", "<leader>O", "O<ESC>", { desc = "Open new line up and stay i
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "[y]ank to system clipboard" })
 vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "[Y]ank to system clipboard" })
 
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Preserve paste register over selection" })
+vim.keymap.set("x", "<leader>p", '"_dp', { desc = "Preserve paste register over selection" })
+vim.keymap.set("x", "<leader>P", '"_dP', { desc = "Preserve paste register over selection" })
 
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to void register" })
 
