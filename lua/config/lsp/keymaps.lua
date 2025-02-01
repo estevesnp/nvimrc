@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function()
-	local map = require("config.utils").namespaced_keymap("Telescope")
+	local map = require("config.utils").namespaced_keymap("LSP")
 
 	map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
 	map("n", "gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
