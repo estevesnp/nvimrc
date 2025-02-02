@@ -16,3 +16,17 @@ snippet array_list
 snippet auto_hash_map
         var ${1} = std.AutoHashMap(${2:key}, ${3:value}).init(${4:allocator});
         defer ${1}.deinit();
+
+snippet format
+        pub fn format(
+            self: ${1},
+            comptime fmt: []const u8,
+            options: std.fmt.FormatOptions,
+            writer: anytype,
+        ) !void {
+            _ = fmt;
+            _ = options;
+
+            ${2} 
+        }
+
