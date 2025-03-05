@@ -1,21 +1,21 @@
 snippet arena
-        var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
+        var arena: std.heap.ArenaAllocator = .init(${1:std.heap.page_allocator});
         defer arena.deinit();
 
 snippet gpa
-        var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+        var gpa: std.heap.GeneralPurposeAllocator(.{}) = .init;
         defer _ = gpa.deinit();
 
 snippet allocator
         const allocator = ${1}.allocator();
 
 snippet array_list
-        var ${1} = std.ArrayList(${2:type}).init(${3:allocator});
-        defer ${1}.deinit();
+        var ${1}: std.ArrayListUnmanaged(${2:type}) = .empty;
+        defer ${1}.deinit(${3:allocator});
 
 snippet auto_hash_map
-        var ${1} = std.AutoHashMap(${2:key}, ${3:value}).init(${4:allocator});
-        defer ${1}.deinit();
+        var ${1}: std.AutoArrayHashMapUnmanaged(${2:key}, ${3:value}) = .empty;
+        defer ${1}.deinit(${4:allocator});
 
 snippet format
         pub fn format(
