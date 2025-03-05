@@ -1,3 +1,5 @@
+local get_alternate_exec = require("config.utils").get_alternate_exec
+
 local M = {}
 
 M.configs = {
@@ -17,10 +19,9 @@ M.configs = {
 
 	zls = {
 		settings = {
-			enable_build_on_save = true,
-			build_on_save_step = "check",
 			enable_argument_placeholders = false,
 		},
+		cmd = { get_alternate_exec("zls") },
 	},
 
 	rust_analyzer = {
