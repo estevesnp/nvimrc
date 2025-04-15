@@ -51,6 +51,9 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
+-- Diagnostics
+vim.diagnostic.config({ virtual_text = true })
+
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
@@ -58,16 +61,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank()
 	end,
-})
-
--- Prettier error diagnostics
-vim.diagnostic.config({
-	float = {
-		focusable = false,
-		style = "minimal",
-		border = "rounded",
-		source = true,
-		header = "",
-		prefix = "",
-	},
 })
