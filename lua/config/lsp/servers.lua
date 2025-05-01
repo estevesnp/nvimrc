@@ -52,8 +52,7 @@ M.configs = {
 	},
 }
 
-M.ensure_installed = vim.tbl_keys(M.configs or {})
-vim.list_extend(M.ensure_installed, {
+M.ensure_installed = {
 	-- LSPs
 	"lua_ls",
 	"gopls",
@@ -75,6 +74,6 @@ vim.list_extend(M.ensure_installed, {
 	"gofumpt",
 	"goimports",
 	"prettierd",
-})
+}
 
 return M

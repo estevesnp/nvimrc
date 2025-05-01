@@ -1,10 +1,10 @@
 snippet arena
-        var arena: std.heap.ArenaAllocator = .init(${1:std.heap.page_allocator});
-        defer arena.deinit();
+        var arena_state: std.heap.ArenaAllocator = .init(${1|std.heap.smp_allocator,std.heap.page_allocator|});
+        defer arena_state.deinit();
 
-snippet gpa
-        var gpa: std.heap.DebugAllocator(.{}) = .init;
-        defer _ = gpa.deinit();
+snippet debug_allocator
+        var debug_allocator: std.heap.DebugAllocator(.{}) = .init;
+        defer _ = debug_allocator.deinit();
 
 snippet allocator
         const allocator = ${1}.allocator();
