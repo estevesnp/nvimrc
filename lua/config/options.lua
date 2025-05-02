@@ -35,7 +35,10 @@ vim.opt.scrolloff = 10
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
 
--- Disable folds by default
+-- Border around floating windows
+vim.opt.winborder = "single"
+
+-- Folds
 vim.opt.foldenable = false
 
 -- Disable the mode indicator (lualine already shows it)
