@@ -45,7 +45,7 @@ return {
 				desc = "Re-enable autoformat-on-save",
 			})
 
-			local map = require("config.utils").namespaced_keymap("Conform")
+			local map = require("utils").namespaced_keymap("Conform")
 			map("n", "<leader>f", function()
 				require("conform").format({ async = true, lsp_fallback = true })
 			end, "[F]ormat bufer")

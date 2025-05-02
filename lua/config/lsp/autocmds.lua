@@ -1,4 +1,4 @@
-local map = require("config.utils").namespaced_keymap("Telescope")
+local map = require("utils").namespaced_keymap("Telescope")
 local keymaps = require("config.lsp.keymaps")
 local lsp_methods = vim.lsp.protocol.Methods
 

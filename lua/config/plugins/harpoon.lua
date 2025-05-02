@@ -12,7 +12,7 @@ return {
 				},
 			})
 
-			local map = require("config.utils").namespaced_keymap("Harpoon")
+			local map = require("utils").namespaced_keymap("Harpoon")
 
 			map("n", "<leader>h", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())

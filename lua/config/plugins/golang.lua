@@ -14,7 +14,7 @@ return {
 				auto_lint = false,
 			})
 
-			local map = require("config.utils").namespaced_keymap("Go")
+			local map = require("utils").namespaced_keymap("Go")
 
 			map("n", "<leader>ife", "<cmd>GoIfErr<CR>", "Add if err check")
 			map("n", "<leader>tj", "<cmd>GoAddTags json<CR>", "Add json struct tags")
