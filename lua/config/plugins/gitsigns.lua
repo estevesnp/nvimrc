@@ -13,7 +13,7 @@ return {
 			on_attach = function()
 				local gitsigns = require("gitsigns")
 
-				local map = require("config.utils").namespaced_keymap("Gitsigns")
+				local map = require("utils").namespaced_keymap("Gitsigns")
 
 				-- Navigation
 				local next_change_key = "<leader>cn"

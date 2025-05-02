@@ -35,7 +35,7 @@ return {
 				},
 			})
 
-			local map = require("config.utils").namespaced_keymap("FZF")
+			local map = require("utils").namespaced_keymap("FZF")
 
 			-- files/buffers
 			map("n", "<leader>sf", fzf.files, "[S]earch [F]iles")

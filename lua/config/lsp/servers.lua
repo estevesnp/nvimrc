@@ -1,4 +1,4 @@
-local get_alternate_exec = require("config.utils").get_alternate_exec
+local get_alternate_exec = require("utils").get_alternate_exec
 
 local M = {}
 

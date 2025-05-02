@@ -20,7 +20,7 @@ function M.namespaced_keymap(namespace)
 	end
 end
 
---- Returns the first alternate executable path to the passed if it exists.
+--- Returns the first alternate path to the provided executable if it exists.
 --- If no alternate exists, returns the original.
 --- If no executable exists, returns nil.
 --- @param exe string: The name of the executable to search for
@@ -31,10 +31,11 @@ function M.get_alternate_exec(exe)
 		return nil
 	end
 
-	local path_dirs = vim.split(vim.env.PATH, ":", { trimempty = true })
+	local path_env_sep = vim.fn.has("win32") and ";" or ":"
+	local path_dirs = vim.split(vim.env.PATH, path_env_sep, { trimempty = true })
 
 	for _, dir in ipairs(path_dirs) do
-		local full_path = dir .. "/" .. exe
+		local full_path = vim.fs.joinpath(dir, exe)
 		if vim.fn.executable(full_path) == 1 and full_path ~= path_exec then
 			return full_path
 		end

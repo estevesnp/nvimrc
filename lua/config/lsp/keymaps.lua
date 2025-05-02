@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function()
-	local map = require("config.utils").namespaced_keymap("LSP")
+	local map = require("utils").namespaced_keymap("LSP")
 
 	map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
 	map("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")

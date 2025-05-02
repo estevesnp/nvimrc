@@ -1,7 +1,7 @@
 vim.g.zig_fmt_parse_errors = 0
 vim.g.zig_fmt_autosave = 0
 
-local map = require("config.utils").namespaced_keymap("Zig")
+local map = require("utils").namespaced_keymap("Zig")
 
 local ignore_under_cursor = function()
 	local word = vim.fn.expandcmd("<cword>")

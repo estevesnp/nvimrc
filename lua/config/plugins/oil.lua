@@ -40,7 +40,7 @@ return {
 				},
 			})
 
-			local map = require("config.utils").namespaced_keymap("Oil")
+			local map = require("utils").namespaced_keymap("Oil")
 
 			map("n", "-", oil.open, "Open parent directory")
 			map("n", "<leader>-", oil.toggle_float, "Toggle oil float")

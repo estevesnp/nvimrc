@@ -13,7 +13,7 @@ return {
 
 		require("mason-nvim-dap").setup({ handlers = {} })
 
-		local map = require("config.utils").namespaced_keymap("DAP")
+		local map = require("utils").namespaced_keymap("DAP")
 		map("n", "<F5>", dap.continue, "Start/Continue")
 		map("n", "<F1>", dap.step_into, "Step Into")
 		map("n", "<F2>", dap.step_over, "Step Over")
