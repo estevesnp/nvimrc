@@ -36,6 +36,7 @@ return {
 						true,
 						["alt-u"] = "preview-page-up",
 						["alt-d"] = "preview-page-down",
+						["ctrl-q"] = "select-all+accept",
 					},
 				},
 				actions = {
