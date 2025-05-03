@@ -25,6 +25,9 @@ return {
 						},
 					},
 				},
+				keymaps = {
+					show_details = false,
+				},
 				keymap = {
 					builtin = {
 						true,
@@ -58,9 +61,10 @@ return {
 			map("n", "<leader>sq", fzf.quickfix, "[S]earch [Q]uickfix")
 			map("n", "<leader>sm", fzf.marks, "[S]earch [M]arks")
 			map("n", "<leader>sh", function()
+				local buf_dir = utils.buf_dir()
 				fzf.files({
-					header = "Search buffer's dir",
-					cwd = utils.buf_dir(),
+					header = "Search from " .. buf_dir,
+					cwd = buf_dir,
 				})
 			end, "[S]earch [h]ere, starting from buffer's dir")
 			map("n", "<leader>sc", function()
@@ -90,9 +94,10 @@ return {
 			map("n", "<leader>sw", fzf.grep_cword, "[S]earch current [w]ord")
 			map("n", "<leader>sW", fzf.grep_cWORD, "[S]earch current [W]ord")
 			map("n", "<leader>gh", function()
+				local buf_dir = utils.buf_dir()
 				fzf.live_grep({
-					header = "Grep buffer's dir",
-					cwd = utils.buf_dir(),
+					header = "Grep from " .. buf_dir,
+					cwd = buf_dir,
 				})
 			end, "[G]rep [H]ere, starting from buffer's dir")
 
