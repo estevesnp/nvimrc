@@ -1,0 +1,34 @@
+{
+  "allocator": {
+    "prefix": "allocator",
+    "body": "const allocator = ${1}.allocator();"
+  },
+  "arena": {
+    "prefix": "arena",
+    "body": [
+      "var arena_state: std.heap.ArenaAllocator = .init(${1|std.heap.smp_allocator,std.heap.page_allocator|});",
+      "defer arena_state.deinit();"
+    ]
+  },
+  "array_list": {
+    "prefix": "array_list",
+    "body": [
+      "var ${1}: std.ArrayListUnmanaged(${2:type}) = .empty;",
+      "defer ${1}.deinit(${3:allocator});"
+    ]
+  },
+  "auto_hash_map": {
+    "prefix": "auto_hash_map",
+    "body": [
+      "var ${1}: std.AutoHashMapUnmanaged(${2:key}, ${3:value}) = .empty;",
+      "defer ${1}.deinit(${4:allocator});"
+    ]
+  },
+  "debug_allocator": {
+    "prefix": "debug_allocator",
+    "body": [
+      "var debug_allocator: std.heap.DebugAllocator(.{}) = .init;",
+      "defer _ = debug_allocator.deinit();"
+    ]
+  }
+}
