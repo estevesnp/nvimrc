@@ -8,9 +8,6 @@ vim.keymap.set("v", "<leader>x", ":.lua<CR>")
 vim.keymap.set("n", "<leader>rw", vim.cmd.Ex, { desc = "Open Net[R][W]" })
 vim.keymap.set("n", "<leader>rl", "<cmd>LspRestart<CR>", { desc = "[R]estart [L]SP" })
 
-vim.keymap.set("n", "ç", "<C-e>", { desc = "Scroll Down" })
-vim.keymap.set("n", "Ç", "<C-y>", { desc = "Scroll Up" })
-
 vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Make <C-c> work as <Esc>" })
 
 vim.opt.hlsearch = true

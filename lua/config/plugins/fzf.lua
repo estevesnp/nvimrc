@@ -4,6 +4,7 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			local fzf = require("fzf-lua")
+			local utils = require("utils")
 
 			fzf.setup({
 				"ivy",
@@ -13,17 +14,28 @@ return {
 				hls = {
 					preview_normal = "Normal",
 				},
+				git = {
+					status = {
+						actions = {
+							["left"] = false,
+							["right"] = false,
+							["ctrl-h"] = { fn = fzf.actions.git_stage, reload = true },
+							["ctrl-l"] = { fn = fzf.actions.git_unstage, reload = true },
+							["ctrl-x"] = { fn = fzf.actions.git_reset, reload = true },
+						},
+					},
+				},
 				keymap = {
 					builtin = {
 						true,
 						["<C-Esc>"] = "hide",
-						["<C-d>"] = "preview-page-down",
-						["<C-u>"] = "preview-page-up",
+						["<M-u>"] = "preview-page-up",
+						["<M-d>"] = "preview-page-down",
 					},
 					fzf = {
 						true,
-						["ctrl-d"] = "preview-page-down",
-						["ctrl-u"] = "preview-page-up",
+						["alt-u"] = "preview-page-up",
+						["alt-d"] = "preview-page-down",
 					},
 				},
 				actions = {
@@ -35,7 +47,7 @@ return {
 				},
 			})
 
-			local map = require("utils").namespaced_keymap("FZF")
+			local map = utils.namespaced_keymap("FZF")
 
 			-- files/buffers
 			map("n", "<leader>sf", fzf.files, "[S]earch [F]iles")
@@ -44,6 +56,12 @@ return {
 			map("n", "<leader>sb", fzf.buffers, "[S]earch [B]uffers")
 			map("n", "<leader>sq", fzf.quickfix, "[S]earch [Q]uickfix")
 			map("n", "<leader>sm", fzf.marks, "[S]earch [M]arks")
+			map("n", "<leader>sh", function()
+				fzf.files({
+					header = "Search buffer's dir",
+					cwd = utils.buf_dir(),
+				})
+			end, "[S]earch [h]ere, starting from buffer's dir")
 			map("n", "<leader>sc", function()
 				fzf.files({
 					header = "Config Files",
@@ -70,10 +88,16 @@ return {
 			map("n", "<leader>/", fzf.lgrep_curbuf, "Search current buffer")
 			map("n", "<leader>sw", fzf.grep_cword, "[S]earch current [w]ord")
 			map("n", "<leader>sW", fzf.grep_cWORD, "[S]earch current [W]ord")
+			map("n", "<leader>gh", function()
+				fzf.live_grep({
+					header = "Grep buffer's dir",
+					cwd = utils.buf_dir(),
+				})
+			end, "[G]rep [H]ere, starting from buffer's dir")
 
 			-- misc
 			map("n", "<leader>sk", fzf.keymaps, "[S]earch [K]eymaps")
-			map("n", "<leader>sh", fzf.helptags, "[S]earch [H]elp")
+			map("n", "<leader>sH", fzf.helptags, "[S]earch [H]elp")
 			map("n", "<leader>sz", fzf.builtin, "[S]earch F[Z]F commands")
 		end,
 	},
