@@ -1,5 +1,3 @@
-local map = require("utils").namespaced_keymap("Telescope")
-local keymaps = require("config.lsp.keymaps")
 local lsp_methods = vim.lsp.protocol.Methods
 
 local M = {}
@@ -12,8 +10,6 @@ M.setup = function()
 			if not client then
 				return
 			end
-
-			keymaps.setup()
 
 			if client:supports_method(lsp_methods.textDocument_documentHighlight) then
 				local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
@@ -30,18 +26,12 @@ M.setup = function()
 				})
 
 				vim.api.nvim_create_autocmd("LspDetach", {
-					group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+					group = vim.api.nvim_create_augroup("lsp-highlight-detach", { clear = true }),
 					callback = function(detach_event)
 						vim.lsp.buf.clear_references()
 						vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = detach_event.buf })
 					end,
 				})
-			end
-
-			if client:supports_method(lsp_methods.textDocument_inlayHint) then
-				map("n", "<leader>th", function()
-					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-				end, "[T]oggle Inlay [H]ints")
 			end
 		end,
 	})
