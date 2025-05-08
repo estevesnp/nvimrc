@@ -1,5 +1,3 @@
-local get_alternate_exec = require("utils").get_alternate_exec
-
 local M = {}
 
 M.configs = {
@@ -21,7 +19,6 @@ M.configs = {
 		settings = {
 			enable_argument_placeholders = false,
 		},
-		cmd = { get_alternate_exec("zls") },
 	},
 
 	rust_analyzer = {

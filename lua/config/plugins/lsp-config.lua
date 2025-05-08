@@ -2,8 +2,8 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-			"williamboman/mason-lspconfig.nvim",
+			{ "mason-org/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			"saghen/blink.cmp",
@@ -28,19 +28,22 @@ return {
 			local lsp = require("config.lsp")
 			lsp.setup()
 
-			require("mason").setup()
+			require("mason").setup({ PATH = "append" })
 			require("mason-tool-installer").setup({ ensure_installed = lsp.servers.ensure_installed })
 			require("mason-lspconfig").setup({
+				automatic_installation = nil,
 				ensure_installed = nil,
-				automatic_installation = false,
-				handlers = {
-					function(server_name)
-						local server = lsp.servers.configs[server_name] or {}
-						server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
+				automatic_enable = {
+					exclude = vim.tbl_keys(lsp.servers.configs),
 				},
 			})
+
+			local capabilities = require("blink-cmp").get_lsp_capabilities()
+			for server_name, server in pairs(lsp.servers.configs) do
+				server.capabilities = capabilities
+				vim.lsp.config(server_name, server)
+				vim.lsp.enable(server_name)
+			end
 		end,
 	},
 }
