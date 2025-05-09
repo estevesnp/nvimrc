@@ -41,6 +41,10 @@ M.configs = {
 		cmd = { "clangd", "--offset-encoding=utf-16" },
 	},
 
+	bashls = {
+		filetypes = { "sh", "bash", "zsh", "zshrc" },
+	},
+
 	lua_ls = {
 		settings = {
 			Lua = {
@@ -59,6 +63,7 @@ M.ensure_installed = {
 	"zls",
 	"rust_analyzer",
 	"clangd",
+	"bashls",
 	"ts_ls",
 	"html",
 	"cssls",
