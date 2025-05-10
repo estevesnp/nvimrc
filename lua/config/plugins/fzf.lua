@@ -31,7 +31,7 @@ return {
 				keymap = {
 					builtin = {
 						true,
-						["<C-Esc>"] = "hide",
+						["<C-r>"] = "hide",
 						["<M-u>"] = "preview-page-up",
 						["<M-d>"] = "preview-page-down",
 					},
@@ -102,6 +102,7 @@ return {
 			end, "[G]rep [H]ere, starting from buffer's dir")
 
 			-- misc
+			map("n", "<leader>sr", fzf.resume, "[S]earch [R]esume")
 			map("n", "<leader>sk", fzf.keymaps, "[S]earch [K]eymaps")
 			map("n", "<leader>sH", fzf.helptags, "[S]earch [H]elp")
 			map("n", "<leader>sz", fzf.builtin, "[S]earch F[Z]F commands")

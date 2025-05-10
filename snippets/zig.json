@@ -1,7 +1,7 @@
 {
   "allocator": {
     "prefix": "allocator",
-    "body": "const allocator = ${1}.allocator();"
+    "body": "const ${1|gpa,allocator|} = ${2}.allocator();"
   },
   "arena": {
     "prefix": "arena",
