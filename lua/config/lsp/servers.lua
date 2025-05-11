@@ -30,9 +30,6 @@ M.configs = {
 				cargo = {
 					allFeatures = true,
 				},
-				checkOnSave = {
-					command = "clippy",
-				},
 			},
 		},
 	},
