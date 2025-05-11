@@ -39,7 +39,7 @@ function M.get_alternate_exec(exe)
 		return nil
 	end
 
-	local path_env_sep = vim.fn.has("win32") and ";" or ":"
+	local path_env_sep = vim.fn.has("win32") == 1 and ";" or ":"
 	local path_dirs = vim.split(vim.env.PATH, path_env_sep, { trimempty = true })
 
 	for _, dir in ipairs(path_dirs) do
