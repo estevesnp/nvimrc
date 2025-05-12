@@ -11,7 +11,7 @@ return {
 				view_options = {
 					show_hidden = true,
 					is_always_hidden = function(name, _)
-						return name == ".." or name == ".git"
+						return name == ".."
 					end,
 				},
 				win_options = {
@@ -21,7 +21,7 @@ return {
 					["<C-c>"] = false,
 					["<C-l>"] = false,
 					["<C-h>"] = false,
-					["<M-l>"] = "actions.refresh",
+					["<M-r>"] = "actions.refresh",
 					["<M-h>"] = "actions.select_split",
 					["<M-v>"] = "actions.select_vsplit",
 					["<C-s>"] = ":w<CR>",
