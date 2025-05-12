@@ -14,6 +14,29 @@ return {
 				hls = {
 					preview_normal = "Normal",
 				},
+				grep = {
+					actions = {
+						["ctrl-i"] = {
+							fn = function(_, opts)
+								fzf.actions.toggle_flag(
+									_,
+									vim.tbl_extend("force", opts, {
+										toggle_flag = "--smart-case",
+									})
+								)
+							end,
+							desc = "toggle-flags",
+							header = function(o)
+								local flag = o.toggle_smart_case_flag or "--smart-case"
+								if o.cmd and o.cmd:match(fzf.utils.lua_regex_escape(flag)) then
+									return "Disable Smart Case"
+								else
+									return "Enable Cmart Case"
+								end
+							end,
+						},
+					},
+				},
 				git = {
 					status = {
 						actions = {
