@@ -2,7 +2,7 @@ local lsp_methods = vim.lsp.protocol.Methods
 
 local M = {}
 
-M.setup = function()
+function M.setup()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 		callback = function(event)
@@ -13,6 +13,7 @@ M.setup = function()
 
 			if client:supports_method(lsp_methods.textDocument_documentHighlight) then
 				local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+
 				vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 					buffer = event.buf,
 					group = highlight_augroup,
@@ -29,7 +30,10 @@ M.setup = function()
 					group = vim.api.nvim_create_augroup("lsp-highlight-detach", { clear = true }),
 					callback = function(detach_event)
 						vim.lsp.buf.clear_references()
-						vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = detach_event.buf })
+						vim.api.nvim_clear_autocmds({
+							buffer = detach_event.buf,
+							group = highlight_augroup,
+						})
 					end,
 				})
 			end

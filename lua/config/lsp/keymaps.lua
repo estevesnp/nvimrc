@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function()
+function M.setup()
 	local map = require("utils").namespaced_keymap("LSP")
 
 	map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
