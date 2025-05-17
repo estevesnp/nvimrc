@@ -1,13 +1,20 @@
-# My neovim config
+# nvimrc
 
-My go-to neovim config, not too lean, not too bulky.
+my neovim config
 
-## Dependencies
+## main plugins
 
-- neovim v0.10.0+
+- `ibhagwan/fzf-lua`
+- `stevearc/oil.nvim`
+- `saghen/blink.cmp`
+- `mason-org/mason.nvim`
+
+## dependencies (afaik)
+
 - gcc (tree-sitter)
-- go
-
-## TODO
-
-- surround/nvim-surround?
+- xclip (clipboard, check `:h clipboard`)
+- ripgrep (fzf)
+- fd (fzf)
+- go (gopls and tools)
+- rust (rust-analyzer)
+- npm (ts-server and quicktype)
