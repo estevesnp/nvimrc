@@ -3,6 +3,7 @@ return {
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
+			require("fzf-lua.providers.ui_select").register()
 			local fzf = require("fzf-lua")
 			local utils = require("utils")
 
