@@ -28,7 +28,12 @@ M.configs = {
 		settings = {
 			["rust-analyzer"] = {
 				cargo = {
-					allFeatures = true,
+					buildScripts = {
+						enable = true,
+					},
+				},
+				procMacro = {
+					enable = true,
 				},
 				completion = {
 					callable = {

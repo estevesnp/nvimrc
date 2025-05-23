@@ -12,7 +12,8 @@ return {
 					LspSignatureActiveParameter = { bg = palette.highlight_med },
 				},
 			})
-			vim.cmd("colorscheme rose-pine")
+
+			-- vim.cmd("colorscheme rose-pine")
 		end,
 	},
 }
