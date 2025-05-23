@@ -30,6 +30,11 @@ M.configs = {
 				cargo = {
 					allFeatures = true,
 				},
+				completion = {
+					callable = {
+						snippets = "add_parentheses",
+					},
+				},
 			},
 		},
 	},
