@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 return {
 	{
 		"folke/twilight.nvim",
@@ -9,7 +7,7 @@ return {
 			},
 		},
 		config = function()
-			local map = utils.namespaced_keymap("Twilight")
+			local map = require("utils").namespaced_keymap("Twilight")
 			map("n", "<leader>tt", ":Twilight<CR>", "Toggle Twilight")
 		end,
 	},

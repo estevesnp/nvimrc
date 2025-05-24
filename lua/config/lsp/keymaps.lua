@@ -21,8 +21,8 @@ function M.setup()
 	map("n", "<leader>D", fzf.lsp_typedefs, "Type [D]efinition")
 	map("n", "<leader>ds", fzf.lsp_document_symbols, "[D]ocument [S]ymbols")
 	map("n", "<leader>ws", fzf.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
-	map("n", "<leader>sd", fzf.diagnostics_workspace, "[S]earch workspace [d]iagnostics")
-	map("n", "<leader>sD", fzf.diagnostics_document, "[S]earch document [D]iagnostics")
+	map("n", "<leader>sd", fzf.diagnostics_document, "[S]earch document [d]iagnostics")
+	map("n", "<leader>sD", fzf.diagnostics_workspace, "[S]earch workspace [D]iagnostics")
 	map("n", "<leader>ca", fzf.lsp_code_actions, "[C]ode [A]ction")
 end
 
