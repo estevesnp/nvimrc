@@ -1,5 +1,7 @@
 local utils = require("utils")
 
+vim.b.disable_autoformat = true
+
 local java_exe_path = utils.java.get_java_path_for_jdtls()
 
 local jdtls_path = utils.java.get_jdtls_path()
