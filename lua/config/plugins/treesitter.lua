@@ -31,7 +31,8 @@ return {
 		"nvim-treesitter/nvim-treesitter-context",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
-			require("treesitter-context").setup({
+			local treesitter_context = require("treesitter-context")
+			treesitter_context.setup({
 				enable = true,
 				max_lines = 0,
 				min_window_height = 0,
@@ -43,6 +44,9 @@ return {
 				zindex = 20,
 				on_attach = nil,
 			})
+
+			local map = require("utils").namespaced_keymap("Treesitter-Context")
+			map("n", "<leader>ts", treesitter_context.toggle, "Toggle Context")
 		end,
 	},
 }
