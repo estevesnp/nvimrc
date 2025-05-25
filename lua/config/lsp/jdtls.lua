@@ -14,8 +14,8 @@ function M.reset_cache()
 end
 
 ---@param java_exe string
----@return string|nil
-local function get_java_version(java_exe)
+---@return integer|nil
+local function get_java_major(java_exe)
 	local handle = io.popen(java_exe .. " -version 2>&1")
 	if not handle then
 		return nil
@@ -23,18 +23,8 @@ local function get_java_version(java_exe)
 	local result = handle:read("*a")
 	handle:close()
 
-	return result:match('openjdk version "([^"]+)"') or result:match('java version "([^"]+)"')
-end
-
----@param version string
----@return boolean
-local function is_version_compatible_jdtls(version)
-	local major = tonumber(version:match("^(%d+)"))
-	if not major then
-		return false
-	end
-
-	return major >= MIN_JAVA_VERSION
+	local major = result:match([[[%w]+ version "([%d]+)]])
+	return tonumber(major)
 end
 
 ---@return string|nil
@@ -101,15 +91,19 @@ function M.get_config()
 
 	local java_exe = utils.get_orelse(vim.env.JDTLS_JAVA, "java")
 
-	local java_version = get_java_version(java_exe)
-	if not java_version then
-		vim.notify("Couldn't get Java version", vim.log.levels.WARN)
+	local java_major = get_java_major(java_exe)
+	if not java_major then
+		vim.notify("Couldn't parse Java major from " .. java_exe, vim.log.levels.WARN)
 		return nil
 	end
 
-	if not is_version_compatible_jdtls(java_version) then
+	if java_major < MIN_JAVA_VERSION then
 		vim.notify(
-			"Java version not compatible with JDTLS. Define 'JDTLS_JAVA' env var or make sure Java version >= 21 is in your Path",
+			"Java version "
+				.. java_major
+				.. " not compatible with JDTLS. Define 'JDTLS_JAVA' env var or make sure Java version >= "
+				.. MIN_JAVA_VERSION
+				.. " is in your Path",
 			vim.log.levels.WARN
 		)
 		return nil
@@ -131,10 +125,7 @@ function M.get_config()
 
 	local bundles = get_bundles(jdtls_config_path)
 	if not bundles then
-		vim.notify(
-			"Couldn't find any bundles in JDTLS config path. Define 'JDTLS_CONFIG' and check https://github.com/mfussenegger/nvim-jdtls?tab=readme-ov-file#debugger-via-nvim-dap",
-			vim.log.levels.WARN
-		)
+		vim.notify("Couldn't find any bundles in JDTLS config path. Check 'jdtls-bundles.sh'", vim.log.levels.WARN)
 		return nil
 	end
 

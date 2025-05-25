@@ -18,3 +18,4 @@ my neovim config
 - go (gopls and tools)
 - rust (rust-analyzer)
 - npm (ts-server and quicktype)
+- java 21+ (jdtls)
