@@ -65,6 +65,19 @@ vim.keymap.set("n", "<leader>td", function()
 	})
 end, { desc = "[T]oggle [D]iagnostics format" })
 
+local zen_enabled = false
+vim.keymap.set("n", "<leader>z", function()
+	zen_enabled = not zen_enabled
+
+	if zen_enabled then
+		require("treesitter-context").disable()
+		vim.cmd("TwilightEnable")
+	else
+		require("treesitter-context").enable()
+		vim.cmd("TwilightDisable")
+	end
+end, { desc = "Toggle Zen" })
+
 -- Splits
 vim.keymap.set("n", "<C-w>b", "<cmd>split<CR>", { desc = "Split Horizontally" })
 vim.keymap.set("n", "<C-w>v", "<cmd>vsplit<CR>", { desc = "Split [V]ertically" })
