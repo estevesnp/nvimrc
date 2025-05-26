@@ -45,10 +45,10 @@ vim.keymap.set("n", "cp", ":cprev<CR>", { desc = "Previous Quickfix Item" })
 
 -- Diagnostics
 vim.keymap.set("n", "<leader>pd", function()
-	vim.diagnostic.jump({ count = -1, float = true })
+  vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Go to [P]revious [D]iagnostic message" })
 vim.keymap.set("n", "<leader>nd", function()
-	vim.diagnostic.jump({ count = 1, float = true })
+  vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Go to [N]ext [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
@@ -57,26 +57,26 @@ local show_virtual_text = true
 local show_virtual_lines = not show_virtual_text
 
 vim.keymap.set("n", "<leader>td", function()
-	show_virtual_text = not show_virtual_text
-	show_virtual_lines = not show_virtual_lines
-	vim.diagnostic.config({
-		virtual_text = show_virtual_text,
-		virtual_lines = show_virtual_lines,
-	})
+  show_virtual_text = not show_virtual_text
+  show_virtual_lines = not show_virtual_lines
+  vim.diagnostic.config({
+    virtual_text = show_virtual_text,
+    virtual_lines = show_virtual_lines,
+  })
 end, { desc = "[T]oggle [D]iagnostics format" })
 
 local zen_enabled = false
-vim.keymap.set("n", "<leader>z", function()
-	zen_enabled = not zen_enabled
+vim.keymap.set("n", "<leader>Z", function()
+  zen_enabled = not zen_enabled
 
-	if zen_enabled then
-		require("treesitter-context").disable()
-		vim.cmd("TwilightEnable")
-	else
-		require("treesitter-context").enable()
-		vim.cmd("TwilightDisable")
-	end
-end, { desc = "Toggle Zen" })
+  if zen_enabled then
+    require("treesitter-context").disable()
+    vim.cmd("TwilightEnable")
+  else
+    require("treesitter-context").enable()
+    vim.cmd("TwilightDisable")
+  end
+end, { desc = "Toggle [Z]en" })
 
 -- Splits
 vim.keymap.set("n", "<C-w>b", "<cmd>split<CR>", { desc = "Split Horizontally" })
