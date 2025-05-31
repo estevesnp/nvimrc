@@ -35,6 +35,9 @@ M.configs = {
         procMacro = {
           enable = true,
         },
+        check = {
+          command = "clippy",
+        },
         completion = {
           callable = {
             snippets = "add_parentheses",
