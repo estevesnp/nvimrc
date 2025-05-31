@@ -1,6 +1,7 @@
 return {
   "rose-pine/neovim",
   as = "rose-pine",
+  enabled = true,
   config = function()
     local palette = require("rose-pine.palette")
 
@@ -12,6 +13,6 @@ return {
       },
     })
 
-    -- vim.cmd("colorscheme rose-pine")
+    vim.cmd("colorscheme rose-pine")
   end,
 }

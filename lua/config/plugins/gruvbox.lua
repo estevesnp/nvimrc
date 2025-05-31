@@ -1,5 +1,6 @@
 return {
   "ellisonleao/gruvbox.nvim",
+  enabled = false,
   config = function()
     local bg_color = "#5b524c"
     require("gruvbox").setup({
