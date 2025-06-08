@@ -1,3 +1,8 @@
+-- jdtls is currently broken, wip
+if true then
+  return
+end
+
 vim.b.disable_autoformat = true
 
 local config = require("config.lsp.jdtls").get_config()

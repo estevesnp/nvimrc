@@ -14,6 +14,11 @@ return {
       hls = {
         preview_normal = "Normal",
       },
+      files = {
+        fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude .jj]],
+        rg_opts = [[--color=never --hidden --files -g "!.git" -g "!.jj"]],
+        find_opts = [[-type f \! -path '*/.git/*' \! -path '*/.jj/*']],
+      },
       grep = {
         actions = {
           ["ctrl-i"] = {
