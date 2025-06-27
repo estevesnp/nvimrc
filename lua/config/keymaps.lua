@@ -57,6 +57,10 @@ vim.keymap.set("n", "<leader>td", require("config.custom.diagnostic"), { desc = 
 
 vim.keymap.set("n", "<leader>Z", require("config.custom.zen"), { desc = "Toggle [Z]en" })
 
+-- Tabs
+vim.keymap.set("n", "<leader><Tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
+vim.keymap.set("n", "<leader><S-Tab>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab" })
+
 -- Splits
 vim.keymap.set("n", "<C-w>b", "<cmd>split<CR>", { desc = "Split Horizontally" })
 vim.keymap.set("n", "<C-w>v", "<cmd>vsplit<CR>", { desc = "Split [V]ertically" })
