@@ -53,9 +53,12 @@ end, { desc = "Go to [N]ext [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
+-- Stateful
 vim.keymap.set("n", "<leader>td", require("config.custom.diagnostic"), { desc = "[T]oggle [D]iagnostics format" })
-
 vim.keymap.set("n", "<leader>Z", require("config.custom.zen"), { desc = "Toggle [Z]en" })
+
+-- Plenary
+vim.keymap.set("n", "<leader>t", "<cmd>PlenaryBustedFile %<CR>", { desc = "Run Tests in current file" })
 
 -- Tabs
 vim.keymap.set("n", "<leader><Tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
