@@ -36,7 +36,7 @@ return {
               if o.cmd and o.cmd:match(fzf.utils.lua_regex_escape(flag)) then
                 return "Disable Smart Case"
               else
-                return "Enable Cmart Case"
+                return "Enable Smart Case"
               end
             end,
           },
