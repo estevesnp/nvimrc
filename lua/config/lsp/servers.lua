@@ -64,7 +64,7 @@ M.ensure_installed = {
   "rust_analyzer",
   "clangd",
   "bashls",
-  "jdtls",
+  -- "jdtls", -- currently broken
   "ts_ls",
   "html",
   "cssls",
