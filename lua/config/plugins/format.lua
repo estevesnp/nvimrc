@@ -16,7 +16,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         go = { "goimports", "gofumpt" },
-        markdown = { "markdownlint" },
+        markdown = { "prettierd" },
         javascript = { "prettierd" },
         typescript = { "prettierd" },
         javascriptreact = { "prettierd" },

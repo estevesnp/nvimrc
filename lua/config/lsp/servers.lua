@@ -74,7 +74,6 @@ M.ensure_installed = {
   "delve",
   -- Linters
   "golangci-lint",
-  "markdownlint",
   -- Formatters
   "stylua",
   "gofumpt",
