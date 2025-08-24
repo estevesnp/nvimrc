@@ -1,35 +1,27 @@
 {
-  "create allocator variable": {
-    "prefix": "allocator",
-    "body": "const ${1|gpa,allocator|} = ${2}.allocator();"
-  },
-  "smp_allocator": {
-    "prefix": "smp",
-    "body": "std.heap.smp_allocator"
-  },
   "init debug allocator": {
-    "prefix": "debug_allocator",
+    "prefix": "init_debug_allocator",
     "body": [
       "var debug_allocator: std.heap.DebugAllocator(.{}) = .init;",
       "defer _ = debug_allocator.deinit();"
     ]
   },
   "init arena allocator": {
-    "prefix": "arena",
+    "prefix": "init_arena",
     "body": [
-      "var arena_state: std.heap.ArenaAllocator = .init(${1|std.heap.smp_allocator,std.heap.page_allocator|});",
+      "var arena_state: std.heap.ArenaAllocator = .init(${1:allocator});",
       "defer arena_state.deinit();"
     ]
   },
-  "create unmanaged array list": {
-    "prefix": "array_list",
+  "init array list": {
+    "prefix": "init_array_list",
     "body": [
-      "var ${1}: std.ArrayListUnmanaged(${2:type}) = .empty;",
+      "var ${1}: std.ArrayList(${2:type}) = .empty;",
       "defer ${1}.deinit(${3:allocator});"
     ]
   },
-  "create unmanaged auto hash map": {
-    "prefix": "auto_hash_map",
+  "init unmanaged auto hash map": {
+    "prefix": "init_hash_map",
     "body": [
       "var ${1}: std.AutoHashMapUnmanaged(${2:key}, ${3:value}) = .empty;",
       "defer ${1}.deinit(${4:allocator});"
