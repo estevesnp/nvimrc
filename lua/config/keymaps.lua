@@ -26,9 +26,6 @@ vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Preserve paste register over 
 
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to void register" })
 
--- Append to end of line without moving cursor
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Better J" })
-
 -- Leave selection in the middle of screen
 vim.keymap.set("n", "n", "nzzzv", { desc = "Better n" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Better N" })
