@@ -40,6 +40,9 @@ vim.opt.winborder = "single"
 
 -- Folds
 vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- Disable the mode indicator (lualine already shows it)
 vim.opt.showmode = false
