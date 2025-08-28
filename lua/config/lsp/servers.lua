@@ -48,7 +48,7 @@ M.configs = {
   },
 
   clangd = {
-    cmd = { "clangd", "--offset-encoding=utf-16" },
+    cmd = { "clangd", "--offset-encoding=utf-16", "--function-arg-placeholders=0" },
   },
 
   bashls = {
