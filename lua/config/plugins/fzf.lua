@@ -6,8 +6,7 @@ return {
     local fzf = require("fzf-lua")
     local utils = require("utils")
 
-    fzf.setup({
-      "ivy",
+    fzf.setup(vim.tbl_deep_extend("force", require("config.custom.old-ivy"), {
       winopts = {
         height = 0.8,
       },
@@ -77,7 +76,7 @@ return {
           ["ctrl-v"] = fzf.actions.file_vsplit,
         },
       },
-    })
+    }))
 
     local map = utils.namespaced_keymap("FZF")
 
