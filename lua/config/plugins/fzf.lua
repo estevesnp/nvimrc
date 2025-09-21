@@ -87,6 +87,7 @@ return {
     map("n", "<leader>sb", fzf.buffers, "[S]earch [B]uffers")
     map("n", "<leader>sq", fzf.quickfix, "[S]earch [Q]uickfix")
     map("n", "<leader>sm", fzf.marks, "[S]earch [M]arks")
+    map("n", "<leader>se", fzf.global, "[S]earch [E]verything (Global)")
     map("n", "<leader>sh", function()
       local buf_dir = utils.buf_dir()
       fzf.files({
