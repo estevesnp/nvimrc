@@ -1,6 +1,8 @@
 return {
   "dmtrKovalenko/fff.nvim",
-  build = "cargo build --release",
+  build = function()
+    require("fff.download").download_or_build_binary()
+  end,
   config = function()
     local fff = require("fff")
     local utils = require("utils")
