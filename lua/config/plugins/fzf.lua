@@ -124,7 +124,9 @@ return {
     map("n", "<leader>gh", function()
       local buf_dir = utils.buf_dir()
       fzf.live_grep({
-        header = "Grep from " .. buf_dir,
+        winopts = {
+          title = "Grep from " .. buf_dir,
+        },
         cwd = buf_dir,
       })
     end, "[G]rep [H]ere, starting from buffer's dir")
