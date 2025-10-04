@@ -2,6 +2,10 @@ local M = {}
 
 local cache = {
   sysname = nil,
+  stdlib = {
+    zig = nil,
+    go = nil,
+  },
 }
 
 --- Reset local cache
@@ -9,6 +13,12 @@ function M.reset_cache()
   for k in pairs(cache) do
     cache[k] = nil
   end
+end
+
+--- Log error
+---@param msg string
+function M.log_err(msg)
+  vim.notify(msg, vim.log.levels.ERROR)
 end
 
 --- Get sysname: linux, mac or win
@@ -31,6 +41,96 @@ function M.sysname()
   end
 
   return cache.sysname
+end
+
+local default_stdlib_lang = "zig"
+
+-- the key should be the filetype, and the function should return either string or nil
+local stdlib_fetcher = {
+  zig = function()
+    local res = vim.system({ "zig", "env" }):wait()
+
+    if res.code ~= 0 then
+      return nil
+    end
+
+    return res.stdout:match([[std_dir[^:=]*[^"]*"([^"]+)"]])
+  end,
+  go = function()
+    local res = vim.system({ "go", "env", "GOROOT" }):wait()
+    if res.code ~= 0 then
+      return nil
+    end
+
+    local goroot = vim.trim(res.stdout)
+    if goroot == "" then
+      return nil
+    end
+
+    return vim.fs.joinpath(goroot, "src")
+  end,
+  rust = function()
+    local res = vim.system({ "rustc", "--print", "sysroot" }):wait()
+    if res.code ~= 0 then
+      return nil
+    end
+
+    local sysroot = vim.trim(res.stdout)
+    if sysroot == "" then
+      return nil
+    end
+
+    return vim.fs.joinpath(sysroot, "lib", "rustlib", "src", "rust", "library")
+  end,
+}
+
+--- Get path to the stdlib for a provided language. Return nil if not supported.
+---@param lang string filetype of the language
+---@return string|nil
+function M.stdlib_path(lang)
+  local supported_langs = vim.tbl_keys(stdlib_fetcher)
+  if not vim.tbl_contains(supported_langs, lang) then
+    return nil
+  end
+
+  if not cache.stdlib[lang] then
+    cache.stdlib[lang] = stdlib_fetcher[lang]()
+  end
+
+  return cache.stdlib[lang]
+end
+
+--- Aggregated stdlib path and
+---@class utils.StdlibLang
+---@field stdlib string path to stdlib
+---@field lang string programming language of the stdlib
+
+--- Get path for the stdlib of the language in the current buffer.
+--- If none is found, default to a fallback (currently zig).
+--- Logs error and returns nil if none is found
+---@return utils.StdlibLang | nil
+function M.get_stdlib_with_fallback()
+  local buf_lang = vim.bo.filetype
+  local lang = buf_lang
+  local path = M.stdlib_path(lang)
+
+  if not path and buf_lang ~= default_stdlib_lang then
+    lang = default_stdlib_lang
+    path = M.stdlib_path(default_stdlib_lang)
+  end
+
+  if not path then
+    local msg
+    if buf_lang == default_stdlib_lang then
+      msg = "could not get stdlib for " .. default_stdlib_lang
+    else
+      msg = "could not get stdlib for " .. buf_lang .. " or fallback " .. default_stdlib_lang
+    end
+    M.log_err(msg)
+    return nil
+  end
+
+  return { stdlib = path, lang = lang }
 end
 
 --- Return true if string is not nil nor empty

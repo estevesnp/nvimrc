@@ -79,6 +79,21 @@ return {
     }))
 
     local map = utils.namespaced_keymap("FZF")
+    local default_stdlib_lang = "zig"
+
+    local function get_stdlib()
+      local lang = vim.bo.filetype
+      local path = utils.stdlib_path(lang)
+      if not path then
+        lang = default_stdlib_lang
+        path = utils.stdlib_path(default_stdlib_lang)
+
+        if not path then
+          utils.log_err("could not get stdlib_path for " .. vim.bo.filetype .. " nor " .. default_stdlib_lang)
+          return nil
+        end
+      end
+    end
 
     -- files/buffers
     map("n", "<leader>sf", fzf.files, "[S]earch [F]iles")
@@ -108,6 +123,17 @@ return {
         cwd = vim.fn.stdpath("config"),
       })
     end, "[S]earch [N]eovim files")
+    map("n", "<leader>sl", function()
+      local stdlib_lang = utils.get_stdlib_with_fallback()
+      if not stdlib_lang then
+        return
+      end
+
+      fzf.files({
+        header = stdlib_lang.lang .. " stdlib files",
+        cwd = stdlib_lang.stdlib,
+      })
+    end, "[S]earch std[L]ib files")
 
     -- git
     map("n", "<leader>gf", fzf.git_files, "Search [G]it [F]iles")
@@ -130,6 +156,19 @@ return {
         cwd = buf_dir,
       })
     end, "[G]rep [H]ere, starting from buffer's dir")
+    map("n", "<leader>gl", function()
+      local stdlib_lang = utils.get_stdlib_with_fallback()
+      if not stdlib_lang then
+        return
+      end
+
+      fzf.live_grep({
+        winopts = {
+          title = "Grep " .. stdlib_lang.lang .. " stdlib",
+        },
+        cwd = stdlib_lang.stdlib,
+      })
+    end, "[G]rep std[L]ib")
 
     -- misc
     map("n", "<leader>sr", fzf.resume, "[S]earch [R]esume")
