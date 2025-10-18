@@ -1,3 +1,8 @@
+-- jdtls is currently broken
+if true then
+  return {}
+end
+
 return {
   "mfussenegger/nvim-jdtls",
   config = function()

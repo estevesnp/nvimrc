@@ -1,8 +1,3 @@
--- currently crashes sometimes on launch
-if true then
-  return {}
-end
-
 return {
   "dmtrKovalenko/fff.nvim",
   build = function()
