@@ -191,19 +191,27 @@ end
 --- @param exe string The name of the executable to search for
 --- @return string|nil exe_path The full path to the first alternate executable
 function M.get_alternate_exec(exe)
-  local path_exec = vim.fn.exepath(exe)
-  if path_exec == "" then
+  local exec_full_path = vim.fn.exepath(exe)
+  if exec_full_path == "" then
     return nil
   end
+
+  local path_exec = vim.fs.joinpath(vim.fs.dirname(exec_full_path), exe)
 
   local path_env_sep = M.sysname() == "win" and ";" or ":"
   local path_dirs = vim.split(vim.env.PATH, path_env_sep, { trimempty = true })
 
   for _, dir in ipairs(path_dirs) do
+    if dir == "" then
+      goto continue
+    end
+
     local full_path = vim.fs.joinpath(dir, exe)
     if vim.fn.executable(full_path) == 1 and full_path ~= path_exec then
       return full_path
     end
+
+    ::continue::
   end
 
   return path_exec
