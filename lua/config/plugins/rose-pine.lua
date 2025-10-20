@@ -3,13 +3,12 @@ return {
   as = "rose-pine",
   enabled = true,
   config = function()
-    local palette = require("rose-pine.palette")
-
-    ---@diagnostic disable-next-line: missing-fields
     require("rose-pine").setup({
       styles = { italic = false },
       highlight_groups = {
-        LspSignatureActiveParameter = { bg = palette.highlight_med },
+        LspSignatureActiveParameter = {
+          bg = require("rose-pine.palette").highlight_med,
+        },
       },
     })
 

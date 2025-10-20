@@ -5,6 +5,7 @@ local cache = {
   stdlib = {
     zig = nil,
     go = nil,
+    rust = nil,
   },
 }
 

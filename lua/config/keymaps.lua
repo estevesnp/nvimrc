@@ -52,7 +52,6 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 
 -- Stateful
 vim.keymap.set("n", "<leader>td", require("config.custom.diagnostic"), { desc = "[T]oggle [D]iagnostics format" })
-vim.keymap.set("n", "<leader>Z", require("config.custom.zen"), { desc = "Toggle [Z]en" })
 
 -- Plenary
 vim.keymap.set("n", "<leader>t", "<cmd>PlenaryBustedFile %<CR>", { desc = "Run Tests in current file" })

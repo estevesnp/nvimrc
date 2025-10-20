@@ -27,7 +27,7 @@ return {
 
       providers = {
         buffer = {
-          min_keyword_length = 4,
+          min_keyword_length = 3,
         },
       },
     },

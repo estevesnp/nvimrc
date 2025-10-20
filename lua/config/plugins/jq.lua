@@ -1,5 +1,3 @@
 return {
-  {
-    "estevesnp/jq.nvim",
-  },
+  "estevesnp/jq.nvim",
 }

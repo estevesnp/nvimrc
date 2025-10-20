@@ -79,21 +79,6 @@ return {
     }))
 
     local map = utils.namespaced_keymap("FZF")
-    local default_stdlib_lang = "zig"
-
-    local function get_stdlib()
-      local lang = vim.bo.filetype
-      local path = utils.stdlib_path(lang)
-      if not path then
-        lang = default_stdlib_lang
-        path = utils.stdlib_path(default_stdlib_lang)
-
-        if not path then
-          utils.log_err("could not get stdlib_path for " .. vim.bo.filetype .. " nor " .. default_stdlib_lang)
-          return nil
-        end
-      end
-    end
 
     -- files/buffers
     map("n", "<leader>sf", fzf.files, "[S]earch [F]iles")
