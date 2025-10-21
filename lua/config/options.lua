@@ -54,7 +54,7 @@ vim.g.netrw_banner = 0
 -- Disable swap and backup files, use undodir
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = (os.getenv("HOME") or os.getenv("USERPROFILE")) .. "/.vim/undodir"
+vim.opt.undodir = (vim.env.HOME or vim.env.USERPROFILE) .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- Diagnostics
