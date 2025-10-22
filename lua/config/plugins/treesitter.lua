@@ -5,18 +5,21 @@ return {
     branch = "main",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter").install({
-        "go",
-        "zig",
-        "rust",
-        "c",
-        "html",
-        "lua",
-        "vim",
-        "vimdoc",
-        "diff",
-        "git_rebase",
-        "gitcommit",
+      local treesitter = require("nvim-treesitter")
+
+      -- if this becomes too slow, consider manually maintaining a list, or installing all
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "*" },
+        group = vim.api.nvim_create_augroup("nvim-treesitter_auto-install", { clear = true }),
+        callback = function()
+          local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+
+          if not lang then
+            return
+          end
+
+          treesitter.install(lang)
+        end,
       })
     end,
   },
