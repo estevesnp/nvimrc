@@ -7,10 +7,9 @@ return {
     config = function()
       local treesitter = require("nvim-treesitter")
 
-      -- if this becomes too slow, consider manually maintaining a list, or installing all
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "*" },
-        group = vim.api.nvim_create_augroup("nvim-treesitter_auto-install", { clear = true }),
+        group = vim.api.nvim_create_augroup("nvim-treesitter_auto-install-and-start", { clear = true }),
         callback = function()
           local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
 
@@ -18,7 +17,14 @@ return {
             return
           end
 
-          treesitter.install(lang)
+          treesitter.install(lang):await(function()
+            local installed = vim.list_contains(treesitter.get_installed(), lang)
+            if not installed then
+              return
+            end
+
+            vim.treesitter.start(nil, lang)
+          end)
         end,
       })
     end,
