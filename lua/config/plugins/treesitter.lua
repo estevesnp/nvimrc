@@ -7,7 +7,7 @@ return {
     config = function()
       local treesitter = require("nvim-treesitter")
 
-      vim.api.nvim_create_autocmd("FileType", {
+      vim.api.nvim_create_autocmd("BufEnter", {
         pattern = { "*" },
         group = vim.api.nvim_create_augroup("nvim-treesitter_auto-install-and-start", { clear = true }),
         callback = function()
