@@ -11,7 +11,8 @@ return {
         pattern = { "*" },
         group = vim.api.nvim_create_augroup("nvim-treesitter_auto-install-and-start", { clear = true }),
         callback = function()
-          local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+          local buf = vim.api.nvim_get_current_buf()
+          local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
 
           if not lang then
             return
@@ -23,7 +24,9 @@ return {
               return
             end
 
-            vim.treesitter.start(nil, lang)
+            if vim.api.nvim_buf_is_valid(buf) then
+              vim.treesitter.start(buf, lang)
+            end
           end)
         end,
       })
