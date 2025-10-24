@@ -1,6 +1,5 @@
 return {
   "saghen/blink.cmp",
-  dependencies = { "rafamadriz/friendly-snippets" },
 
   version = "1.*",
 
@@ -28,6 +27,11 @@ return {
       providers = {
         buffer = {
           min_keyword_length = 3,
+        },
+        snippets = {
+          opts = {
+            friendly_snippets = false,
+          },
         },
       },
     },
