@@ -11,7 +11,10 @@ vim.keymap.set("n", "<leader>rl", "<cmd>LspRestart<CR>", { desc = "[R]estart [L]
 vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Make <C-c> work as <Esc>" })
 
 vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Remove search highlights" })
+vim.keymap.set("n", "<Esc>", function()
+  vim.snippet.stop()
+  vim.cmd("nohlsearch")
+end, { desc = "Remove search and snippet highlights" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
