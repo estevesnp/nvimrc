@@ -15,8 +15,8 @@ return {
       local map = require("utils").namespaced_keymap("Gitsigns")
 
       -- Navigation
-      local next_change_key = "<leader>cn"
-      local prev_change_key = "<leader>cp"
+      local next_change_key = "<leader>nc"
+      local prev_change_key = "<leader>pc"
       map("n", next_change_key, function()
         if vim.wo.diff then
           vim.cmd.normal({ next_change_key, bang = true })
