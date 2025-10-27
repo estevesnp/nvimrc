@@ -2,13 +2,14 @@
 -- where the ivy picker was changed
 
 local M = {
-  { "default-title" }, -- base profile
+  -- uncomment if injecting as default profile
+  -- { "default-title" }, -- base profile
   desc = "UI at the bottom of the screen",
   winopts = {
     row = 1,
     col = 0,
     width = 1,
-    height = 0.4,
+    height = 0.8, -- default is 0.4
     title_pos = "left",
     border = { "", "─", "", "", "", "", "", "" },
     preview = {

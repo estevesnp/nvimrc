@@ -12,6 +12,12 @@ return {
       keymaps = {
         close = { "<Esc>", "<C-c>" },
       },
+      layout = {
+        height = 1,
+        width = 1,
+        prompt_position = "top",
+        preview_position = "top",
+      },
     })
 
     local map = utils.namespaced_keymap("fff")
