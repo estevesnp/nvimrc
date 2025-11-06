@@ -25,7 +25,7 @@ vim.keymap.set("n", "<leader>O", "O<ESC>", { desc = "Open new line up and stay i
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "[y]ank to system clipboard" })
 vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "[Y]ank to system clipboard" })
 
-vim.keymap.set("x", "<leader>P", '"_dP', { desc = "Paste preserving paste register over selection" })
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste preserving paste register over selection" })
 
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to void register" })
 
@@ -44,12 +44,12 @@ vim.keymap.set("n", "cn", ":cnext<CR>", { desc = "Next Quickfix Item" })
 vim.keymap.set("n", "cp", ":cprev<CR>", { desc = "Previous Quickfix Item" })
 
 -- Diagnostics
-vim.keymap.set("n", "<leader>pd", function()
-  vim.diagnostic.jump({ count = -1, float = true })
-end, { desc = "Go to [P]revious [D]iagnostic message" })
 vim.keymap.set("n", "<leader>nd", function()
   vim.diagnostic.jump({ count = 1, float = true })
-end, { desc = "Go to [N]ext [D]iagnostic message" })
+end, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "<leader>Nd", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 

@@ -16,7 +16,7 @@ return {
 
       -- Navigation
       local next_change_key = "<leader>nc"
-      local prev_change_key = "<leader>pc"
+      local prev_change_key = "<leader>Nc"
       map("n", next_change_key, function()
         if vim.wo.diff then
           vim.cmd.normal({ next_change_key, bang = true })
