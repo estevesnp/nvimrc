@@ -16,12 +16,6 @@ vim.keymap.set("n", "<Esc>", function()
   vim.cmd("nohlsearch")
 end, { desc = "Remove search and snippet highlights" })
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
-
-vim.keymap.set("n", "<leader>o", "o<ESC>", { desc = "Open new line down and stay in normal mode" })
-vim.keymap.set("n", "<leader>O", "O<ESC>", { desc = "Open new line up and stay in normal mode" })
-
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "[y]ank to system clipboard" })
 vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "[Y]ank to system clipboard" })
 
