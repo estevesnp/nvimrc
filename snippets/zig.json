@@ -13,6 +13,13 @@
       "defer arena_state.deinit();"
     ]
   },
+  "init threaded": {
+    "prefix": "init_threaded",
+    "body": [
+      "var threaded: Io.Threaded = .init(${1:allocator}, .{});",
+      "defer threaded.deinit();"
+    ]
+  },
   "init array list": {
     "prefix": "init_array_list",
     "body": [
