@@ -1,17 +1,15 @@
+local M = {}
+
+local state = {
+  counter = 1,
+}
+
 local diagnostic_configs = {
   {
     message = "Default",
     config = {
       virtual_lines = false,
       virtual_text = true,
-      underline = true,
-    },
-  },
-  {
-    message = "Virtual Lines",
-    config = {
-      virtual_lines = true,
-      virtual_text = false,
       underline = true,
     },
   },
@@ -27,16 +25,28 @@ local diagnostic_configs = {
       },
     },
   },
+  {
+    message = "Virtual Lines",
+    config = {
+      virtual_lines = true,
+      virtual_text = false,
+      underline = true,
+    },
+  },
 }
 
-local counter = 1
-local max_value = #diagnostic_configs
+function M.default_diagnostic()
+  vim.diagnostic.config(diagnostic_configs[1].config)
+  state.counter = 1
+end
 
-return function()
-  counter = (counter % max_value) + 1
-  local diag_config = diagnostic_configs[counter]
+function M.toggle_diagnostic()
+  state.counter = (state.counter % #diagnostic_configs) + 1
+  local diag_config = diagnostic_configs[state.counter]
 
   print("Diagnostic Setting: " .. diag_config.message)
 
   vim.diagnostic.config(diag_config.config)
 end
+
+return M

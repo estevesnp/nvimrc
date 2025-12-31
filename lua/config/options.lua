@@ -58,7 +58,7 @@ vim.opt.undodir = (vim.env.HOME or vim.env.USERPROFILE) .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- Diagnostics
-vim.diagnostic.config({ virtual_text = true })
+require("config.custom.diagnostic").default_diagnostic()
 
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {

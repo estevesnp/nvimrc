@@ -47,11 +47,28 @@ end, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Stateful
-vim.keymap.set("n", "<leader>td", require("config.custom.diagnostic"), { desc = "[T]oggle [D]iagnostics format" })
+-- Toggles
+vim.keymap.set(
+  "n",
+  "<leader>td",
+  require("config.custom.diagnostic").toggle_diagnostic,
+  { desc = "[T]oggle [D]iagnostics format" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>tf",
+  require("config.custom.format").toggle_format_on_save,
+  { desc = "[T]oggle [f]ormat on save" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>tF",
+  require("config.custom.format").toggle_format_on_save_buffer,
+  { desc = "[T]oggle [F]ormat on save for Buffer" }
+)
 
 -- Plenary
-vim.keymap.set("n", "<leader>t", "<cmd>PlenaryBustedFile %<CR>", { desc = "Run Tests in current file" })
+vim.keymap.set("n", "<leader>T", "<cmd>PlenaryBustedFile %<CR>", { desc = "Run [T]ests in current file" })
 
 -- Tabs
 vim.keymap.set("n", "<leader><Tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
