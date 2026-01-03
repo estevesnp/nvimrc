@@ -5,27 +5,28 @@ return {
     build = ":TSUpdate",
     config = function()
       local treesitter = require("nvim-treesitter")
+      local parsers = require("nvim-treesitter.parsers")
 
-      vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = { "*" },
+      vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("nvim-treesitter_auto-install-and-start", { clear = true }),
-        callback = function()
-          local buf = vim.api.nvim_get_current_buf()
-          local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
+        callback = function(args)
+          local buf = args.buf
+          local lang = vim.treesitter.language.get_lang(args.match)
 
-          if not lang then
+          if not lang or not parsers[lang] then
             return
           end
 
           treesitter.install(lang):await(function()
-            local installed = vim.list_contains(treesitter.get_installed(), lang)
-            if not installed then
+            if not vim.list_contains(treesitter.get_installed(), lang) then
               return
             end
 
-            if vim.api.nvim_buf_is_valid(buf) then
-              vim.treesitter.start(buf, lang)
+            if not vim.api.nvim_buf_is_loaded(buf) then
+              return
             end
+
+            pcall(vim.treesitter.start, buf, lang)
           end)
         end,
       })
