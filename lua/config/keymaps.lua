@@ -41,6 +41,9 @@ map("n", "N", "Nzzzv", { desc = "previous search and center cursor" })
 map("n", "<C-d>", "<C-d>zz", { desc = "half page down and center cursor" })
 map("n", "<C-u>", "<C-u>zz", { desc = "half page up and center cursor" })
 
+-- split horizontally to match tmux. still have <C-w>v for vertical and <C-w>s for horizontal
+map("n", "<C-w>b", ":split<CR>", { desc = "split buffer horizontally" })
+
 -- netrw (overwritten by oil)
 map("n", "<leader>rw", "<cmd>Ex<CR>", { desc = "open netrw" })
 

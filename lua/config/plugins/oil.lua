@@ -22,7 +22,8 @@ return {
           ["<C-l>"] = false,
           ["<C-h>"] = false,
           ["<M-r>"] = "actions.refresh",
-          ["<M-h>"] = "actions.select_split",
+          ["<M-s>"] = "actions.select_split",
+          ["<M-b>"] = "actions.select_split",
           ["<M-v>"] = "actions.select_vsplit",
           ["q"] = "actions.close",
           ["td"] = {

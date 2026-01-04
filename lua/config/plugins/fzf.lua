@@ -72,6 +72,7 @@ return {
       actions = {
         files = {
           true,
+          ["ctrl-s"] = fzf.actions.file_split,
           ["ctrl-b"] = fzf.actions.file_split,
           ["ctrl-v"] = fzf.actions.file_vsplit,
         },

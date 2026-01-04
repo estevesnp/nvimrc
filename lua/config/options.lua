@@ -57,7 +57,7 @@ vim.o.showmode = false
 vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro"
 vim.g.netrw_banner = 0
 
--- swapfile
+-- undofile
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undofile = true
