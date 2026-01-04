@@ -2,8 +2,9 @@ return {
   "stevearc/conform.nvim",
   lazy = false,
   config = function()
-    local fmt = require("config.custom.format")
-    require("conform").setup({
+    local conform = require("conform")
+    local fmt = require("config.toggles.formatting")
+    conform.setup({
       notify_on_error = false,
       format_on_save = function(bufnr)
         if fmt.format_on_save_disabled(bufnr) then
@@ -29,7 +30,7 @@ return {
 
     local map = require("utils").namespaced_keymap("Conform")
     map("n", "<leader>f", function()
-      require("conform").format({ async = true, lsp_fallback = true })
+      conform.format({ async = true, lsp_fallback = true })
     end, "[F]ormat bufer")
   end,
 }

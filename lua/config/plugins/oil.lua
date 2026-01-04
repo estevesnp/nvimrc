@@ -24,10 +24,9 @@ return {
           ["<M-r>"] = "actions.refresh",
           ["<M-h>"] = "actions.select_split",
           ["<M-v>"] = "actions.select_vsplit",
-          ["<C-s>"] = ":w<CR>",
           ["q"] = "actions.close",
-          ["gd"] = {
-            desc = "Toggle file detail view",
+          ["td"] = {
+            desc = "toggle file detail view",
             callback = function()
               detail = not detail
               if detail then
@@ -40,10 +39,10 @@ return {
         },
       })
 
-      local map = require("utils").namespaced_keymap("Oil")
+      local map = require("utils").namespaced_keymap("oil")
 
-      map("n", "-", oil.open, "Open parent directory")
-      map("n", "<leader>-", oil.toggle_float, "Toggle oil float")
+      map("n", "-", oil.open, "open parent directory")
+      map("n", "<leader>-", oil.toggle_float, "toggle oil float")
     end,
   },
 

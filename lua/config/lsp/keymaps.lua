@@ -1,29 +1,34 @@
 local M = {}
 
-function M.setup()
-  local map = require("utils").namespaced_keymap("LSP")
+local map = require("utils").namespaced_keymap("lsp")
 
-  map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-  map("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-  map("n", "gqd", vim.lsp.buf.definition, "[G]oto [Q]uickfix [D]efinition")
-  map("n", "gqr", vim.lsp.buf.references, "[G]oto [Q]uickfix [R]eferences")
-  map("n", "gqi", vim.lsp.buf.implementation, "[G]oto [Q]uickfix [I]mplementation")
-  map({ "i", "n" }, "<C-s>", vim.lsp.buf.signature_help, "[S]ignature Help")
+---setup keymaps that don't depend on fzf
+function M.setup_bare_keymaps()
+  map("n", "K", vim.lsp.buf.hover, "hover documentation")
+  map("n", "<leader>rn", vim.lsp.buf.rename, "rename")
+  map("n", "gqd", vim.lsp.buf.definition, "goto definition (quickfix)")
+  map("n", "gqr", vim.lsp.buf.references, "goto references (quickfix)")
+  map("n", "gqi", vim.lsp.buf.implementation, "goto implementations (quickfix)")
+  map({ "i", "n" }, "<C-s>", vim.lsp.buf.signature_help, "signature help")
   map("n", "<leader>th", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-  end, "[T]oggle Inlay [H]ints")
+  end, "toggle inlay hints")
+end
 
+---setup keymaps that depend on fzf
+function M.setup_fzf_keymaps()
   local fzf = require("fzf-lua")
-  map("n", "gd", fzf.lsp_definitions, "[G]oto [D]efinition")
-  map("n", "gD", fzf.lsp_declarations, "[G]oto [D]eclaration")
-  map("n", "gr", fzf.lsp_references, "[G]oto [R]eferences")
-  map("n", "gI", fzf.lsp_implementations, "[G]oto [I]mplementation")
-  map("n", "<leader>D", fzf.lsp_typedefs, "Type [D]efinition")
-  map("n", "<leader>ds", fzf.lsp_document_symbols, "[D]ocument [S]ymbols")
-  map("n", "<leader>ws", fzf.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
-  map("n", "<leader>sd", fzf.diagnostics_document, "[S]earch document [d]iagnostics")
-  map("n", "<leader>sD", fzf.diagnostics_workspace, "[S]earch workspace [D]iagnostics")
-  map("n", "<leader>ca", fzf.lsp_code_actions, "[C]ode [A]ction")
+
+  map("n", "gd", fzf.lsp_definitions, "goto definition (fzf)")
+  map("n", "gD", fzf.lsp_declarations, "goto declaration (fzf)")
+  map("n", "gr", fzf.lsp_references, "goto references (fzf)")
+  map("n", "gI", fzf.lsp_implementations, "goto implementations (fzf)")
+  map("n", "<leader>D", fzf.lsp_typedefs, "type definition")
+  map("n", "<leader>ds", fzf.lsp_document_symbols, "document symbols")
+  map("n", "<leader>ws", fzf.lsp_workspace_symbols, "workspace symbols")
+  map("n", "<leader>sd", fzf.diagnostics_document, "document diagnsostics")
+  map("n", "<leader>sD", fzf.diagnostics_workspace, "workspace diagnostics")
+  map("n", "<leader>ca", fzf.lsp_code_actions, "code action")
 end
 
 return M

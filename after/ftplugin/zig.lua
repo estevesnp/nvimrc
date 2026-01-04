@@ -1,7 +1,7 @@
 vim.g.zig_fmt_parse_errors = 0
 vim.g.zig_fmt_autosave = 0
 
-local map = require("utils").namespaced_keymap("Zig")
+local map = require("utils").namespaced_keymap("zig")
 
 local ignore_under_cursor = function()
   local word = vim.fn.expandcmd("<cword>")
@@ -10,4 +10,4 @@ local ignore_under_cursor = function()
   vim.api.nvim_feedkeys(keys, "n", false)
 end
 
-map("n", "<leader>zi", ignore_under_cursor, "Ignore word under cursor")
+map("n", "<leader>zi", ignore_under_cursor, "ignore word under cursor")

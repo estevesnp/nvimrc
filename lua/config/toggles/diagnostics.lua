@@ -6,17 +6,15 @@ local state = {
 
 local diagnostic_configs = {
   {
-    message = "Default",
+    message = "display all levels",
     config = {
-      virtual_lines = false,
       virtual_text = true,
       underline = true,
     },
   },
   {
-    message = "Only Display Errors",
+    message = "only display errors",
     config = {
-      virtual_lines = false,
       virtual_text = {
         severity = { min = vim.diagnostic.severity.ERROR },
       },
@@ -26,25 +24,24 @@ local diagnostic_configs = {
     },
   },
   {
-    message = "Virtual Lines",
+    message = "display none",
     config = {
-      virtual_lines = true,
       virtual_text = false,
-      underline = true,
+      underline = false,
     },
   },
 }
 
-function M.default_diagnostic()
+function M.set_default_diagnostic()
   vim.diagnostic.config(diagnostic_configs[1].config)
   state.counter = 1
 end
 
-function M.toggle_diagnostic()
+function M.toggle_diagnostics()
   state.counter = (state.counter % #diagnostic_configs) + 1
   local diag_config = diagnostic_configs[state.counter]
 
-  print("Diagnostic Setting: " .. diag_config.message)
+  print("diagnostic setting: " .. diag_config.message)
 
   vim.diagnostic.config(diag_config.config)
 end

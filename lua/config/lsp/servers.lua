@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 local M = {}
 
 M.configs = {
@@ -21,7 +19,6 @@ M.configs = {
     settings = {
       enable_argument_placeholders = false,
     },
-    cmd = { utils.get_alternate_exec("zls") },
   },
 
   rust_analyzer = {
@@ -56,29 +53,31 @@ M.configs = {
   },
 }
 
-M.ensure_installed = {
-  -- LSPs
+---servers to enable without a configuration
+M.default_servers = {
+  -- lua
   "lua_ls",
-  "gopls",
-  "zls",
-  "rust_analyzer",
-  "clangd",
-  "bashls",
-  -- "jdtls", -- currently broken
+  "stylua",
+  -- typescript/javascript
   "ts_ls",
+  --python
+  "basedpyright",
+  "ruff",
+  -- gh actions
+  "gh_actions_ls",
+  -- data
+  "jsonls",
+  "taplo", -- toml
+  "yamlls",
+  -- web
   "html",
   "cssls",
-  "jsonls",
-  -- DAP
-  "codelldb",
-  "delve",
-  -- Linters
-  "golangci-lint",
-  -- Formatters
-  "stylua",
-  "gofumpt",
-  "goimports",
-  "prettierd",
 }
+
+---returns a list of all lsp servers to enable
+---@return string[]
+function M.all_servers()
+  return vim.list_extend(vim.fn.keys(M.configs), M.default_servers)
+end
 
 return M

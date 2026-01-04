@@ -7,6 +7,37 @@ return {
       local treesitter = require("nvim-treesitter")
       local parsers = require("nvim-treesitter.parsers")
 
+      treesitter.install({
+        -- vim
+        "vim",
+        "vimdoc",
+        -- git
+        "diff",
+        "gitcommit",
+        "git_config",
+        "gitignore",
+        -- markdown
+        "markdown",
+        "markdown_inline",
+        -- data
+        "json",
+        "toml",
+        "yaml",
+        "csv",
+        -- languages
+        "lua",
+        "zig",
+        "c",
+        "go",
+        "rust",
+        "javascript",
+        "typescript",
+        "python",
+        "bash",
+        "zsh",
+        "sql",
+      })
+
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("nvim-treesitter_auto-install-and-start", { clear = true }),
         callback = function(args)
@@ -51,8 +82,8 @@ return {
         on_attach = nil,
       })
 
-      local map = require("utils").namespaced_keymap("Treesitter-Context")
-      map("n", "<leader>ts", treesitter_context.toggle, "Toggle Context")
+      local map = require("utils").namespaced_keymap("treesitter-context")
+      map("n", "<leader>tt", treesitter_context.toggle, "toggle context")
     end,
   },
 }

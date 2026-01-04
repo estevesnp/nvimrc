@@ -1,70 +1,63 @@
--- Cursor settings
-vim.opt.guicursor = ""
-vim.opt.cursorline = true
+-- block cursor
+vim.o.guicursor = ""
+vim.o.cursorline = true
 
--- Line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
+-- relative line number
+vim.o.number = true
+vim.o.relativenumber = true
 
--- Indentation
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smarttab = true
-vim.opt.smartindent = true
+-- tab / indentation opts
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.smarttab = true
+vim.o.smartindent = true
 
--- Search settings
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.inccommand = "split"
+-- / opts
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.inccommand = "split"
 
--- Always show the sign column (on the left)
-vim.opt.signcolumn = "yes"
+-- ask before erroring (e.g. closing unsaved file)
+vim.o.confirm = true
 
--- Disable line wrapping
-vim.opt.wrap = false
+-- always show gutter
+vim.o.signcolumn = "yes"
 
--- Show 80 character column
-vim.opt.colorcolumn = "80"
+-- disable wrap text
+vim.o.wrap = false
 
--- Always keep 10 lines above and below the cursor
-vim.opt.scrolloff = 10
+-- line at col 80
+vim.o.colorcolumn = "80"
 
--- Set the timeout for key sequences
-vim.opt.updatetime = 50
-vim.opt.timeoutlen = 300
+-- top and bottom scrollof
+vim.o.scrolloff = 5
 
--- Border around floating windows
-vim.opt.winborder = "single"
+-- key combination timeout
+vim.o.updatetime = 50
+vim.o.timeoutlen = 300
 
--- Folds
-vim.opt.foldenable = false
-vim.opt.foldlevel = 99
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- border around floating windows (e.g. K)
+vim.o.winborder = "single"
 
--- Disable the mode indicator (lualine already shows it)
-vim.opt.showmode = false
+-- setup diagnostics
+require("config.toggles.diagnostics").set_default_diagnostic()
 
--- Enable netrw relative line numbers
+-- folds
+vim.o.foldenable = false
+vim.o.foldlevel = 99
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+-- disable mode on bottom, handled by lualine
+vim.o.showmode = false
+
+-- netrw relative line number
 vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro"
 vim.g.netrw_banner = 0
 
--- Disable swap and backup files, use undodir
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = (vim.env.HOME or vim.env.USERPROFILE) .. "/.vim/undodir"
-vim.opt.undofile = true
-
--- Diagnostics
-require("config.custom.diagnostic").default_diagnostic()
-
--- Highlight when yanking text
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+-- swapfile
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undofile = true

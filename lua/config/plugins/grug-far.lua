@@ -7,7 +7,7 @@ return {
       startInInsertMode = false,
     })
 
-    local map = require("utils").namespaced_keymap("Grug-Far")
-    map("n", "<leader>rp", grug.open, "Open Search and [R]e[P]lace")
+    local map = require("utils").namespaced_keymap("grug-far")
+    map("n", "<leader>rp", grug.open, "search and replace")
   end,
 }

@@ -4,7 +4,7 @@ local DISABLE_AUTOFORMAT = "disable_autoformat"
 
 local fmt_configs = {
   enable = {
-    message = "Enabled",
+    message = "enabled",
     next = "disable",
     config = {
       global_disable_autoformat = false,
@@ -12,7 +12,7 @@ local fmt_configs = {
     },
   },
   disable = {
-    message = "Disabled",
+    message = "disabled",
     next = "disable_buf",
     config = {
       global_disable_autoformat = true,
@@ -60,7 +60,7 @@ end
 function M.toggle_format_on_save()
   state.fmt_config = fmt_configs[state.fmt_config.next]
 
-  print("Format On Save: " .. state.fmt_config.message)
+  print("format on save: " .. state.fmt_config.message)
   apply_format_config(state.fmt_config.config)
 end
 
@@ -68,7 +68,7 @@ function M.toggle_format_on_save_buffer()
   local enabled = vim.b[DISABLE_AUTOFORMAT] or false
   local new_val = not enabled
 
-  print("Format On Save Disabled for Buffer:", new_val)
+  print("format on save disabled for buffer:", new_val)
   state.fmt_config = fmt_configs.disable_buf
   apply_format_config(state.fmt_config.config, new_val)
 end

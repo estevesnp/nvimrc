@@ -1,83 +1,52 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>")
-vim.keymap.set("n", "<leader>x", ":.lua<CR>")
-vim.keymap.set("v", "<leader>x", ":.lua<CR>")
+local map = vim.keymap.set
 
-vim.keymap.set("n", "<leader>rw", vim.cmd.Ex, { desc = "Open Net[R][W]" })
-vim.keymap.set("n", "<leader>rl", "<cmd>LspRestart<CR>", { desc = "[R]estart [L]SP" })
-
-vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Make <C-c> work as <Esc>" })
-
-vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", function()
+-- ctrl+c and esc
+map("i", "<C-c>", "<Esc>", { desc = "exit insert mode" })
+map("n", "<Esc>", function()
   vim.snippet.stop()
   vim.cmd("nohlsearch")
-end, { desc = "Remove search and snippet highlights" })
+end, { desc = "remove search and snippet highlights" })
 
-vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "[y]ank to system clipboard" })
-vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "[Y]ank to system clipboard" })
+-- lsp (without fzf keymaps)
+require("config.lsp.keymaps").setup_bare_keymaps()
 
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste preserving paste register over selection" })
+-- clipboard / paste buffer
+map({ "n", "x" }, "<leader>y", '"+y', { desc = "yank to system clipboard" })
+map({ "n", "x" }, "<leader>d", '"_d', { desc = "delete to void register" })
+map({ "n", "x" }, "<leader>c", '"_c', { desc = "change preserving paste buffer" })
+map("x", "<leader>p", '"_dP', { desc = "paste preserving paste buffer" })
 
-vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to void register" })
+-- toggle formatting
+map("n", "<leader>tf", require("config.toggles.formatting").toggle_format_on_save, { desc = "toggle format on save" })
 
--- Leave selection in the middle of screen
-vim.keymap.set("n", "n", "nzzzv", { desc = "Better n" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Better N" })
+-- diagnostics
+map("n", "<leader>e", vim.diagnostic.open_float, { desc = "show diagnostic message" })
+map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "open diagnostic quickfix list" })
+map("n", "<leader>td", require("config.toggles.diagnostics").toggle_diagnostics, { desc = "toggle diagnostics" })
 
--- Leave cursor in the middle when moving up and down
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Better <C-d>" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Better <C-u>" })
+-- quickfix list
+map("n", "co", ":copen<CR>", { desc = "open quickfix list" })
+map("n", "cq", ":cclose<CR>", { desc = "close quickfix list" })
 
--- Quickfix
-vim.keymap.set("n", "co", ":copen<CR>", { desc = "Open Quickfix List" })
-vim.keymap.set("n", "cq", ":cclose<CR>", { desc = "Close Quickfix List" })
-vim.keymap.set("n", "cn", ":cnext<CR>", { desc = "Next Quickfix Item" })
-vim.keymap.set("n", "cp", ":cprev<CR>", { desc = "Previous Quickfix Item" })
+-- jump tabs
+map("n", "]t", "<cmd>tabnext<CR>", { desc = "next tab" })
+map("n", "[t", "<cmd>tabprevious<CR>", { desc = "previous tab" })
 
--- Diagnostics
-vim.keymap.set("n", "<leader>nd", function()
-  vim.diagnostic.jump({ count = 1, float = true })
-end, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>Nd", function()
-  vim.diagnostic.jump({ count = -1, float = true })
-end, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- center after navigation
+map("n", "n", "nzzzv", { desc = "next search and center cursor" })
+map("n", "N", "Nzzzv", { desc = "previous search and center cursor" })
+map("n", "<C-d>", "<C-d>zz", { desc = "half page down and center cursor" })
+map("n", "<C-u>", "<C-u>zz", { desc = "half page up and center cursor" })
 
--- Toggles
-vim.keymap.set(
-  "n",
-  "<leader>td",
-  require("config.custom.diagnostic").toggle_diagnostic,
-  { desc = "[T]oggle [D]iagnostics format" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>tf",
-  require("config.custom.format").toggle_format_on_save,
-  { desc = "[T]oggle [f]ormat on save" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>tF",
-  require("config.custom.format").toggle_format_on_save_buffer,
-  { desc = "[T]oggle [F]ormat on save for Buffer" }
-)
+-- netrw (overwritten by oil)
+map("n", "<leader>rw", "<cmd>Ex<CR>", { desc = "open netrw" })
 
--- Plenary
-vim.keymap.set("n", "<leader>T", "<cmd>PlenaryBustedFile %<CR>", { desc = "Run [T]ests in current file" })
+-- source lua
+map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "source lua file" })
+map({ "n", "x" }, "<leader>x", ":.lua<CR>", { desc = "source lua selection" })
 
--- Tabs
-vim.keymap.set("n", "<leader><Tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab" })
-vim.keymap.set("n", "<leader><S-Tab>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab" })
-
--- Splits
-vim.keymap.set("n", "<C-w>b", "<cmd>split<CR>", { desc = "Split Horizontally" })
-vim.keymap.set("n", "<C-w>v", "<cmd>vsplit<CR>", { desc = "Split [V]ertically" })
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +1<CR>", { desc = "Increase height" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -1<CR>", { desc = "Decrease height" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -5<CR>", { desc = "Decrease width" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +5<CR>", { desc = "Increase width" })
+-- plenary (assumes plenary is installed)
+map("n", "<leader>T", "<cmd>PlenaryBustedFile %<CR>", { desc = "run plenary tests in current file" })

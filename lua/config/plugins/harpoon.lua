@@ -11,20 +11,20 @@ return {
       },
     })
 
-    local map = require("utils").namespaced_keymap("Harpoon")
+    local map = require("utils").namespaced_keymap("harpoon")
 
     map("n", "<leader>h", function()
       harpoon.ui:toggle_quick_menu(harpoon:list())
-    end, "Toggle Harpoon Menu")
+    end, "toggle harpoon menu")
 
     map("n", "<leader>H", function()
       harpoon:list():add()
-    end, "Add File to Harpoon")
+    end, "add file to harpoon")
 
     for i = 1, 5 do
       map("n", "<leader>" .. i, function()
         harpoon:list():select(i)
-      end, "Switch to Harpoon File " .. i)
+      end, "switch to harpoon file " .. i)
     end
   end,
 }
