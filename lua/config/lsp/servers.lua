@@ -67,7 +67,7 @@ M.default_servers = {
   "gh_actions_ls",
   -- data
   "jsonls",
-  "taplo", -- toml
+  "tombi", -- toml
   "yamlls",
   -- web
   "html",
