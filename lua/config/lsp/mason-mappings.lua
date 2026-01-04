@@ -107,4 +107,22 @@ function M.mason_install(servers)
   mason_cmd.MasonInstall(servers_to_install)
 end
 
+---print whether lsp_name is a mason or lspconfig name, and print it's related mapping
+---@param lsp_name string
+function M.print_mapping(lsp_name)
+  local mappings = M.get_mappings()
+
+  if vim.fn.has_key(mappings.mason_to_lspconfig, lsp_name) == 1 then
+    local lspconfig_name = mappings.mason_to_lspconfig[lsp_name] or "<nil>"
+    print("mason name '" .. lsp_name .. "' maps to lspconfig name '" .. lspconfig_name .. "'")
+    return
+  elseif vim.fn.has_key(mappings.lspconfig_to_mason, lsp_name) == 1 then
+    local mason_name = mappings.lspconfig_to_mason[lsp_name] or "<nil>"
+    print("lspconfig name '" .. lsp_name .. "' maps to mason name '" .. mason_name .. "'")
+    return
+  else
+    print("no mason or lspconfig match for name '" .. lsp_name .. "'")
+  end
+end
+
 return M
