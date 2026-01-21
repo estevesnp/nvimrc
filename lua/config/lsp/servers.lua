@@ -1,3 +1,5 @@
+local MasonMaps = require("config.lsp.mason-mappings")
+
 local M = {}
 
 M.configs = {
@@ -74,10 +76,56 @@ M.default_servers = {
   "cssls",
 }
 
+---formatters and linters to have in path, possibly with mason
+M.formatters_and_linters = {
+  "goimports",
+  "gofumpt",
+  "golangci-lint",
+  "prettierd",
+}
+
 ---returns a list of all lsp servers to enable
 ---@return string[]
 function M.all_servers()
   return vim.list_extend(vim.fn.keys(M.configs), M.default_servers)
+end
+
+---check if a mason spec has an executable in path
+---@param spec MasonSpec
+---@return boolean
+local function spec_in_path(spec)
+  for _, bin in ipairs(spec.bins) do
+    if vim.fn.executable(bin) == 1 then
+      return true
+    end
+  end
+  return false
+end
+
+function M.install_not_in_path()
+  local executables_to_install = {}
+  local mappings = MasonMaps.get_mappings()
+
+  for _, fmt_lint in ipairs(M.formatters_and_linters) do
+    if vim.fn.executable(fmt_lint) == 0 then
+      table.insert(executables_to_install, fmt_lint)
+    end
+  end
+
+  for _, server in ipairs(M.all_servers()) do
+    local spec = mappings.lspconfig_specs[server]
+    if spec and not spec_in_path(spec) then
+      table.insert(executables_to_install, spec.mason)
+    end
+  end
+
+  if #executables_to_install == 0 then
+    print("nothing to install")
+    return
+  end
+
+  print("installing: " .. table.concat(executables_to_install, ", "))
+  MasonMaps.install(executables_to_install)
 end
 
 return M
