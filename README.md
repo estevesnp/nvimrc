@@ -5,9 +5,9 @@ my neovim config
 ## install lsp servers, formatters and linters
 
 in order to install all lsp servers, formatters and linters defined in the
-[lsp configuration file](lua/config/lsp/servers.lua), you can run:
+[lsp configuration file](lua/config/lsp/servers.lua) with mason, you can run:
 
-`:lua require('config.lsp.servers').install_not_in_path()`
+`:lua require('config.lsp.mason').install_not_in_path()`
 
 ## notable dependencies
 

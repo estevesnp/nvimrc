@@ -1,4 +1,6 @@
-local mason_cmd = require("mason.api.command")
+local MasonRegistry = require("mason-registry")
+local MasonCmd = require("mason.api.command")
+local LspServers = require("config.lsp.servers")
 
 local M = {}
 
@@ -28,7 +30,7 @@ local function get_mappings()
   local mason_specs = {}
   local lspconfig_specs = {}
 
-  local specs = require("mason-registry").get_all_package_specs()
+  local specs = MasonRegistry.get_all_package_specs()
 
   for _, spec in ipairs(specs) do
     local mason = spec.name
@@ -63,7 +65,42 @@ function M.get_mappings()
   return cache.mappings
 end
 
----alias for MasonInstall
-M.install = mason_cmd.MasonInstall
+---check if a mason spec has an executable in path
+---@param spec MasonSpec
+---@return boolean
+local function spec_in_path(spec)
+  for _, bin in ipairs(spec.bins) do
+    if vim.fn.executable(bin) == 1 then
+      return true
+    end
+  end
+  return false
+end
+
+function M.install_not_in_path()
+  local executables_to_install = {}
+  local mappings = M.get_mappings()
+
+  for _, fmt_lint in ipairs(LspServers.formatters_and_linters) do
+    if vim.fn.executable(fmt_lint) == 0 then
+      table.insert(executables_to_install, fmt_lint)
+    end
+  end
+
+  for _, server in ipairs(LspServers.all_servers()) do
+    local spec = mappings.lspconfig_specs[server]
+    if spec and not spec_in_path(spec) then
+      table.insert(executables_to_install, spec.mason)
+    end
+  end
+
+  if #executables_to_install == 0 then
+    print("nothing to install")
+    return
+  end
+
+  print("installing: " .. table.concat(executables_to_install, ", "))
+  MasonCmd.MasonInstall(executables_to_install)
+end
 
 return M
