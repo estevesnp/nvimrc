@@ -11,12 +11,11 @@ in order to install all lsp servers, formatters and linters defined in the
 
 ## notable dependencies
 
-- gcc (tree-sitter)
-- xclip (clipboard, check `:h clipboard`)
+- xclip/wl-clipboard (clipboard, check `:h clipboard`)
+- gcc (nvim-treesitter)
+- tree-sitter (nvim-treesitter)
 - ripgrep (fzf)
 - fd (fzf)
-- go (gopls and tools)
-- rust (rust-analyzer)
-- npm (lsp installations and quicktype)
-- tree-sitter (nvim-treesitter)
-- java 21+ (jdtls)
+- go (mason)
+- rust (mason)
+- npm (mason)
