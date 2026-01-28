@@ -58,6 +58,8 @@ M.default_servers = {
   -- lua
   "lua_ls",
   "stylua",
+  -- odin
+  "ols",
   -- typescript/javascript
   "ts_ls",
   --python
