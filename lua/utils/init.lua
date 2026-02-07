@@ -89,6 +89,14 @@ local stdlib_fetch_table = {
 
     return vim.fs.joinpath(sysroot, "lib", "rustlib", "src", "rust", "library")
   end,
+  odin = function()
+    local root = run({ "odin", "root" })
+    if not root then
+      return nil
+    end
+
+    return vim.fs.joinpath(root, "core")
+  end,
 }
 
 --- Get path to the stdlib for a provided language. Return nil if not supported.
