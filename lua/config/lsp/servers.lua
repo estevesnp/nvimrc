@@ -1,6 +1,29 @@
 local M = {}
 
 M.configs = {
+
+  -- only needed so that lazydev loads on first buffer
+  -- https://github.com/folke/lazydev.nvim/issues/136
+  lua_ls = {
+    settings = {
+      Lua = {
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME,
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
+      },
+    },
+  },
+
+  zls = {
+    settings = {
+      enable_argument_placeholders = false,
+    },
+  },
+
   gopls = {
     settings = {
       gopls = {
@@ -12,12 +35,6 @@ M.configs = {
         staticcheck = true,
         directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
       },
-    },
-  },
-
-  zls = {
-    settings = {
-      enable_argument_placeholders = false,
     },
   },
 
@@ -56,7 +73,7 @@ M.configs = {
 ---servers to enable without a configuration
 M.default_servers = {
   -- lua
-  "lua_ls",
+  -- "lua_ls", -- has config above temporarily
   "stylua",
   -- odin
   "ols",
@@ -65,8 +82,6 @@ M.default_servers = {
   --python
   "basedpyright",
   "ruff",
-  -- gh actions
-  "gh_actions_ls",
   -- data
   "jsonls",
   "tombi", -- toml
