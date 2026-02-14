@@ -6,6 +6,7 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
+
     appearance = {
       nerd_font_variant = "mono",
     },
@@ -13,6 +14,22 @@ return {
     fuzzy = { implementation = "prefer_rust_with_warning" },
 
     completion = {
+      trigger = {
+        prefetch_on_insert = false,
+        show_in_snippet = false,
+        show_on_backspace = false,
+        show_on_backspace_in_keyword = false,
+        show_on_backspace_after_accept = false,
+        show_on_backspace_after_insert_enter = false,
+        show_on_keyword = false,
+        show_on_trigger_character = false,
+        show_on_insert = false,
+        show_on_blocked_trigger_characters = { " ", "\n", "\t" },
+        show_on_accept_on_trigger_character = false,
+        show_on_insert_on_trigger_character = false,
+        show_on_x_blocked_trigger_characters = { "'", '"', "(" },
+      },
+
       documentation = {
         auto_show = false,
       },

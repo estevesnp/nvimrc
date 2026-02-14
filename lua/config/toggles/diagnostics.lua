@@ -6,10 +6,10 @@ local state = {
 
 local diagnostic_configs = {
   {
-    message = "display all levels",
+    message = "display none",
     config = {
-      virtual_text = true,
-      underline = true,
+      virtual_text = false,
+      underline = false,
     },
   },
   {
@@ -24,15 +24,15 @@ local diagnostic_configs = {
     },
   },
   {
-    message = "display none",
+    message = "display all levels",
     config = {
-      virtual_text = false,
-      underline = false,
+      virtual_text = true,
+      underline = true,
     },
   },
 }
 
-function M.set_default_diagnostic()
+function M.setup()
   vim.diagnostic.config(diagnostic_configs[1].config)
   state.counter = 1
 end

@@ -42,7 +42,7 @@ vim.o.timeoutlen = 300
 vim.o.winborder = "single"
 
 -- setup diagnostics
-require("config.toggles.diagnostics").set_default_diagnostic()
+require("config.toggles.diagnostics").setup()
 
 -- folds
 vim.o.foldenable = false
