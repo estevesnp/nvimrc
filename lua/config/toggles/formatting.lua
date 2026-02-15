@@ -13,14 +13,14 @@ local fmt_configs = {
   },
   disable = {
     message = "disabled",
-    next = "disable_buf",
+    next = "disabled",
     config = {
       global_disable_autoformat = true,
       consider_buffer = false,
     },
   },
   disable_buf = {
-    message = "Disabled for Buffer",
+    message = "disabled for buffer",
     next = "enable",
     config = {
       global_disable_autoformat = false,
@@ -31,8 +31,8 @@ local fmt_configs = {
 }
 
 local state = {
-  fmt_config = fmt_configs.enable,
-  disable_autoformat = false,
+  fmt_config = fmt_configs.disable,
+  disable_autoformat = true,
 }
 
 ---@param fmt_config table

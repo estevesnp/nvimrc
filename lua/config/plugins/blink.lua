@@ -15,7 +15,7 @@ return {
 
     completion = {
       trigger = {
-        prefetch_on_insert = false,
+        prefetch_on_insert = true,
         show_in_snippet = false,
         show_on_backspace = false,
         show_on_backspace_in_keyword = false,
@@ -59,14 +59,14 @@ return {
       ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
       ["<C-n>"] = { "select_next", "fallback_to_mappings" },
 
-      ["<C-k>"] = { "show", "show_documentation", "hide_documentation" },
+      ["<C-k>"] = { "show_and_insert", "show_documentation", "hide_documentation" },
       ["<M-u>"] = { "scroll_documentation_up", "fallback" },
       ["<M-d>"] = { "scroll_documentation_down", "fallback" },
 
       ["<C-l>"] = { "snippet_forward", "fallback" },
       ["<C-h>"] = { "snippet_backward", "fallback" },
 
-      ["<C-q>"] = { "hide" },
+      ["<C-q>"] = { "cancel" },
     },
   },
   opts_extend = { "sources.default" },
