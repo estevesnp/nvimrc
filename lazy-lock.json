@@ -3,7 +3,7 @@
   "bullets.vim": { "branch": "master", "commit": "89294b8930e660936374fb763ac48a1ac51dd29c" },
   "conform.nvim": { "branch": "master", "commit": "e969e302bced7ffb9a0a0323629f31feb0ca35a6" },
   "faster.nvim": { "branch": "main", "commit": "2e7a50f659711854b9a7fdc76d943b59b30d7852" },
-  "fff.nvim": { "branch": "main", "commit": "434344f6e94ac8596fd6323ea653c05900c9affa" },
+  "fff.nvim": { "branch": "main", "commit": "3e9b8655b70d39725e1e1aee1a0ba75c60bbad5f" },
   "fidget.nvim": { "branch": "main", "commit": "7fa433a83118a70fe24c1ce88d5f0bd3453c0970" },
   "fzf-lua": { "branch": "main", "commit": "1653c4c599dba538fbebf9de81a96380dc2998ff" },
   "gitsigns.nvim": { "branch": "main", "commit": "9f3c6dd7868bcc116e9c1c1929ce063b978fa519" },

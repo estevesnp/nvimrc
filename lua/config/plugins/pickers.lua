@@ -16,7 +16,7 @@ return {
         },
         layout = {
           width = 1,
-          height = 1.1, -- to cover the whole background
+          height = 1.01, -- to cover the whole background
           prompt_position = "top",
           preview_position = "top",
         },
