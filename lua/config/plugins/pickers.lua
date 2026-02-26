@@ -25,9 +25,9 @@ return {
       local map = utils.namespaced_keymap("picker(fff)")
 
       -- search
-      map("n", "<leader>sf", FFF.find_files, "search files")
-      map("n", "<leader>gf", FFF.find_in_git_root, "search git files")
-      map("n", "<leader>sg", FFF.live_grep, "grep files")
+      map("n", "<leader>af", FFF.find_files, "search files")
+      map("n", "<leader>asg", FFF.find_in_git_root, "search git files")
+      map("n", "<leader>ag", FFF.live_grep, "grep files")
     end,
   },
 
@@ -118,7 +118,7 @@ return {
       local map = utils.namespaced_keymap("picker(fzf)")
 
       -- files/buffers
-      map("n", "<leader>af", FZF.files, "search files")
+      map("n", "<leader>sf", FZF.files, "search files")
       map("n", "<leader>so", FZF.oldfiles, "search old files")
       map("n", "<leader>st", FZF.treesitter, "search treesitter")
       map("n", "<leader>sb", FZF.buffers, "search buffers")
@@ -158,13 +158,13 @@ return {
       end, "search stdlib files")
 
       -- git
-      map("n", "<leader>afg", FZF.git_files, "search git files")
+      map("n", "<leader>gf", FZF.git_files, "search git files")
       map("n", "<leader>gs", FZF.git_status, "search git status")
       map("n", "<leader>gc", FZF.git_bcommits, "search git buffer commits")
       map("n", "<leader>gC", FZF.git_commits, "search git commits")
 
       -- grep
-      map("n", "<leader>ag", FZF.live_grep, "search grep")
+      map("n", "<leader>sg", FZF.live_grep, "search grep")
       map({ "n", "v" }, "<leader>sv", FZF.grep_visual, "search visual selection")
       map("n", "<leader>/", FZF.lgrep_curbuf, "search current buffer")
       map("n", "<leader>sw", FZF.grep_cword, "search current word")
