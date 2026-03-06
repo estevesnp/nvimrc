@@ -17,18 +17,18 @@ end
 
 ---setup keymaps that depend on fzf
 function M.setup_fzf_keymaps()
-  local fzf = require("fzf-lua")
+  local FZF = require("fzf-lua")
 
-  map("n", "gd", fzf.lsp_definitions, "goto definition (fzf)")
-  map("n", "gD", fzf.lsp_declarations, "goto declaration (fzf)")
-  map("n", "gr", fzf.lsp_references, "goto references (fzf)")
-  map("n", "gI", fzf.lsp_implementations, "goto implementations (fzf)")
-  map("n", "<leader>D", fzf.lsp_typedefs, "type definition")
-  map("n", "<leader>ds", fzf.lsp_document_symbols, "document symbols")
-  map("n", "<leader>ws", fzf.lsp_workspace_symbols, "workspace symbols")
-  map("n", "<leader>sd", fzf.diagnostics_document, "document diagnsostics")
-  map("n", "<leader>sD", fzf.diagnostics_workspace, "workspace diagnostics")
-  map("n", "<leader>ca", fzf.lsp_code_actions, "code action")
+  map("n", "gd", FZF.lsp_definitions, "goto definition (fzf)")
+  map("n", "gD", FZF.lsp_declarations, "goto declaration (fzf)")
+  map("n", "gr", FZF.lsp_references, "goto references (fzf)")
+  map("n", "gI", FZF.lsp_implementations, "goto implementations (fzf)")
+  map("n", "<leader>D", FZF.lsp_typedefs, "type definition")
+  map("n", "<leader>ss", FZF.lsp_document_symbols, "document symbols")
+  map("n", "<leader>sS", FZF.lsp_workspace_symbols, "workspace symbols")
+  map("n", "<leader>sd", FZF.diagnostics_document, "document diagnosstics")
+  map("n", "<leader>sD", FZF.diagnostics_workspace, "workspace diagnostics")
+  map("n", "<leader>ca", FZF.lsp_code_actions, "code action")
 end
 
 return M

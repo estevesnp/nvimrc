@@ -20,6 +20,7 @@ return {
   config = function()
     local lsp = require("config.lsp.servers")
 
+    -- TODO - maybe include blink capabilities
     for server, config in pairs(lsp.configs) do
       vim.lsp.config(server, config)
     end
