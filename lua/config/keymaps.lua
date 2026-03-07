@@ -19,14 +19,15 @@ map({ "n", "x" }, "<leader>d", '"_d', { desc = "delete to void register" })
 map({ "n", "x" }, "<leader>c", '"_c', { desc = "change preserving paste buffer" })
 map("x", "<leader>p", '"_dP', { desc = "paste preserving paste buffer" })
 
+
 -- diagnostics
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "show diagnostic message" })
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "open diagnostic quickfix list" })
+map("n", "<leader>qd", vim.diagnostic.setqflist, { desc = "open diagnostic quickfix list" })
 map("n", "<leader>td", require("config.diagnostics").toggle_diagnostics, { desc = "toggle diagnostics" })
 
 -- quickfix list
-map("n", "co", ":copen<CR>", { desc = "open quickfix list" })
-map("n", "cq", ":cclose<CR>", { desc = "close quickfix list" })
+map("n", "<leader>qo", ":copen<CR>", { desc = "open quickfix list" })
+map("n", "<leader>qc", ":cclose<CR>", { desc = "close quickfix list" })
 
 -- jump tabs
 map("n", "]t", "<cmd>tabnext<CR>", { desc = "next tab" })
