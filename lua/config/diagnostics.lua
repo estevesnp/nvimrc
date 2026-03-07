@@ -6,15 +6,17 @@ local state = {
 
 local diagnostic_configs = {
   {
-    message = "display all levels",
+    message = "display none",
     config = {
-      virtual_text = true,
-      underline = true,
+      severity_sort = true,
+      virtual_text = false,
+      underline = false,
     },
   },
   {
     message = "only display errors",
     config = {
+      severity_sort = true,
       virtual_text = {
         severity = { min = vim.diagnostic.severity.ERROR },
       },
@@ -24,10 +26,11 @@ local diagnostic_configs = {
     },
   },
   {
-    message = "display none",
+    message = "display all levels",
     config = {
-      virtual_text = false,
-      underline = false,
+      severity_sort = true,
+      virtual_text = true,
+      underline = true,
     },
   },
 }
