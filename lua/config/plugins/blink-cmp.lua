@@ -28,6 +28,11 @@ return {
         buffer = {
           min_keyword_length = 3,
         },
+        path = {
+          opts = {
+            show_hidden_files_by_default = true,
+          },
+        },
         snippets = {
           opts = {
             friendly_snippets = false,
