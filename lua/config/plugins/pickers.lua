@@ -24,7 +24,6 @@ return {
 
       local map = utils.namespaced_keymap("picker(fff)")
 
-
       -- search
       map("n", "<leader>af", FFF.find_files, "search files")
       map("n", "<leader>ag", FFF.live_grep, "grep files")
@@ -56,17 +55,12 @@ return {
           actions = {
             ["ctrl-i"] = {
               fn = function(_, opts)
-                FZF.actions.toggle_flag(
-                  _,
-                  vim.tbl_extend("force", opts, {
-                    toggle_flag = "--smart-case",
-                  })
-                )
+                FZF.actions.toggle_flag(_, vim.tbl_extend("force", opts, { toggle_flag = "--smart-case" }))
               end,
               desc = "toggle-flags",
               header = function(o)
-                local flag = o.toggle_smart_case_flag or "--smart-case"
-                if o.cmd and o.cmd:match(FZF.utils.lua_regex_escape(flag)) then
+                local cmd = o._cmd or o.cmd
+                if cmd and cmd:match("%-%-smart%-case") then
                   return "disable smart case"
                 else
                   return "enable smart case"
