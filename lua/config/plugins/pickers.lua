@@ -16,7 +16,7 @@ return {
         },
         layout = {
           width = 1,
-          height = 1.01, -- to cover the whole background
+          height = 1,
           prompt_position = "top",
           preview_position = "top",
         },
@@ -24,9 +24,9 @@ return {
 
       local map = utils.namespaced_keymap("picker(fff)")
 
+
       -- search
       map("n", "<leader>af", FFF.find_files, "search files")
-      map("n", "<leader>asg", FFF.find_in_git_root, "search git files")
       map("n", "<leader>ag", FFF.live_grep, "grep files")
     end,
   },
