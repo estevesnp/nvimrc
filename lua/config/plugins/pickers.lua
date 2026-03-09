@@ -31,6 +31,49 @@ return {
   },
 
   {
+    "nvim-mini/mini.pick",
+    version = false,
+    config = function()
+      local Pick = require("mini.pick")
+      Pick.setup()
+
+      local map = utils.namespaced_keymap("picker(mini)")
+
+      map("n", "<leader>mf", Pick.builtin.files, "search files")
+      map("n", "<leader>mg", Pick.builtin.grep_live, "grep files")
+
+      map("n", "<leader>mhf", function()
+        local buf_dir = utils.buf_dir()
+        Pick.builtin.files(nil, {
+          source = {
+            cwd = buf_dir,
+            name = "Files from " .. buf_dir,
+          },
+        })
+      end, "search here, starting from buffer's dir")
+      map("n", "<leader>mhg", function()
+        local buf_dir = utils.buf_dir()
+        Pick.builtin.grep_live(nil, {
+          source = {
+            cwd = buf_dir,
+            name = "Grep live from " .. buf_dir,
+          },
+        })
+      end, "grep here, starting from buffer's dir")
+
+      map("n", "<leader>mn", function()
+        local buf_dir = utils.buf_dir()
+        Pick.builtin.grep_live(nil, {
+          source = {
+            cwd = vim.fn.stdpath("config"),
+            name = "neovim files",
+          },
+        })
+      end, "search neovim files")
+    end,
+  },
+
+  {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
