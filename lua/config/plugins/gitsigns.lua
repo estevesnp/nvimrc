@@ -3,6 +3,7 @@ return {
   config = function()
     local gitsigns = require("gitsigns")
     gitsigns.setup({
+      signcolumn = true,
       current_line_blame = false,
       signs = {
         add = { text = "+" },
@@ -11,7 +12,6 @@ return {
         topdelete = { text = "‾" },
         changedelete = { text = "~" },
       },
-      signcolumn = false,
     })
 
     local map = require("utils").namespaced_keymap("gitsigns")
