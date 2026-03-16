@@ -10,20 +10,11 @@ map("n", "<Esc>", function()
   vim.cmd("nohlsearch")
 end, { desc = "remove search and snippet highlights" })
 
--- lsp (without fzf keymaps)
-require("config.lsp.keymaps").setup_bare_keymaps()
-
 -- clipboard / paste buffer
 map({ "n", "x" }, "<leader>y", '"+y', { desc = "yank to system clipboard" })
 map({ "n", "x" }, "<leader>d", '"_d', { desc = "delete to void register" })
 map({ "n", "x" }, "<leader>c", '"_c', { desc = "change preserving paste buffer" })
 map("x", "<leader>p", '"_dP', { desc = "paste preserving paste buffer" })
-
-
--- diagnostics
-map("n", "<leader>e", vim.diagnostic.open_float, { desc = "show diagnostic message" })
-map("n", "<leader>qd", vim.diagnostic.setqflist, { desc = "open diagnostic quickfix list" })
-map("n", "<leader>td", require("config.diagnostics").toggle_diagnostics, { desc = "toggle diagnostics" })
 
 -- quickfix list
 map("n", "<leader>qo", ":copen<CR>", { desc = "open quickfix list" })
@@ -46,8 +37,21 @@ map("n", "<C-w>b", ":split<CR>", { desc = "split buffer horizontally" })
 map("n", "<leader>rw", "<cmd>Ex<CR>", { desc = "open netrw" })
 
 -- source lua
-map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "source lua file" })
 map({ "n", "x" }, "<leader>x", ":.lua<CR>", { desc = "source lua selection" })
+map("n", "<leader>X", "<cmd>source %<CR>", { desc = "source lua file" })
 
--- plenary (assumes plenary is installed)
-map("n", "<leader>T", "<cmd>PlenaryBustedFile %<CR>", { desc = "run plenary tests in current file" })
+-- diagnostics
+map("n", "<leader>e", vim.diagnostic.open_float, { desc = "show diagnostic message" })
+map("n", "<leader>qd", vim.diagnostic.setqflist, { desc = "open diagnostic quickfix list" })
+map("n", "<leader>td", require("config.diagnostics").toggle_diagnostics, { desc = "toggle diagnostics" })
+
+-- lsp
+map("n", "K", vim.lsp.buf.hover, { desc = "lsp: hover documentation" })
+map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "lsp: rename" })
+map("n", "gqd", vim.lsp.buf.definition, { desc = "lsp: goto definition (quickfix)" })
+map("n", "gqr", vim.lsp.buf.references, { desc = "lsp: goto references (quickfix)" })
+map("n", "gqi", vim.lsp.buf.implementation, { desc = "lsp: goto implementations (quickfix)" })
+map({ "i", "n" }, "<C-s>", vim.lsp.buf.signature_help, { desc = "lsp: signature help" })
+map("n", "<leader>th", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "lsp: toggle inlay hints" })
