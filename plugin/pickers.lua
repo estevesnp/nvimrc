@@ -1,22 +1,18 @@
--- TODO - encapsulate in utils
-vim.api.nvim_create_autocmd("PackChanged", {
-  callback = function(ev)
-    local name, kind = ev.data.spec.name, ev.data.kind
-    if name == "fff.nvim" and (kind == "install" or kind == "update") then
-      if not ev.data.active then
-        vim.cmd.packadd("fff.nvim")
-      end
-      require("fff.download").download_or_build_binary()
-    end
-  end,
+local Utils = require("config.utils")
+
+local function pack_cb()
+  require("fff.download").download_or_build_binary()
+end
+
+Utils.register_pack_cb("fff.nvim", {
+  install = pack_cb,
+  update = pack_cb,
 })
 
 vim.pack.add({
   "https://github.com/ibhagwan/fzf-lua",
   "https://github.com/dmtrKovalenko/fff.nvim",
 })
-
-local Utils = require("config.utils")
 
 -- fff
 

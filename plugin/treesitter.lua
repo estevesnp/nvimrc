@@ -1,3 +1,11 @@
+local Utils = require("config.utils")
+
+Utils.register_pack_cb("nvim-treesitter", {
+  update = function()
+    vim.cmd("TSUpdate")
+  end,
+})
+
 vim.pack.add({
   "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/nvim-treesitter/nvim-treesitter-context",
@@ -75,5 +83,5 @@ TreesitterContext.setup({
   on_attach = nil,
 })
 
-local map = require("config.utils").namespaced_keymap("treesitter-context")
+local map = Utils.namespaced_keymap("treesitter-context")
 map("n", "<leader>tt", TreesitterContext.toggle, "toggle context")
