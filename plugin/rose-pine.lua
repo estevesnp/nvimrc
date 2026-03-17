@@ -6,7 +6,7 @@ vim.pack.add({
 })
 
 require("rose-pine").setup({
-  styles = { italics = false },
+  styles = { italic = false },
   highlight_groups = {
     LspSignatureActiveParameter = {
       bg = require("rose-pine.palette").highlight_med,
