@@ -17,12 +17,16 @@
       "rev": "2e7a50f659711854b9a7fdc76d943b59b30d7852",
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
+    "fff.nvim": {
+      "rev": "64861f8142c5ce8c34f9ec73a3d084857182e156",
+      "src": "https://github.com/dmtrKovalenko/fff.nvim"
+    },
     "fidget.nvim": {
       "rev": "7fa433a83118a70fe24c1ce88d5f0bd3453c0970",
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
-      "rev": "bf59dcee2a8d894724b060401d2abf3d71d4bd47",
+      "rev": "6e41ba7505f35a6f054ca682b043aa0cea36c2ef",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -67,11 +71,11 @@
       "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-lspconfig": {
-      "rev": "dd261ad5266ab5bbec249d21efeceda98ff3e1a6",
+      "rev": "dc2f86d2b66a6e01a98c37cdadd3be3e90f8ab9a",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "2f5d4c3f3c675962242096bcc8e586d76dd72eb2",
+      "rev": "2cc172c28e5550e00e6beead4599b1469469c1c7",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {

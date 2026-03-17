@@ -1,8 +1,46 @@
-vim.pack.add({ "https://github.com/ibhagwan/fzf-lua" })
+-- TODO - encapsulate in utils
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "fff.nvim" and (kind == "install" or kind == "update") then
+      if not ev.data.active then
+        vim.cmd.packadd("fff.nvim")
+      end
+      require("fff.download").download_or_build_binary()
+    end
+  end,
+})
+
+vim.pack.add({
+  "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/dmtrKovalenko/fff.nvim",
+})
 
 local Utils = require("config.utils")
-local FZF = require("fzf-lua")
 
+-- fff
+
+local FFF = require("fff")
+FFF.setup({
+  prompt = "> ",
+  keymaps = {
+    close = { "<Esc>", "<C-c>" },
+  },
+  layout = {
+    width = 1,
+    height = 1,
+    prompt_position = "top",
+    preview_position = "top",
+  },
+})
+
+local fff_map = Utils.namespaced_keymap("picker(fff)")
+fff_map("n", "<leader>sf", FFF.find_files, "search files")
+fff_map("n", "<leader>sg", FFF.live_grep, "grep files")
+
+--- fzf
+
+local FZF = require("fzf-lua")
 FZF.setup({
   "ivy",
   ui_select = true,
@@ -74,49 +112,49 @@ FZF.setup({
   },
 })
 
-local map = Utils.namespaced_keymap("picker(fzf)")
+local fzf_map = Utils.namespaced_keymap("picker(fzf)")
 
 -- lsp
-map("n", "gd", FZF.lsp_definitions, "goto definition (lsp)")
-map("n", "gD", FZF.lsp_declarations, "goto declaration (lsp)")
-map("n", "gr", FZF.lsp_references, "goto references (lsp)")
-map("n", "gI", FZF.lsp_implementations, "goto implementations (lsp)")
-map("n", "<leader>D", FZF.lsp_typedefs, "type definition (lsp)")
-map("n", "<leader>ss", FZF.lsp_document_symbols, "document symbols (lsp)")
-map("n", "<leader>sS", FZF.lsp_workspace_symbols, "workspace symbols (lsp)")
-map("n", "<leader>sd", FZF.diagnostics_document, "document diagnostics (lsp)")
-map("n", "<leader>sD", FZF.diagnostics_workspace, "workspace diagnostics (lsp)")
-map("n", "<leader>ca", FZF.lsp_code_actions, "code action (lsp)")
+fzf_map("n", "gd", FZF.lsp_definitions, "goto definition (lsp)")
+fzf_map("n", "gD", FZF.lsp_declarations, "goto declaration (lsp)")
+fzf_map("n", "gr", FZF.lsp_references, "goto references (lsp)")
+fzf_map("n", "gI", FZF.lsp_implementations, "goto implementations (lsp)")
+fzf_map("n", "<leader>D", FZF.lsp_typedefs, "type definition (lsp)")
+fzf_map("n", "<leader>ss", FZF.lsp_document_symbols, "document symbols (lsp)")
+fzf_map("n", "<leader>sS", FZF.lsp_workspace_symbols, "workspace symbols (lsp)")
+fzf_map("n", "<leader>sd", FZF.diagnostics_document, "document diagnostics (lsp)")
+fzf_map("n", "<leader>sD", FZF.diagnostics_workspace, "workspace diagnostics (lsp)")
+fzf_map("n", "<leader>ca", FZF.lsp_code_actions, "code action (lsp)")
 
 -- files/buffers
-map("n", "<leader>sf", FZF.files, "search files")
-map("n", "<leader>so", FZF.oldfiles, "search old files")
-map("n", "<leader>st", FZF.treesitter, "search treesitter")
-map("n", "<leader>sb", FZF.buffers, "search buffers")
-map("n", "<leader>sq", FZF.quickfix, "search quickfix")
-map("n", "<leader>sm", FZF.marks, "search marks")
-map("n", "<leader>se", FZF.global, "search everything (Global)")
-map("n", "<leader>sh", function()
+fzf_map("n", "<leader>Sf", FZF.files, "search files")
+fzf_map("n", "<leader>so", FZF.oldfiles, "search old files")
+fzf_map("n", "<leader>st", FZF.treesitter, "search treesitter")
+fzf_map("n", "<leader>sb", FZF.buffers, "search buffers")
+fzf_map("n", "<leader>sq", FZF.quickfix, "search quickfix")
+fzf_map("n", "<leader>sm", FZF.marks, "search marks")
+fzf_map("n", "<leader>se", FZF.global, "search everything (Global)")
+fzf_map("n", "<leader>sh", function()
   local buf_dir = Utils.buf_dir()
   FZF.files({
     header = "search from " .. buf_dir,
     cwd = buf_dir,
   })
 end, "search here, starting from buffer's dir")
-map("n", "<leader>sc", function()
+fzf_map("n", "<leader>sc", function()
   FZF.files({
     header = "config files",
     cwd = "~/.config",
     follow = true,
   })
 end, "search config files")
-map("n", "<leader>sn", function()
+fzf_map("n", "<leader>sn", function()
   FZF.files({
     header = "neovim files",
     cwd = vim.fn.stdpath("config"),
   })
 end, "search neovim files")
-map("n", "<leader>sl", function()
+fzf_map("n", "<leader>sl", function()
   local stdlib_lang = Utils.get_stdlib_with_fallback()
   if not stdlib_lang then
     return
@@ -129,18 +167,18 @@ map("n", "<leader>sl", function()
 end, "search stdlib files")
 
 -- git
-map("n", "<leader>gf", FZF.git_files, "search git files")
-map("n", "<leader>gs", FZF.git_status, "search git status")
-map("n", "<leader>gc", FZF.git_bcommits, "search git buffer commits")
-map("n", "<leader>gC", FZF.git_commits, "search git commits")
+fzf_map("n", "<leader>gf", FZF.git_files, "search git files")
+fzf_map("n", "<leader>gs", FZF.git_status, "search git status")
+fzf_map("n", "<leader>gc", FZF.git_bcommits, "search git buffer commits")
+fzf_map("n", "<leader>gC", FZF.git_commits, "search git commits")
 
 -- grep
-map("n", "<leader>sg", FZF.live_grep, "search grep")
-map({ "n", "v" }, "<leader>sv", FZF.grep_visual, "search visual selection")
-map("n", "<leader>/", FZF.lgrep_curbuf, "search current buffer")
-map("n", "<leader>sw", FZF.grep_cword, "search current word")
-map("n", "<leader>sW", FZF.grep_cWORD, "search current word")
-map("n", "<leader>gh", function()
+fzf_map("n", "<leader>Sg", FZF.live_grep, "search grep")
+fzf_map({ "n", "v" }, "<leader>sv", FZF.grep_visual, "search visual selection")
+fzf_map("n", "<leader>/", FZF.lgrep_curbuf, "search current buffer")
+fzf_map("n", "<leader>sw", FZF.grep_cword, "search current word")
+fzf_map("n", "<leader>sW", FZF.grep_cWORD, "search current word")
+fzf_map("n", "<leader>gh", function()
   local buf_dir = Utils.buf_dir()
   FZF.live_grep({
     winopts = {
@@ -149,7 +187,7 @@ map("n", "<leader>gh", function()
     cwd = buf_dir,
   })
 end, "grep here, starting from buffer's dir")
-map("n", "<leader>gl", function()
+fzf_map("n", "<leader>gl", function()
   local stdlib_lang = Utils.get_stdlib_with_fallback()
   if not stdlib_lang then
     return
@@ -164,7 +202,7 @@ map("n", "<leader>gl", function()
 end, "grep stdlib")
 
 -- misc
-map("n", "<leader>sr", FZF.resume, "search resume")
-map("n", "<leader>sk", FZF.keymaps, "search keymaps")
-map("n", "<leader>sH", FZF.helptags, "search help")
-map("n", "<leader>sz", FZF.builtin, "search fzf commands")
+fzf_map("n", "<leader>sr", FZF.resume, "search resume")
+fzf_map("n", "<leader>sk", FZF.keymaps, "search keymaps")
+fzf_map("n", "<leader>sH", FZF.helptags, "search help")
+fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
