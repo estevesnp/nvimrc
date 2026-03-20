@@ -1,6 +1,6 @@
 local MasonRegistry = require("mason-registry")
 local MasonCmd = require("mason.api.command")
-local LspServers = require("config.lsp.servers")
+local Lsp = require("config.lsp")
 
 local M = {}
 
@@ -81,13 +81,13 @@ function M.install_not_in_path()
   local executables_to_install = {}
   local mappings = M.get_mappings()
 
-  for _, fmt_lint in ipairs(LspServers.formatters_and_linters) do
+  for _, fmt_lint in ipairs(Lsp.formatters_and_linters) do
     if vim.fn.executable(fmt_lint) == 0 then
       table.insert(executables_to_install, fmt_lint)
     end
   end
 
-  for _, server in ipairs(LspServers.all_servers()) do
+  for _, server in ipairs(Lsp.all_servers()) do
     local spec = mappings.lspconfig_specs[server]
     if spec and not spec_in_path(spec) then
       table.insert(executables_to_install, spec.mason)

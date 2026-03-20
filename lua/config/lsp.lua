@@ -1,7 +1,6 @@
 local M = {}
 
 M.configs = {
-
   zls = {
     settings = {
       enable_argument_placeholders = false,

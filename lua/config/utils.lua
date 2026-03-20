@@ -184,4 +184,38 @@ function M.namespaced_keymap(namespace)
   end
 end
 
+---@class PackCallback
+---@field install fun(event: string)?
+---@field update  fun(event: string)?
+---@field delete  fun(event: string)?
+
+---registers a callback for a vim.pack package
+---@param pack_name string package name used in `vim.pack`
+---@param cb_table PackCallback callback object
+---@param pack_hook "PackChanged"|"PackChangedPre"|nil optional pack hook to register. defaults to `PackChanged`
+function M.register_pack_cb(pack_name, cb_table, pack_hook)
+  pack_hook = pack_hook or "PackChanged"
+
+  vim.api.nvim_create_autocmd(pack_hook, {
+    callback = function(ev)
+      if ev.data.spec.name ~= pack_name then
+        return
+      end
+
+      local kind = ev.data.kind
+
+      local cb = cb_table[kind]
+      if cb == nil then
+        return
+      end
+
+      if not ev.data.active then
+        vim.cmd.packadd(pack_name)
+      end
+
+      cb(kind)
+    end,
+  })
+end
+
 return M
