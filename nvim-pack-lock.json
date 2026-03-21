@@ -18,7 +18,7 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff.nvim": {
-      "rev": "64861f8142c5ce8c34f9ec73a3d084857182e156",
+      "rev": "dd56a3a8a8a5a85522badaf6485f28c8f7a7c840",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "fidget.nvim": {
@@ -71,11 +71,11 @@
       "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-lspconfig": {
-      "rev": "e057806776c8bed91971338d96a78a0f6a313dae",
+      "rev": "841c6d4139aedb8a3f2baf30cef5327371385b93",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "2b50ab5ccbcd9e5708deb351308edd738adbf84c",
+      "rev": "e5f65e31a5ec0e8526b2311ff8c7aaea4a581c82",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
