@@ -43,14 +43,6 @@ FZF.setup({
   ---@diagnostic disable-next-line: missing-fields
   hls = {
     preview_normal = "Normal",
-    ---@diagnostic disable-next-line: missing-fields
-    fzf = {},
-  },
-  files = {
-    -- exclude .jj
-    fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude .jj]],
-    rg_opts = [[--color=never --hidden --files -g "!.git" -g "!.jj"]],
-    find_opts = [[-type f \! -path '*/.git/*' \! -path '*/.jj/*']],
   },
   grep = {
     actions = {
