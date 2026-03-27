@@ -14,7 +14,7 @@ vim.o.expandtab = true
 vim.o.smarttab = true
 vim.o.smartindent = true
 
--- / opts
+-- search opts
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.inccommand = "split"
@@ -41,9 +41,6 @@ vim.o.timeoutlen = 300
 -- border around floating windows (e.g. K)
 vim.o.winborder = "single"
 
--- setup diagnostics
-require("config.diagnostics").set_default_diagnostic()
-
 -- folds
 vim.o.foldlevel = 99
 vim.o.foldmethod = "expr"
@@ -60,3 +57,6 @@ vim.g.netrw_banner = 0
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undofile = true
+
+-- setup diagnostics
+require("config.diagnostics").set_default_diagnostic()

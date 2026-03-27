@@ -1,3 +1,0 @@
-return {
-  "estevesnp/jq.nvim",
-}

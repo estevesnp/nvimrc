@@ -6,14 +6,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
-local lsp_methods = vim.lsp.protocol.Methods
+local LspMethods = vim.lsp.protocol.Methods
 
 -- highlight on hover
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if not client or not client:supports_method(lsp_methods.textDocument_documentHighlight) then
+    if not client or not client:supports_method(LspMethods.textDocument_documentHighlight) then
       return
     end
     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
