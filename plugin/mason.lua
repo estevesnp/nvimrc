@@ -1,7 +1,7 @@
 vim.pack.add({ "https://github.com/mason-org/mason.nvim" })
 
 require("mason").setup({
-  install_root_dir = vim.env.MASON_LSP_DIR or vim.fs.joinpath(vim.fn.stdpath("data"), "mason"),
+  install_root_dir = require("config.mason-helpers").install_dir,
   PATH = "append",
 })
 
