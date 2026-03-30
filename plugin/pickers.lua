@@ -105,7 +105,7 @@ local fzf_map = Utils.namespaced_keymap("picker(fzf)")
 -- lsp
 fzf_map("n", "gd", FZF.lsp_definitions, "goto definition (lsp)")
 fzf_map("n", "gD", FZF.lsp_declarations, "goto declaration (lsp)")
-fzf_map("n", "gr", FZF.lsp_references, "goto references (lsp)")
+fzf_map("n", "gr", FZF.lsp_references, "goto references (lsp)", { nowait = true })
 fzf_map("n", "gI", FZF.lsp_implementations, "goto implementations (lsp)")
 fzf_map("n", "<leader>D", FZF.lsp_typedefs, "type definition (lsp)")
 fzf_map("n", "<leader>ss", FZF.lsp_document_symbols, "document symbols (lsp)")
