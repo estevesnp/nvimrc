@@ -45,6 +45,10 @@ map("n", "<leader>e", vim.diagnostic.open_float, { desc = "show diagnostic messa
 map("n", "<leader>qd", vim.diagnostic.setqflist, { desc = "open diagnostic quickfix list" })
 map("n", "<leader>td", require("config.diagnostics").toggle_diagnostics, { desc = "toggle diagnostics" })
 
+-- undotree
+vim.cmd("packadd nvim.undotree")
+map("n", "<leader>u", ":Undotree<CR>", {desc= "toggle undotree"})
+
 -- lsp
 map("n", "K", vim.lsp.buf.hover, { desc = "lsp: hover documentation" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "lsp: rename" })
