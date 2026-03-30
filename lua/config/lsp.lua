@@ -1,7 +1,6 @@
 local M = {}
 
 M.configs = {
-
   zls = {
     settings = {
       enable_argument_placeholders = false,
@@ -75,12 +74,16 @@ M.default_servers = {
   "cssls",
 }
 
----formatters and linters to have in path, possibly with mason
-M.formatters_and_linters = {
+---formatters, debuggers and linters to have in path, possibly with mason
+M.formatters_and_tools = {
+  -- go
   "goimports",
   "gofumpt",
   "golangci-lint",
+  -- ts/js, md, html, css
   "prettierd",
+  -- zig
+  "codelldb",
 }
 
 ---returns a list of all lsp servers to enable
