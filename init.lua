@@ -4,4 +4,4 @@ require("config.autocmds")
 
 pcall(require, "config.override")
 
--- TODO: fff (main picker), markdown
+-- TODO: fff (main picker), lsp hover on command, markdown
