@@ -12,8 +12,6 @@ require("lazydev").setup({
 
 require("fidget").setup({})
 
-vim.lsp.enable({ "lua_ls" })
-
 local Lsp = require("config.lsp")
 
 for server, config in pairs(Lsp.configs) do
