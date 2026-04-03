@@ -46,9 +46,6 @@ vim.o.foldlevel = 99
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
--- disable mode on bottom, handled by lualine
-vim.o.showmode = false
-
 -- netrw relative line number
 vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro"
 vim.g.netrw_banner = 0

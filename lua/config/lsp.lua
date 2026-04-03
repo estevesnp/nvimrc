@@ -67,7 +67,7 @@ M.default_servers = {
   "ruff",
   -- data
   "jsonls",
-  "tombi", -- toml
+  "tombi",
   "yamlls",
   -- web
   "html",
@@ -76,13 +76,13 @@ M.default_servers = {
 
 ---formatters, debuggers and linters to have in path, possibly with mason
 M.formatters_and_tools = {
-  -- go
+  -- go formatting
   "goimports",
   "gofumpt",
   "golangci-lint",
-  -- ts/js, md, html, css
+  -- ts/js, md, html, css formatting
   "prettierd",
-  -- zig
+  -- zig debugging
   "codelldb",
 }
 
