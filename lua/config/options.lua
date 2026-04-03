@@ -55,5 +55,13 @@ vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undofile = true
 
+-- highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})
+
 -- setup diagnostics
 require("config.diagnostics").set_default_diagnostic()

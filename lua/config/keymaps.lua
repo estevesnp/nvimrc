@@ -6,9 +6,10 @@ local map = vim.keymap.set
 -- ctrl+c and esc
 map("i", "<C-c>", "<Esc>", { desc = "exit insert mode" })
 map("n", "<Esc>", function()
-  vim.snippet.stop()
   vim.cmd("nohlsearch")
-end, { desc = "remove search and snippet highlights" })
+  vim.snippet.stop()
+  vim.lsp.buf.clear_references()
+end, { desc = "remove search, snippet and lsp highlights" })
 
 -- clipboard / paste buffer
 map({ "n", "x" }, "<leader>y", '"+y', { desc = "yank to system clipboard" })
@@ -47,7 +48,7 @@ map("n", "<leader>td", require("config.diagnostics").toggle_diagnostics, { desc 
 
 -- undotree
 vim.cmd("packadd nvim.undotree")
-map("n", "<leader>u", ":Undotree<CR>", {desc= "toggle undotree"})
+map("n", "<leader>u", ":Undotree<CR>", { desc = "toggle undotree" })
 
 -- lsp
 map("n", "K", vim.lsp.buf.hover, { desc = "lsp: hover documentation" })
@@ -56,6 +57,7 @@ map("n", "gqd", vim.lsp.buf.definition, { desc = "lsp: goto definition (quickfix
 map("n", "gqr", vim.lsp.buf.references, { desc = "lsp: goto references (quickfix)" })
 map("n", "gqi", vim.lsp.buf.implementation, { desc = "lsp: goto implementations (quickfix)" })
 map({ "i", "n" }, "<C-s>", vim.lsp.buf.signature_help, { desc = "lsp: signature help" })
+map("n", "<leader>l", vim.lsp.buf.document_highlight, { desc = "lsp: highlight reference" })
 map("n", "<leader>th", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "lsp: toggle inlay hints" })
