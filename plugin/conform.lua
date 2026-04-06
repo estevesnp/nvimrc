@@ -19,6 +19,6 @@ Conform.setup({
 
 local map = require("config.utils").namespaced_keymap("conform")
 
-map("n", "<leader>f", function()
+map({ "n", "x" }, "<leader>f", function()
   Conform.format({ async = true, lsp_fallback = true })
 end, "format buffer")
