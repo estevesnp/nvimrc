@@ -51,7 +51,6 @@ vim.cmd("packadd nvim.undotree")
 map("n", "<leader>u", ":Undotree<CR>", { desc = "toggle undotree" })
 
 -- lsp
-map("n", "K", vim.lsp.buf.hover, { desc = "lsp: hover documentation" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "lsp: rename" })
 map("n", "gqd", vim.lsp.buf.definition, { desc = "lsp: goto definition (quickfix)" })
 map("n", "gqr", vim.lsp.buf.references, { desc = "lsp: goto references (quickfix)" })
