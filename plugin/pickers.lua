@@ -16,8 +16,7 @@ vim.pack.add({
 
 -- fff
 
-local FFF = require("fff")
-FFF.setup({
+vim.g.fff = {
   prompt = "> ",
   keymaps = {
     close = { "<Esc>", "<C-c>" },
@@ -28,11 +27,16 @@ FFF.setup({
     prompt_position = "top",
     preview_position = "top",
   },
-})
+}
 
 local fff_map = Utils.namespaced_keymap("picker(fff)")
-fff_map("n", "<leader>sf", FFF.find_files, "search files")
-fff_map("n", "<leader>sg", FFF.live_grep, "grep files")
+
+fff_map("n", "<leader>sf", function()
+  require("fff").find_files()
+end, "search files")
+fff_map("n", "<leader>sg", function()
+  require("fff").live_grep()
+end, "grep files")
 
 --- fzf
 
@@ -72,9 +76,6 @@ FZF.setup({
         ["ctrl-x"] = { fn = FZF.actions.git_reset, reload = true },
       },
     },
-  },
-  keymaps = {
-    show_details = false,
   },
   keymap = {
     builtin = {
