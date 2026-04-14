@@ -1,5 +1,3 @@
-local Lsp = require("config.lsp")
-
 local M = {}
 
 M.install_dir = vim.env.MASON_LSP_DIR or vim.fs.joinpath(vim.fn.stdpath("data"), "mason")
@@ -78,12 +76,14 @@ local function spec_in_path(spec)
 end
 
 function M.install_not_in_path()
-  local executables_to_install = {}
+  local Lsp = require("config.lsp")
   local mappings = M.get_mappings()
 
-  for _, fmt_lint in ipairs(Lsp.formatters_and_tools) do
-    if vim.fn.executable(fmt_lint) == 0 then
-      table.insert(executables_to_install, fmt_lint)
+  local executables_to_install = {}
+
+  for _, tool in ipairs(Lsp.formatters_and_tools) do
+    if vim.fn.executable(tool) == 0 then
+      table.insert(executables_to_install, tool)
     end
   end
 

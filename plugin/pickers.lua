@@ -31,12 +31,50 @@ vim.g.fff = {
 
 local fff_map = Utils.namespaced_keymap("picker(fff)")
 
+-- files
 fff_map("n", "<leader>sf", function()
   require("fff").find_files()
 end, "search files")
+fff_map("n", "<leader>sh", function()
+  require("fff").find_files_in_dir(Utils.buf_dir())
+end, "search here")
+fff_map("n", "<leader>s.", function()
+  require("fff").find_files_in_dir("~/.dotfiles")
+end, "search config files")
+fff_map("n", "<leader>sc", function()
+  require("fff").find_files_in_dir("~/.config")
+end, "search config files")
+fff_map("n", "<leader>sn", function()
+  require("fff").find_files_in_dir(vim.fn.stdpath("config"))
+end, "search neovim files")
+fff_map("n", "<leader>sl", function()
+  local stdlib_lang = Utils.get_stdlib_with_fallback()
+  if not stdlib_lang then
+    return
+  end
+  require("fff").find_files_in_dir(stdlib_lang.stdlib)
+end, "search stdling files")
+
+-- grep
 fff_map("n", "<leader>sg", function()
   require("fff").live_grep()
 end, "grep files")
+fff_map("n", "<leader>gh", function()
+  require("fff").live_grep({
+    cwd = Utils.buf_dir(),
+    title = "Live Grep here"
+  })
+end, "grep here")
+fff_map("n", "<leader>gl", function()
+  local stdlib_lang = Utils.get_stdlib_with_fallback()
+  if not stdlib_lang then
+    return
+  end
+  require("fff").live_grep({
+    cwd = stdlib_lang.stdlib,
+    title = "Live Grep " .. stdlib_lang.lang,
+  })
+end, "grep stdlib")
 
 --- fzf
 
@@ -116,34 +154,54 @@ fzf_map("n", "<leader>sD", FZF.diagnostics_workspace, "workspace diagnostics (ls
 fzf_map("n", "<leader>ca", FZF.lsp_code_actions, "code action (lsp)")
 
 -- files/buffers
-fzf_map("n", "<leader>Sf", FZF.files, "search files")
 fzf_map("n", "<leader>so", FZF.oldfiles, "search old files")
 fzf_map("n", "<leader>st", FZF.treesitter, "search treesitter")
 fzf_map("n", "<leader>sb", FZF.buffers, "search buffers")
 fzf_map("n", "<leader>sq", FZF.quickfix, "search quickfix")
 fzf_map("n", "<leader>sm", FZF.marks, "search marks")
 fzf_map("n", "<leader>se", FZF.global, "search everything (Global)")
-fzf_map("n", "<leader>sh", function()
+
+-- git
+fzf_map("n", "<leader>gf", FZF.git_files, "search git files")
+fzf_map("n", "<leader>gs", FZF.git_status, "search git status")
+fzf_map("n", "<leader>gc", FZF.git_bcommits, "search git buffer commits")
+fzf_map("n", "<leader>gC", FZF.git_commits, "search git commits")
+
+-- grep
+fzf_map({ "n", "v" }, "<leader>sv", FZF.grep_visual, "search visual selection")
+fzf_map("n", "<leader>/", FZF.lgrep_curbuf, "search current buffer")
+fzf_map("n", "<leader>sw", FZF.grep_cword, "search current word")
+fzf_map("n", "<leader>sW", FZF.grep_cWORD, "search current word")
+
+-- misc
+fzf_map("n", "<leader>sr", FZF.resume, "search resume")
+fzf_map("n", "<leader>sk", FZF.keymaps, "search keymaps")
+fzf_map("n", "<leader>sH", FZF.helptags, "search help")
+fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
+
+-- outdated
+fzf_map("n", "<leader>Sf", FZF.files, "search files")
+fzf_map("n", "<leader>Sh", function()
   local buf_dir = Utils.buf_dir()
   FZF.files({
     header = "search from " .. buf_dir,
     cwd = buf_dir,
   })
 end, "search here, starting from buffer's dir")
-fzf_map("n", "<leader>sc", function()
+fzf_map("n", "<leader>Sc", function()
   FZF.files({
     header = "config files",
     cwd = "~/.config",
     follow = true,
   })
 end, "search config files")
-fzf_map("n", "<leader>sn", function()
+fzf_map("n", "<leader>Sn", function()
   FZF.files({
     header = "neovim files",
     cwd = vim.fn.stdpath("config"),
   })
 end, "search neovim files")
-fzf_map("n", "<leader>sl", function()
+fzf_map("n", "<leader>Sl", function()
   local stdlib_lang = Utils.get_stdlib_with_fallback()
   if not stdlib_lang then
     return
@@ -155,19 +213,8 @@ fzf_map("n", "<leader>sl", function()
   })
 end, "search stdlib files")
 
--- git
-fzf_map("n", "<leader>gf", FZF.git_files, "search git files")
-fzf_map("n", "<leader>gs", FZF.git_status, "search git status")
-fzf_map("n", "<leader>gc", FZF.git_bcommits, "search git buffer commits")
-fzf_map("n", "<leader>gC", FZF.git_commits, "search git commits")
-
--- grep
 fzf_map("n", "<leader>Sg", FZF.live_grep, "search grep")
-fzf_map({ "n", "v" }, "<leader>sv", FZF.grep_visual, "search visual selection")
-fzf_map("n", "<leader>/", FZF.lgrep_curbuf, "search current buffer")
-fzf_map("n", "<leader>sw", FZF.grep_cword, "search current word")
-fzf_map("n", "<leader>sW", FZF.grep_cWORD, "search current word")
-fzf_map("n", "<leader>gh", function()
+fzf_map("n", "<leader>Gh", function()
   local buf_dir = Utils.buf_dir()
   FZF.live_grep({
     winopts = {
@@ -176,7 +223,7 @@ fzf_map("n", "<leader>gh", function()
     cwd = buf_dir,
   })
 end, "grep here, starting from buffer's dir")
-fzf_map("n", "<leader>gl", function()
+fzf_map("n", "<leader>Gl", function()
   local stdlib_lang = Utils.get_stdlib_with_fallback()
   if not stdlib_lang then
     return
@@ -189,9 +236,3 @@ fzf_map("n", "<leader>gl", function()
     cwd = stdlib_lang.stdlib,
   })
 end, "grep stdlib")
-
--- misc
-fzf_map("n", "<leader>sr", FZF.resume, "search resume")
-fzf_map("n", "<leader>sk", FZF.keymaps, "search keymaps")
-fzf_map("n", "<leader>sH", FZF.helptags, "search help")
-fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
