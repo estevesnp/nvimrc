@@ -62,7 +62,7 @@ end, "grep files")
 fff_map("n", "<leader>gh", function()
   require("fff").live_grep({
     cwd = Utils.buf_dir(),
-    title = "Live Grep here"
+    title = "Live Grep here",
   })
 end, "grep here")
 fff_map("n", "<leader>gl", function()

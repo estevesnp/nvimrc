@@ -8,6 +8,27 @@ local DapView = require("dap-view")
 
 local mason_install_dir = require("config.mason-helpers").install_dir
 
+---Returns a function that prompts for input when searching for an executable.
+---If a fallback path is provided and the input is empty, then the fallback is used.
+---@param fallback_path string?
+---@return fun(): string
+local function program_prompt(fallback_path)
+  local last_input = nil
+
+  return function()
+    local default_path = last_input or vim.fn.fnamemodify(vim.fn.getcwd(), ":p")
+    local prompt = fallback_path and "Path to executable (empty for fallback): " or "Path to executable: "
+    local input = vim.fn.input(prompt, default_path, "file")
+
+    if fallback_path and input:match("^%s*$") then
+      return fallback_path
+    end
+
+    last_input = input
+    return input
+  end
+end
+
 Dap.adapters.codelldb = {
   type = "server",
   port = "${port}",
@@ -22,7 +43,7 @@ Dap.configurations.zig = {
     name = "Launch",
     type = "codelldb",
     request = "launch",
-    program = "${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}",
+    program = program_prompt("${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}"),
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
     args = {},

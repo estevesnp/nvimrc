@@ -3,4 +3,4 @@ require("config.keymaps")
 
 pcall(require, "config.override")
 
--- TODO: fff (main picker), markdown
+-- TODO: markdown
