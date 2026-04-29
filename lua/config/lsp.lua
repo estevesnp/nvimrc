@@ -63,7 +63,7 @@ M.default_servers = {
   -- typescript/javascript
   "ts_ls",
   --python
-  "basedpyright",
+  "pyright",
   "ruff",
   -- data
   "jsonls",
