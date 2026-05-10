@@ -141,9 +141,20 @@ FZF.setup({
 
 local fzf_map = Utils.namespaced_keymap("picker(fzf)")
 
+---@param fn fun() function to call after split
+---@return fun() function that splits and calls fn
+local function split_and_call(fn)
+  return function()
+    vim.cmd("vsplit | wincmd l")
+    fn()
+  end
+end
+
 -- lsp
 fzf_map("n", "gd", FZF.lsp_definitions, "goto definition (lsp)")
+fzf_map("n", "gsd", split_and_call(FZF.lsp_definitions), "goto definition in new split (lsp)")
 fzf_map("n", "gD", FZF.lsp_declarations, "goto declaration (lsp)")
+fzf_map("n", "gsD", split_and_call(FZF.lsp_declarations), "goto declaration in new split (lsp)")
 fzf_map("n", "gr", FZF.lsp_references, "goto references (lsp)", { nowait = true })
 fzf_map("n", "gI", FZF.lsp_implementations, "goto implementations (lsp)")
 fzf_map("n", "<leader>D", FZF.lsp_typedefs, "type definition (lsp)")
@@ -175,7 +186,9 @@ fzf_map("n", "<leader>sW", FZF.grep_cWORD, "search current word")
 
 -- misc
 fzf_map("n", "<leader>sr", FZF.resume, "search resume")
-fzf_map("n", "<leader>sk", FZF.keymaps, "search keymaps")
+fzf_map("n", "<leader>sk", function()
+  FZF.keymaps({ show_details = false })
+end, "search keymaps")
 fzf_map("n", "<leader>sH", FZF.helptags, "search help")
 fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
 

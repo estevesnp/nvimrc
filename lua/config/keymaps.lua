@@ -50,7 +50,7 @@ map("n", "<leader>td", require("config.diagnostics").toggle_diagnostics, { desc 
 vim.cmd("packadd nvim.undotree")
 map("n", "<leader>u", ":Undotree<CR>", { desc = "toggle undotree" })
 
--- lsp
+-- lsp (check plugin/pickers.lua for rest of keymaps)
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "lsp: rename" })
 map("n", "gqd", vim.lsp.buf.definition, { desc = "lsp: goto definition (quickfix)" })
 map("n", "gqr", vim.lsp.buf.references, { desc = "lsp: goto references (quickfix)" })
