@@ -60,3 +60,13 @@ map("n", "<leader>l", vim.lsp.buf.document_highlight, { desc = "lsp: highlight r
 map("n", "<leader>th", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "lsp: toggle inlay hints" })
+
+-- term
+map("n", "<leader>R", function()
+  vim.ui.input({ prompt = "run: " }, function(cmd)
+    if cmd and cmd ~= "" then
+      vim.cmd("vnew")
+      vim.fn.jobstart(cmd, { term = true })
+    end
+  end)
+end, { desc = "run shell command in a new split" })
