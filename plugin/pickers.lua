@@ -43,7 +43,7 @@ fff_map("n", "<leader>s.", function()
 end, "search config files")
 fff_map("n", "<leader>sc", function()
   require("fff").find_files_in_dir("~/.config")
-end, "search config files")
+end, "search dotfiles")
 fff_map("n", "<leader>sn", function()
   require("fff").find_files_in_dir(vim.fn.stdpath("config"))
 end, "search neovim files")
@@ -65,6 +65,12 @@ fff_map("n", "<leader>gh", function()
     title = "Live Grep here",
   })
 end, "grep here")
+fff_map("n", "<leader>gn", function()
+  require("fff").live_grep({
+    cwd = vim.fn.stdpath("config"),
+    title = "Live Grep neovim files",
+  })
+end, "grep neovim files")
 fff_map("n", "<leader>gl", function()
   local stdlib_lang = Utils.get_stdlib_with_fallback()
   if not stdlib_lang then
