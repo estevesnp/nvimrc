@@ -9,6 +9,10 @@ in order to install all lsp servers, formatters and linters defined in the
 
 `:MasonPathInstall`
 
+## override
+
+config overrides that are not source controlled can be created in `after/plugin/zz-override.lua`
+
 ## notable dependencies
 
 - xclip/wl-clipboard (clipboard, check `:h clipboard`)
