@@ -62,6 +62,7 @@ map("n", "<leader>th", function()
 end, { desc = "lsp: toggle inlay hints" })
 
 -- term
+map("n", "<leader>T", ":tab term<CR>", { desc = "open terminal in new tab" })
 map("n", "<leader>R", function()
   vim.ui.input({ prompt = "run: " }, function(cmd)
     if cmd and cmd ~= "" then
