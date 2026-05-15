@@ -2,6 +2,8 @@ vim.pack.add({
   "https://github.com/datsfilipe/vesper.nvim",
 })
 
+local colors = require("vesper.colors")
+
 require("vesper").setup({
   italics = {
     comments = false,
@@ -10,6 +12,11 @@ require("vesper").setup({
     strings = false,
     variables = false,
   },
+  overrides = {
+    MiniTrailspace = { bg = colors.error },
+    Underlined = {
+      underline = false,
+      undercurl = false,
+    },
+  },
 })
-
--- TODO: remove underscores; check why there are issues with mini-trailspace
