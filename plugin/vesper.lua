@@ -1,6 +1,4 @@
-vim.pack.add({
-  "https://github.com/datsfilipe/vesper.nvim",
-})
+vim.pack.add({ "https://github.com/datsfilipe/vesper.nvim" })
 
 local colors = require("vesper.colors")
 
@@ -13,10 +11,11 @@ require("vesper").setup({
     variables = false,
   },
   overrides = {
-    MiniTrailspace = { bg = colors.error },
     Underlined = {
       underline = false,
       undercurl = false,
     },
+    MiniTrailspace = { bg = colors.error },
+    IblIndent = { fg = "#3a3c4a" },
   },
 })
