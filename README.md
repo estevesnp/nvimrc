@@ -9,15 +9,17 @@ in order to install all lsp servers, formatters and linters defined in the
 
 `:MasonPathInstall`
 
-## override
+## local override
 
-config overrides that are not source controlled can be created in `after/plugin/zz-override.lua`
+local config overrides that are not source controlled can be created in:
+
+`after/plugin/zz-local.lua`
 
 ## notable dependencies
 
 - xclip/wl-clipboard (clipboard, check `:h clipboard`)
 - gcc (nvim-treesitter)
-- tree-sitter (nvim-treesitter)
+- tree-sitter cli (nvim-treesitter)
 - ripgrep (fzf)
 - fd (fzf)
 - go (mason)
