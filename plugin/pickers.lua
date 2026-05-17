@@ -1,86 +1,18 @@
 local Utils = require("config.utils")
 
-local function pack_cb()
+local function fff_pack_cb()
   require("fff.download").download_or_build_binary()
 end
 
 Utils.register_pack_cb("fff.nvim", {
-  install = pack_cb,
-  update = pack_cb,
+  install = fff_pack_cb,
+  update = fff_pack_cb,
 })
 
 vim.pack.add({
   "https://github.com/ibhagwan/fzf-lua",
   "https://github.com/dmtrKovalenko/fff.nvim",
 })
-
--- fff
-
-vim.g.fff = {
-  prompt = "> ",
-  keymaps = {
-    close = { "<Esc>", "<C-c>" },
-  },
-  layout = {
-    width = 1,
-    height = 1,
-    prompt_position = "top",
-    preview_position = "top",
-  },
-}
-
-local fff_map = Utils.namespaced_keymap("picker(fff)")
-
--- files
-fff_map("n", "<leader>sf", function()
-  require("fff").find_files()
-end, "search files")
-fff_map("n", "<leader>sh", function()
-  require("fff").find_files_in_dir(Utils.buf_dir())
-end, "search here")
-fff_map("n", "<leader>s.", function()
-  require("fff").find_files_in_dir("~/.dotfiles")
-end, "search config files")
-fff_map("n", "<leader>sc", function()
-  require("fff").find_files_in_dir("~/.config")
-end, "search dotfiles")
-fff_map("n", "<leader>sn", function()
-  require("fff").find_files_in_dir(vim.fn.stdpath("config"))
-end, "search neovim files")
-fff_map("n", "<leader>sl", function()
-  local stdlib_lang = Utils.get_stdlib_with_fallback()
-  if not stdlib_lang then
-    return
-  end
-  require("fff").find_files_in_dir(stdlib_lang.stdlib)
-end, "search stdling files")
-
--- grep
-fff_map("n", "<leader>sg", function()
-  require("fff").live_grep()
-end, "grep files")
-fff_map("n", "<leader>gh", function()
-  require("fff").live_grep({
-    cwd = Utils.buf_dir(),
-    title = "Live Grep here",
-  })
-end, "grep here")
-fff_map("n", "<leader>gn", function()
-  require("fff").live_grep({
-    cwd = vim.fn.stdpath("config"),
-    title = "Live Grep neovim files",
-  })
-end, "grep neovim files")
-fff_map("n", "<leader>gl", function()
-  local stdlib_lang = Utils.get_stdlib_with_fallback()
-  if not stdlib_lang then
-    return
-  end
-  require("fff").live_grep({
-    cwd = stdlib_lang.stdlib,
-    title = "Live Grep " .. stdlib_lang.lang,
-  })
-end, "grep stdlib")
 
 --- fzf
 
@@ -147,20 +79,11 @@ FZF.setup({
 
 local fzf_map = Utils.namespaced_keymap("picker(fzf)")
 
----@param fn fun() function to call after split
----@return fun() function that splits and calls fn
-local function split_and_call(fn)
-  return function()
-    vim.cmd("vsplit | wincmd l")
-    fn()
-  end
-end
-
 -- lsp
 fzf_map("n", "gd", FZF.lsp_definitions, "goto definition (lsp)")
-fzf_map("n", "gsd", split_and_call(FZF.lsp_definitions), "goto definition in new split (lsp)")
+fzf_map("n", "gsd", Utils.split_and_call(FZF.lsp_definitions), "goto definition in new split (lsp)")
 fzf_map("n", "gD", FZF.lsp_declarations, "goto declaration (lsp)")
-fzf_map("n", "gsD", split_and_call(FZF.lsp_declarations), "goto declaration in new split (lsp)")
+fzf_map("n", "gsD", Utils.split_and_call(FZF.lsp_declarations), "goto declaration in new split (lsp)")
 fzf_map("n", "gr", FZF.lsp_references, "goto references (lsp)", { nowait = true })
 fzf_map("n", "gI", FZF.lsp_implementations, "goto implementations (lsp)")
 fzf_map("n", "<leader>D", FZF.lsp_typedefs, "type definition (lsp)")
@@ -171,6 +94,44 @@ fzf_map("n", "<leader>sD", FZF.diagnostics_workspace, "workspace diagnostics (ls
 fzf_map("n", "<leader>ca", FZF.lsp_code_actions, "code action (lsp)")
 
 -- files/buffers
+fzf_map("n", "<leader>sf", FZF.files, "search files")
+fzf_map("n", "<leader>sh", function()
+  local buf_dir = Utils.buf_dir()
+  FZF.files({
+    header = "search from " .. buf_dir,
+    cwd = buf_dir,
+  })
+end, "search here, starting from buffer's dir")
+fzf_map("n", "<leader>sc", function()
+  FZF.files({
+    header = "config files",
+    cwd = "~/.config",
+    follow = true,
+  })
+end, "search config files")
+fzf_map("n", "<leader>s.", function()
+  FZF.files({
+    header = "dotfiles",
+    cwd = "~/.dotfiles",
+  })
+end, "search dotfiles")
+fzf_map("n", "<leader>sn", function()
+  FZF.files({
+    header = "neovim files",
+    cwd = vim.fn.stdpath("config"),
+  })
+end, "search neovim files")
+fzf_map("n", "<leader>sl", function()
+  local stdlib_lang = Utils.get_stdlib_with_fallback()
+  if not stdlib_lang then
+    return
+  end
+
+  FZF.files({
+    header = stdlib_lang.lang .. " stdlib files",
+    cwd = stdlib_lang.stdlib,
+  })
+end, "search stdlib files")
 fzf_map("n", "<leader>so", FZF.oldfiles, "search old files")
 fzf_map("n", "<leader>st", FZF.treesitter, "search treesitter")
 fzf_map("n", "<leader>sb", FZF.buffers, "search buffers")
@@ -185,6 +146,29 @@ fzf_map("n", "<leader>gc", FZF.git_bcommits, "search git buffer commits")
 fzf_map("n", "<leader>gC", FZF.git_commits, "search git commits")
 
 -- grep
+fzf_map("n", "<leader>sg", FZF.live_grep, "search grep")
+fzf_map("n", "<leader>gh", function()
+  local buf_dir = Utils.buf_dir()
+  FZF.live_grep({
+    winopts = {
+      title = "Grep from " .. buf_dir,
+    },
+    cwd = buf_dir,
+  })
+end, "grep here, starting from buffer's dir")
+fzf_map("n", "<leader>gl", function()
+  local stdlib_lang = Utils.get_stdlib_with_fallback()
+  if not stdlib_lang then
+    return
+  end
+
+  FZF.live_grep({
+    winopts = {
+      title = "Grep " .. stdlib_lang.lang .. " stdlib",
+    },
+    cwd = stdlib_lang.stdlib,
+  })
+end, "grep stdlib")
 fzf_map({ "n", "v" }, "<leader>sv", FZF.grep_visual, "search visual selection")
 fzf_map("n", "<leader>/", FZF.lgrep_curbuf, "search current buffer")
 fzf_map("n", "<leader>sw", FZF.grep_cword, "search current word")
@@ -198,60 +182,35 @@ end, "search keymaps")
 fzf_map("n", "<leader>sH", FZF.helptags, "search help")
 fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
 
--- outdated
-fzf_map("n", "<leader>Sf", FZF.files, "search files")
-fzf_map("n", "<leader>Sh", function()
-  local buf_dir = Utils.buf_dir()
-  FZF.files({
-    header = "search from " .. buf_dir,
-    cwd = buf_dir,
-  })
-end, "search here, starting from buffer's dir")
-fzf_map("n", "<leader>Sc", function()
-  FZF.files({
-    header = "config files",
-    cwd = "~/.config",
-    follow = true,
-  })
-end, "search config files")
-fzf_map("n", "<leader>Sn", function()
-  FZF.files({
-    header = "neovim files",
-    cwd = vim.fn.stdpath("config"),
-  })
-end, "search neovim files")
-fzf_map("n", "<leader>Sl", function()
-  local stdlib_lang = Utils.get_stdlib_with_fallback()
-  if not stdlib_lang then
-    return
-  end
+-- fff
 
-  FZF.files({
-    header = stdlib_lang.lang .. " stdlib files",
-    cwd = stdlib_lang.stdlib,
-  })
-end, "search stdlib files")
+vim.g.fff = {
+  prompt = "> ",
+  keymaps = {
+    close = { "<Esc>", "<C-c>" },
+  },
+  layout = {
+    width = 1,
+    height = 1,
+    prompt_position = "top",
+    preview_position = "top",
+  },
+}
 
-fzf_map("n", "<leader>Sg", FZF.live_grep, "search grep")
-fzf_map("n", "<leader>Gh", function()
-  local buf_dir = Utils.buf_dir()
-  FZF.live_grep({
-    winopts = {
-      title = "Grep from " .. buf_dir,
-    },
-    cwd = buf_dir,
-  })
-end, "grep here, starting from buffer's dir")
-fzf_map("n", "<leader>Gl", function()
-  local stdlib_lang = Utils.get_stdlib_with_fallback()
-  if not stdlib_lang then
-    return
-  end
+local fff_map = Utils.namespaced_keymap("picker(fff)")
 
-  FZF.live_grep({
-    winopts = {
-      title = "Grep " .. stdlib_lang.lang .. " stdlib",
-    },
-    cwd = stdlib_lang.stdlib,
+fff_map("n", "<leader>af", function()
+  require("fff").find_files()
+end, "search files")
+fff_map("n", "<leader>Sh", function()
+  require("fff").find_files_in_dir(Utils.buf_dir())
+end, "search here")
+fff_map("n", "<leader>ag", function()
+  require("fff").live_grep()
+end, "grep files")
+fff_map("n", "<leader>Gh", function()
+  require("fff").live_grep({
+    cwd = Utils.buf_dir(),
+    title = "Live Grep here",
   })
-end, "grep stdlib")
+end, "grep here")

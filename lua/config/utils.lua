@@ -218,4 +218,13 @@ function M.register_pack_cb(pack_name, cb_table, pack_hook)
   })
 end
 
+---@param fn fun() function to call after vertical split
+---@return fun() function that splits and calls fn
+function M.split_and_call(fn)
+  return function()
+    vim.cmd("vsplit | wincmd l")
+    fn()
+  end
+end
+
 return M
