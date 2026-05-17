@@ -17,6 +17,24 @@ vim.pack.add({
 --- fzf
 
 local FZF = require("fzf-lua")
+
+local function flag_toggle_opts(flag, header_name)
+  return {
+    fn = function(_, opts)
+      FZF.actions.toggle_flag(_, vim.tbl_extend("force", opts, { toggle_flag = flag }))
+    end,
+    desc = header_name,
+    header = function(o)
+      local cmd = o._cmd or o.cmd
+      if cmd and cmd:match(FZF.utils.lua_regex_escape(flag)) then
+        return "disable " .. flag
+      else
+        return "enable " .. flag
+      end
+    end,
+  }
+end
+
 FZF.setup({
   "ivy",
   ui_select = true,
@@ -26,20 +44,8 @@ FZF.setup({
   },
   grep = {
     actions = {
-      ["ctrl-i"] = {
-        fn = function(_, opts)
-          FZF.actions.toggle_flag(_, vim.tbl_extend("force", opts, { toggle_flag = "--smart-case" }))
-        end,
-        desc = "toggle-flags",
-        header = function(o)
-          local cmd = o._cmd or o.cmd
-          if cmd and cmd:match("%-%-smart%-case") then
-            return "disable smart case"
-          else
-            return "enable smart case"
-          end
-        end,
-      },
+      ["ctrl-i"] = flag_toggle_opts("--smart-case"),
+      ["ctrl-h"] = flag_toggle_opts("--hidden"),
     },
   },
   git = {
