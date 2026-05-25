@@ -11,6 +11,7 @@ require("vesper").setup({
     variables = false,
   },
   overrides = {
+    SnippetTabstopActive = {},
     Underlined = {
       underline = false,
       undercurl = false,
