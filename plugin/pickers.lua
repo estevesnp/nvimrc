@@ -101,6 +101,9 @@ fzf_map("n", "<leader>ca", FZF.lsp_code_actions, "code action (lsp)")
 
 -- files/buffers
 fzf_map("n", "<leader>sf", FZF.files, "search files")
+fzf_map("n", "<leader>sF", function()
+  FZF.files({ follow = true })
+end, "search files (follow symlinks)")
 fzf_map("n", "<leader>sh", function()
   local buf_dir = Utils.buf_dir()
   FZF.files({
@@ -201,6 +204,7 @@ vim.g.fff = {
     prompt_position = "top",
     preview_position = "top",
   },
+  follow_symlinks = true,
 }
 
 local fff_map = Utils.namespaced_keymap("picker(fff)")
