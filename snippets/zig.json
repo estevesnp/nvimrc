@@ -1,15 +1,15 @@
 {
-  "init debug allocator": {
-    "prefix": "init_debug_allocator",
+  "init safe allocator": {
+    "prefix": "init_safe_allocator",
     "body": [
-      "var debug_allocator: std.heap.DebugAllocator(.{}) = .init;",
-      "defer _ = debug_allocator.deinit();"
+      "var safe_allocator: std.heap.SafeAllocator = .init(${1:std.heap.page_allocator}, .{});",
+      "defer _ = safe_allocator.deinit();"
     ]
   },
   "init arena allocator": {
     "prefix": "init_arena",
     "body": [
-      "var arena_state: std.heap.ArenaAllocator = .init(${1:allocator});",
+      "var arena_state: std.heap.ArenaAllocator = .init(${1:std.heap.page_allocator});",
       "defer arena_state.deinit();"
     ]
   },
