@@ -13,6 +13,10 @@
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "debugprint.nvim": {
+      "rev": "54c74749fb299bafbae818f775243be776663420",
+      "src": "https://github.com/andrewferrier/debugprint.nvim"
+    },
     "faster.nvim": {
       "rev": "2e7a50f659711854b9a7fdc76d943b59b30d7852",
       "src": "https://github.com/pteroctopus/faster.nvim"
@@ -70,7 +74,7 @@
       "src": "https://codeberg.org/mfussenegger/nvim-dap"
     },
     "nvim-dap-view": {
-      "rev": "ba5c838e731003abefb8bc1c403c59aa5b3aa194",
+      "rev": "91a2b0eab74cc889499587166cc6e3d53a7e1e45",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-lint": {
