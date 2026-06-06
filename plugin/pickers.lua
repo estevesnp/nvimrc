@@ -195,9 +195,6 @@ fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
 
 vim.g.fff = {
   prompt = "> ",
-  keymaps = {
-    close = { "<Esc>", "<C-c>" },
-  },
   layout = {
     width = 1,
     height = 1,
@@ -205,6 +202,11 @@ vim.g.fff = {
     preview_position = "top",
   },
   follow_symlinks = true,
+  prompt_vim_mode = true,
+  hl = {
+    normal = "Normal",
+    border = "Normal",
+  },
 }
 
 local fff_map = Utils.namespaced_keymap("picker(fff)")
