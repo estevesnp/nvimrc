@@ -55,11 +55,19 @@ vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undofile = true
 
--- highlight on yank
+-- yank operations
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+  group = vim.api.nvim_create_augroup("post-yank-ops", { clear = true }),
   callback = function()
+    -- highlight on yank
     vim.hl.hl_op()
+
+    -- yank ring
+    if vim.v.event.operator == "y" then
+      for i = 9, 1, -1 do -- Shift all numbered registers.
+        vim.fn.setreg(tostring(i), vim.fn.getreg(tostring(i - 1)))
+      end
+    end
   end,
 })
 
