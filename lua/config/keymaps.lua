@@ -11,6 +11,9 @@ map("n", "<Esc>", function()
   vim.lsp.buf.clear_references()
 end, { desc = "remove search, snippet and lsp highlights" })
 
+-- select last changed text
+map("n", "gV", "`[v`]", { desc = "select last changed text" })
+
 -- clipboard / paste buffer
 map({ "n", "x" }, "<leader>y", '"+y', { desc = "yank to system clipboard" })
 map({ "n", "x" }, "<leader>d", '"_d', { desc = "delete to void register" })
@@ -62,6 +65,7 @@ map("n", "<leader>th", function()
 end, { desc = "lsp: toggle inlay hints" })
 
 -- term
+map("t", "<C-[>", [[<C-\><C-n>]])
 map("n", "<leader>T", ":tab term<CR>", { desc = "open terminal in new tab" })
 map("n", "<leader>R", function()
   vim.ui.input({ prompt = "run: " }, function(cmd)
