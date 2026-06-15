@@ -133,8 +133,7 @@ fzf_map("n", "<leader>st", FZF.treesitter, "search treesitter")
 fzf_map("n", "<leader>sb", FZF.buffers, "search buffers")
 fzf_map("n", "<leader>sq", FZF.quickfix, "search quickfix")
 fzf_map("n", "<leader>sm", FZF.marks, "search marks")
-fzf_map("n", "<leader>se", FZF.global, "search everything (Global)")
-fzf_map("n", "<leader>sr", FZF.resume, "search resume")
+fzf_map("n", "<leader>se", FZF.global, "search everything (global)")
 fzf_map("n", "<leader>sk", function()
   FZF.keymaps({ show_details = false })
 end, "search keymaps")
@@ -143,7 +142,7 @@ fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
 fzf_map({ "n", "v" }, "<leader>sv", FZF.grep_visual, "search visual selection")
 fzf_map("n", "<leader>/", FZF.lgrep_curbuf, "search current buffer")
 fzf_map("n", "<leader>sw", FZF.grep_cword, "search current word")
-fzf_map("n", "<leader>sW", FZF.grep_cWORD, "search current word")
+fzf_map("n", "<leader>sW", FZF.grep_cWORD, "search current WORD")
 
 --- mixed bindings
 
@@ -276,3 +275,9 @@ fzf_map("n", main_fff and "<leader>Gl" or "<leader>gl", function()
     })
   end
 end, "grep stdlib")
+
+-- resume picker
+fff_map("n", main_fff and "<leader>sr" or "<leader>sR", function()
+  require("fff").resume()
+end, "resume picker")
+fzf_map("n", main_fff and "<leader>sR" or "<leader>sr", FZF.resume, "resume picker")
