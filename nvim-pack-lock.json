@@ -22,7 +22,7 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff.nvim": {
-      "rev": "caf8a31e8406ef7ad4ce59abfea0a9bc4856fdeb",
+      "rev": "65832db6d870a0a9a6df3448ef54a888b226a436",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "fidget.nvim": {
@@ -57,6 +57,10 @@
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/mason-org/mason.nvim"
     },
+    "mini.align": {
+      "rev": "8e78aef46e1c4ca25fb12316196bc3105da74ce4",
+      "src": "https://github.com/nvim-mini/mini.align"
+    },
     "mini.pairs": {
       "rev": "30cf2f01c4aaa2033db67376b9924fa2442c05d6",
       "src": "https://github.com/nvim-mini/mini.pairs"
@@ -74,7 +78,7 @@
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-lint": {
-      "rev": "99cbc3ca8a76845fca50e496be7212bebf907dd3",
+      "rev": "01c5926a4226c58f083c80868cf135111cfac515",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
