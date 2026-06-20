@@ -33,6 +33,13 @@ vim.g.fff = {
     normal = "Normal",
     border = "Normal",
   },
+  select = {
+    ---@diagnostic disable-next-line: unused-local
+    select_window = function(_buf, _action)
+      -- empty body to always open picked file in the current window
+      -- needed for oil
+    end,
+  },
 }
 
 local FZF = require("fzf-lua")
