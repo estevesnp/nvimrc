@@ -22,11 +22,11 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff.nvim": {
-      "rev": "1bb76f6da6872c56ce34df8a2e33e977187be5f9",
+      "rev": "a39fec79cde863b9a3bbc08ecadf56fb93c668eb",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "fidget.nvim": {
-      "rev": "82404b196e73a00b1727a91903beef5ddc319d22",
+      "rev": "6f793b2bcd2d35e201c09520f698bb763220908a",
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {

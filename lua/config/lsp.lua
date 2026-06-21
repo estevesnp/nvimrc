@@ -90,7 +90,7 @@ M.formatters_and_tools = {
 ---returns a list of all lsp servers to enable
 ---@return string[]
 function M.all_servers()
-  return vim.list_extend(vim.fn.keys(M.configs), M.default_servers)
+  return vim.list_extend(vim.tbl_keys(M.configs), M.default_servers)
 end
 
 return M
