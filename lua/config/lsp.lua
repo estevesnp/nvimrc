@@ -62,9 +62,11 @@ M.default_servers = {
   "ols",
   -- typescript/javascript
   "ts_ls",
-  --python
+  -- python
   "pyright",
   "ruff",
+  -- shell
+  "fish_lsp",
   -- data
   "jsonls",
   "tombi",
