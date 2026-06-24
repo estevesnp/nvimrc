@@ -13,10 +13,9 @@ require("vesper").setup({
   },
   overrides = {
     SnippetTabstopActive = {},
-    Underlined = {
-      underline = false,
-      undercurl = false,
-    },
+    Underlined = { underline = false, undercurl = false },
+
+    ColorColumn = { bg = mix(colors.primary, colors.bg, 0.18) },
 
     DiffAdd = { bg = mix(colors.green, colors.bg, 0.20), fg = colors.fg },
     DiffChange = { bg = mix(colors.orange, colors.bg, 0.20), fg = colors.fg },
