@@ -17,7 +17,7 @@ require("vesper").setup({
 
     ColorColumn = { bg = mix(colors.primary, colors.bg, 0.18) },
 
-    MatchParen = { bg = colors.primary, fg = colors.fgSelection, bold = true },
+    MatchParen = { bg = colors.borderFocus, fg = colors.fg, bold = true },
 
     DiffAdd = { bg = mix(colors.green, colors.bg, 0.20), fg = colors.fg },
     DiffChange = { bg = mix(colors.orange, colors.bg, 0.20), fg = colors.fg },
