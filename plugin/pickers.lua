@@ -112,16 +112,21 @@ FZF.setup({
 local fff_map = Utils.namespaced_keymap("picker(fff)")
 local fzf_map = Utils.namespaced_keymap("picker(fzf)")
 
+local split_and_call = Utils.split_and_call
+
 --- fzf keybinds
 
 -- lsp
 fzf_map("n", "gd", FZF.lsp_definitions, "goto definition (lsp)")
 fzf_map("n", "gsd", Utils.split_and_call(FZF.lsp_definitions), "goto definition in new split (lsp)")
 fzf_map("n", "gD", FZF.lsp_declarations, "goto declaration (lsp)")
-fzf_map("n", "gsD", Utils.split_and_call(FZF.lsp_declarations), "goto declaration in new split (lsp)")
+fzf_map("n", "gsD", split_and_call(FZF.lsp_declarations), "goto declaration in new split (lsp)")
 fzf_map("n", "gr", FZF.lsp_references, "goto references (lsp)", { nowait = true })
+fzf_map("n", "gsr", split_and_call(FZF.lsp_references), "goto references in new split (lsp)", { nowait = true })
 fzf_map("n", "gI", FZF.lsp_implementations, "goto implementations (lsp)")
-fzf_map("n", "<leader>D", FZF.lsp_typedefs, "type definition (lsp)")
+fzf_map("n", "gsI", split_and_call(FZF.lsp_implementations), "goto implementations in new split (lsp)")
+fzf_map("n", "gT", FZF.lsp_typedefs, "type definition (lsp)")
+fzf_map("n", "gsT", split_and_call(FZF.lsp_typedefs), "type definition in new split (lsp)")
 fzf_map("n", "<leader>ss", FZF.lsp_document_symbols, "document symbols (lsp)")
 fzf_map("n", "<leader>sS", FZF.lsp_workspace_symbols, "workspace symbols (lsp)")
 fzf_map("n", "<leader>sd", FZF.diagnostics_document, "document diagnostics (lsp)")
