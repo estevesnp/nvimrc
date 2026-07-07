@@ -63,7 +63,7 @@ end
 
 FZF.setup({
   "ivy",
-  ui_select = true,
+  ui_select = {},
   ---@diagnostic disable-next-line: missing-fields
   hls = {
     preview_normal = "Normal",
