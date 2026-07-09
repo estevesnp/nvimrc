@@ -10,5 +10,5 @@ require("mason").setup({
 vim.api.nvim_create_user_command(
   "MasonPathInstall",
   MasonHelper.install_not_in_path,
-  { desc = "install mason packages missing from path" }
+  { desc = "mason: install mason packages missing from path" }
 )

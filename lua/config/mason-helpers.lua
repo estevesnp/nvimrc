@@ -95,11 +95,11 @@ function M.install_not_in_path()
   end
 
   if #executables_to_install == 0 then
-    print("nothing to install")
+    vim.notify("mason: nothing to install", vim.log.levels.INFO)
     return
   end
 
-  print("installing: " .. table.concat(executables_to_install, ", "))
+  vim.notify("mason: installing packages " .. table.concat(executables_to_install, ", "), vim.log.levels.INFO)
   require("mason.api.command").MasonInstall(executables_to_install)
 end
 

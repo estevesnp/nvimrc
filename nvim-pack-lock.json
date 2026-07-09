@@ -22,7 +22,7 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff.nvim": {
-      "rev": "98af56c393a596292a24fb00d5b672306706b07c",
+      "rev": "5858d893b5885eea6a87ff271aaf526110fc79d0",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "fidget.nvim": {
@@ -30,7 +30,7 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
-      "rev": "774150bc05f774af1df614f55d156b3318c6decd",
+      "rev": "ed4059deb9237f7f4cc8832ffef69779ffe2e265",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -58,15 +58,15 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.align": {
-      "rev": "34014f8c9c0740904ed6760f9eee58f4ae00c131",
+      "rev": "77d7446b9f2452193f13ced9fb73a8b3aa4a4f4d",
       "src": "https://github.com/nvim-mini/mini.align"
     },
     "mini.pairs": {
-      "rev": "fd150ac39b78e6a2286f5138e472b7dc7eba43b9",
+      "rev": "b1fd9df3bb4a41c8f45778a3859ee80ef6b367e3",
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "mini.trailspace": {
-      "rev": "22653218f1aedc9bf306c8b4e8ec2c8a575f6fae",
+      "rev": "82c4fb7d4336f8824ca6c97068932886b56326d0",
       "src": "https://github.com/nvim-mini/mini.trailspace"
     },
     "nvim-dap": {

@@ -44,7 +44,7 @@ function M.toggle_diagnostics()
   state.counter = (state.counter % #diagnostic_configs) + 1
   local diag_config = diagnostic_configs[state.counter]
 
-  print("diagnostic setting: " .. diag_config.message)
+  vim.notify("diagnostic setting: " .. diag_config.message, vim.log.levels.INFO)
 
   vim.diagnostic.config(diag_config.config)
 end

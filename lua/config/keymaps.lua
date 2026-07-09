@@ -47,7 +47,7 @@ map("n", "<leader>X", "<cmd>source %<CR>", { desc = "source lua file" })
 -- diagnostics
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "show diagnostic message" })
 map("n", "<leader>qd", vim.diagnostic.setqflist, { desc = "open diagnostic quickfix list" })
-map("n", "<leader>td", require("config.diagnostics").toggle_diagnostics, { desc = "toggle diagnostics" })
+map("n", "<leader>tD", require("config.diagnostics").toggle_diagnostics, { desc = "toggle diagnostics" })
 
 -- undotree
 vim.cmd("packadd nvim.undotree")

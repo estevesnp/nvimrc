@@ -51,3 +51,28 @@ end, "diff against last commit")
 -- Toggles
 map("n", "<leader>tb", Gitsigns.toggle_current_line_blame, "toggle blame lines")
 map("n", "<leader>ts", Gitsigns.toggle_signs, "toggle git signs")
+
+local diff_against_different_base = false
+
+map("n", "<leader>td", function()
+  diff_against_different_base = not diff_against_different_base
+  if diff_against_different_base then
+    Gitsigns.change_base("main", true)
+    vim.notify("gitsigns: diffing vs main", vim.log.levels.INFO)
+  else
+    Gitsigns.reset_base(true)
+    vim.notify("gitsigns: diffing vs index", vim.log.levels.INFO)
+  end
+end, "gitsigns: toggle diff vs main")
+
+vim.api.nvim_create_user_command("DiffBase", function(args)
+  if args.args ~= "" then
+    diff_against_different_base = true
+    Gitsigns.change_base(args.args, true)
+    vim.notify("gitsigns: diffing vs " .. args.args, vim.log.levels.INFO)
+  else
+    diff_against_different_base = false
+    Gitsigns.reset_base(true)
+    vim.notify("gitsigns: diffing vs index", vim.log.levels.INFO)
+  end
+end, { desc = "gitsigns: set diff base", nargs = "?" })
