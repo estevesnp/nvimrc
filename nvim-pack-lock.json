@@ -22,7 +22,7 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff.nvim": {
-      "rev": "5858d893b5885eea6a87ff271aaf526110fc79d0",
+      "rev": "9c30eda09e3399fef55b6bbd5441481d671d3348",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "fidget.nvim": {
@@ -104,6 +104,10 @@
     "oil.nvim": {
       "rev": "b91ee5a77a6a9605d9c1aaf4fda74b66082c8297",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "outline.nvim": {
+      "rev": "2a132953b944561d45b52e4541ebfff71934a742",
+      "src": "https://github.com/hedyhli/outline.nvim"
     },
     "render-markdown.nvim": {
       "rev": "f422cb5c6855f150e2ddcfaf44e7157b98b34f6a",
