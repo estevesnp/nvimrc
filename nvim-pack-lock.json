@@ -9,6 +9,10 @@
       "rev": "c19ff40d436e3456923ef3a0c71d97cd71187b3f",
       "src": "https://github.com/bullets-vim/bullets.vim"
     },
+    "canola.nvim": {
+      "rev": "53b0b2d4859079eaed0ff8594703e53d28853cc6",
+      "src": "https://github.com/barrettruth/canola.nvim"
+    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -100,10 +104,6 @@
     "oil-git-status.nvim": {
       "rev": "a3e2ccb00cb8822115e28a9a1791eda051d940c9",
       "src": "https://github.com/refractalize/oil-git-status.nvim"
-    },
-    "oil.nvim": {
-      "rev": "b91ee5a77a6a9605d9c1aaf4fda74b66082c8297",
-      "src": "https://github.com/stevearc/oil.nvim"
     },
     "outline.nvim": {
       "rev": "2a132953b944561d45b52e4541ebfff71934a742",
