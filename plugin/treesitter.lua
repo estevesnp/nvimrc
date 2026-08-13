@@ -36,6 +36,7 @@ Treesitter.install({
   "zig",
   "c",
   "go",
+  "odin",
   "rust",
   "javascript",
   "typescript",
