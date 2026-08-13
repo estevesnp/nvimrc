@@ -7,14 +7,14 @@ local function fff_pack_cb()
   require("fff.download").download_or_build_binary()
 end
 
-Utils.register_pack_cb("fff.nvim", {
+Utils.register_pack_cb("fff", {
   install = fff_pack_cb,
   update = fff_pack_cb,
 })
 
 vim.pack.add({
   "https://github.com/ibhagwan/fzf-lua",
-  "https://github.com/dmtrKovalenko/fff.nvim",
+  "https://github.com/dmtrKovalenko/fff",
 })
 
 --- configs
