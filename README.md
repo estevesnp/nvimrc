@@ -2,6 +2,14 @@
 
 my neovim config
 
+## on first install
+
+when first installing all plugins, fff might return an error regarding a missing binary.
+
+to fix this, run the following command once:
+
+`:lua require("fff.download").download_or_build_binary()`
+
 ## install lsp servers, formatters and linters
 
 in order to install all lsp servers, formatters and linters defined in the

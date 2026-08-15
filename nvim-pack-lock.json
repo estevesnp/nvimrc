@@ -22,7 +22,7 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff": {
-      "rev": "cc289f0f9326e633dea2e9e12a4a18faa8ab3889",
+      "rev": "ffd8eb9c08dab41e5633f0d514fd47d8942f75e4",
       "src": "https://github.com/dmtrKovalenko/fff"
     },
     "fidget.nvim": {
@@ -38,7 +38,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "grug-far.nvim": {
-      "rev": "46df5eff7c55593f43891cf521fbf3f6c2c69de8",
+      "rev": "11595bf747edc270bce2069d1020502ad4ae56cf",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
     },
     "indent-blankline.nvim": {
@@ -82,11 +82,11 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "d2011e1dd0c27569c551f16b688d86029ae015c9",
+      "rev": "51dbf5359da86721662c87ca10eb73add973737b",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "c9f9ed6c1892f629ea399f4ee7905f2686fa13f2",
+      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -94,7 +94,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-web-devicons": {
-      "rev": "0ca28b61a04fe7426cefbdd52c2647ef0e335b5f",
+      "rev": "2ae6958df7ced50baac5035cec0c15799eedfbf7",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "oil-git-status.nvim": {
