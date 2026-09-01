@@ -47,6 +47,12 @@ map("n", "<leader>X", "<cmd>source %<CR>", { desc = "source lua file" })
 -- diagnostics
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "show diagnostic message" })
 map("n", "<leader>qd", vim.diagnostic.setqflist, { desc = "open diagnostic quickfix list" })
+map("n", "]e", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = vim.v.count1 })
+end, { desc = "jump to next error" })
+map("n", "[e", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = -vim.v.count1 })
+end, { desc = "jump to previous error" })
 map("n", "<leader>tD", require("config.diagnostics").toggle_diagnostics, { desc = "toggle diagnostics" })
 
 -- undotree
@@ -65,7 +71,7 @@ map("n", "<leader>th", function()
 end, { desc = "lsp: toggle inlay hints" })
 
 -- term
-map("t", "<C-[>", [[<C-\><C-n>]])
+map("t", "<C-[>", [[<C-\><C-n>]], { desc = "exit term mode" })
 map("n", "<leader>T", ":tab term<CR>", { desc = "open terminal in new tab" })
 map("n", "<leader>R", function()
   vim.ui.input({ prompt = "run: " }, function(cmd)
