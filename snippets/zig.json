@@ -26,5 +26,11 @@
       "var ${1}: std.AutoHashMapUnmanaged(${2:key}, ${3:value}) = .empty;",
       "defer ${1}.deinit(${4:allocator});"
     ]
+  },
+  "print using std.json.fmt": {
+    "prefix": "json_print",
+    "body": [
+      "std.debug.print(\"{f}\\n\", .{std.json.fmt(${1:val}, .{ .whitespace = .indent_2 })});"
+    ]
   }
 }
