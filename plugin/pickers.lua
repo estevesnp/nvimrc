@@ -26,6 +26,7 @@ vim.g.fff = {
     height = 1,
     prompt_position = "top",
     preview_position = "top",
+    show_path_first = true,
   },
   follow_symlinks = true,
   prompt_vim_mode = true,
