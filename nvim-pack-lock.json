@@ -13,6 +13,10 @@
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "cs": {
+      "rev": "72a0c732a8e2a8f24864b15441386f56efb1bcb3",
+      "src": "https://github.com/estevesnp/cs"
+    },
     "debugprint.nvim": {
       "rev": "957093d8b695aa4cc18c18f421ef0cb6c7380c59",
       "src": "https://github.com/andrewferrier/debugprint.nvim"
@@ -22,7 +26,7 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff": {
-      "rev": "d84c0a10cd5ea23285cb5575fa90179f51710f99",
+      "rev": "25f3546b4990af9c7893bd77064717d6aa54b331",
       "src": "https://github.com/dmtrKovalenko/fff"
     },
     "fidget.nvim": {
@@ -34,7 +38,7 @@
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "5be654f2232c10ddcad19c1607a67b6b4b78fc29",
+      "rev": "f2421c550618d257048afa650413d9e542ddbe67",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "grug-far.nvim": {
@@ -82,11 +86,11 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "615d7b2712efb2f530a83a9d0466acafba6b1d6f",
+      "rev": "ac9d2f7c4757db6320cab6697fe73e5e8adb2457",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "0d0969030ad955b510d7c8012b40252a25c12a6d",
+      "rev": "d4d59cb369da46b95699bd2200efbcffc6dadb3b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {

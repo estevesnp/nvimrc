@@ -48,7 +48,12 @@ end
 ---@param args string[]
 ---@return string|nil result non empty string or nil
 local function run(args)
-  local res = vim.system(args):wait()
+  local ok, sys_res = pcall(vim.system, args)
+  if not ok then
+    return nil
+  end
+
+  local res = sys_res:wait()
   if res.code ~= 0 then
     return nil
   end
