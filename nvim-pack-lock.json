@@ -14,7 +14,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "cs": {
-      "rev": "f42e20944b47370ac7da2e76013ff5196c1d6625",
+      "rev": "f649ee36913f0f605e823a43b8541837ecab45eb",
       "src": "https://github.com/estevesnp/cs"
     },
     "debugprint.nvim": {
@@ -128,6 +128,10 @@
     "vim-surround": {
       "rev": "3d188ed2113431cf8dac77be61b842acb64433d9",
       "src": "https://github.com/tpope/vim-surround"
+    },
+    "zdiff.nvim": {
+      "rev": "6e2a105d7cc138b25e2907589ad2c5251e608424",
+      "src": "https://github.com/martindur/zdiff.nvim"
     }
   }
 }
