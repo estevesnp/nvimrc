@@ -70,6 +70,11 @@ map("n", "<leader>th", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "lsp: toggle inlay hints" })
 
+map("n", "<leader>cd", function()
+  local buf_dir = require("config.utils").buf_dir()
+  vim.cmd.cd(buf_dir)
+end, {desc = "cd to buffer's dir"})
+
 -- term
 map("t", "<C-[>", [[<C-\><C-n>]], { desc = "exit term mode" })
 map("n", "<leader>T", ":tab term<CR>", { desc = "open terminal in new tab" })
