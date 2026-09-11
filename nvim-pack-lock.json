@@ -14,7 +14,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "cs": {
-      "rev": "72a0c732a8e2a8f24864b15441386f56efb1bcb3",
+      "rev": "f42e20944b47370ac7da2e76013ff5196c1d6625",
       "src": "https://github.com/estevesnp/cs"
     },
     "debugprint.nvim": {
@@ -26,7 +26,7 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff": {
-      "rev": "25f3546b4990af9c7893bd77064717d6aa54b331",
+      "rev": "c3f2c7f21ce6e528a320313e04d101a9dd4be833",
       "src": "https://github.com/dmtrKovalenko/fff"
     },
     "fidget.nvim": {

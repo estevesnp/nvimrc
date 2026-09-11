@@ -20,9 +20,9 @@ map("n", "<leader>cs", function()
 end, "open project")
 
 map("n", "<leader>cv", function()
-  require("cs").search_projects({ action = "vsplit" })
+  require("cs").search_projects({ action = "vsplit", prompt = "choose a project (vsplit)> " })
 end, "open project in new vsplit")
 
 map("n", "<leader>ct", function()
-  require("cs").search_projects({ action = "tab" })
+  require("cs").search_projects({ action = "tab", prompt = "choose a project (tab)> " })
 end, "open project in new tab")
