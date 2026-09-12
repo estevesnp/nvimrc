@@ -139,6 +139,12 @@ fzf_map("n", "<leader>gf", FZF.git_files, "search git files")
 fzf_map("n", "<leader>gs", FZF.git_status, "search git status")
 fzf_map("n", "<leader>gc", FZF.git_bcommits, "search git buffer commits")
 fzf_map("n", "<leader>gC", FZF.git_commits, "search git commits")
+fzf_map("n", "<leader>si", function()
+  FZF.files({ fd_opts = "--no-ignore-vcs " .. FZF.defaults.files.fd_opts })
+end, "search files inlcuding gitignored")
+fzf_map("n", "<leader>gi", function()
+  FZF.live_grep({ rg_opts = "--no-ignore " .. FZF.defaults.grep.rg_opts, })
+end, "grep files inlcuding gitignored")
 
 -- misc
 fzf_map("n", "<leader>sp", FZF.registers, "search registers")

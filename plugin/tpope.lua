@@ -4,4 +4,4 @@ vim.pack.add({
 })
 
 local map = require("config.utils").namespaced_keymap("fugitive")
-map("n", "<leader>gi", "<cmd>Git<CR>", "open fugitive")
+map("n", "<leader>fg", "<cmd>Git<CR>", "open fugitive")
