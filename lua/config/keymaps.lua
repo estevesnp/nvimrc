@@ -73,6 +73,7 @@ end, { desc = "lsp: toggle inlay hints" })
 map("n", "<leader>cd", function()
   local buf_dir = require("config.utils").buf_dir()
   vim.cmd.cd(buf_dir)
+  print("changed cwd to " .. buf_dir)
 end, {desc = "cd to buffer's dir"})
 
 -- term
