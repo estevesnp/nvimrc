@@ -14,7 +14,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "cs": {
-      "rev": "f649ee36913f0f605e823a43b8541837ecab45eb",
+      "rev": "75f48b2edfc096cfd51e62b7ecac6d6c484e8f7b",
       "src": "https://github.com/estevesnp/cs"
     },
     "debugprint.nvim": {
@@ -26,7 +26,7 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff": {
-      "rev": "c3f2c7f21ce6e528a320313e04d101a9dd4be833",
+      "rev": "e208805e08550c363060d78a8a470ff86062f3d9",
       "src": "https://github.com/dmtrKovalenko/fff"
     },
     "fidget.nvim": {
@@ -78,7 +78,7 @@
       "src": "https://github.com/nvim-mini/mini.trailspace"
     },
     "nvim-dap": {
-      "rev": "10c58a303f0d735e382b9ccd45ad4e13c240b309",
+      "rev": "cfa2d58f4537aca6ca83e2de1a0d9f1491121264",
       "src": "https://codeberg.org/mfussenegger/nvim-dap"
     },
     "nvim-dap-view": {
@@ -94,7 +94,7 @@
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "d4d59cb369da46b95699bd2200efbcffc6dadb3b",
+      "rev": "9a168f6357ed21c3a636e1727bc7d382abc451b8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {

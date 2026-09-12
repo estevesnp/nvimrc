@@ -10,18 +10,24 @@ to fix this, run the following command once:
 
 `:lua require("fff.download").download_or_build_binary()`
 
-## install lsp servers, formatters and linters
+## lsp configs
 
 in order to install all lsp servers, formatters and linters defined in the
 [lsp configuration file](lua/config/lsp.lua) with mason, you can run:
 
 `:MasonPathInstall`
 
-## local override
+if lsp servers need to be configured and enabled without being source controlled,
+create a [lsp/local.lua](lua/config/lsp/local.lua) that returns the configs:
 
-local config overrides that are not source controlled can be created in:
-
-`after/plugin/zz-local.lua`
+```lua
+return {
+  clangd = {
+    cmd = { "clangd", "--offset-encoding=utf-16", "--function-arg-placeholders=0" },
+  },
+  gh_actions_ls = {},
+}
+```
 
 ## notable dependencies
 

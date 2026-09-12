@@ -87,7 +87,7 @@ function M.install_not_in_path()
     end
   end
 
-  for _, server in ipairs(Lsp.all_servers()) do
+  for _, server in ipairs(vim.tbl_keys(Lsp.configs)) do
     local spec = mappings.lspconfig_specs[server]
     if spec and not spec_in_path(spec) then
       table.insert(executables_to_install, spec.mason)

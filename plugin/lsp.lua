@@ -12,10 +12,9 @@ require("lazydev").setup({
 
 require("fidget").setup({})
 
-local Lsp = require("config.lsp")
-
-for server, config in pairs(Lsp.configs) do
-  vim.lsp.config(server, config)
+for server, config in pairs(require("config.lsp").configs) do
+  if not vim.tbl_isempty(config) then
+    vim.lsp.config(server, config)
+  end
+  vim.lsp.enable(server)
 end
-
-vim.lsp.enable(Lsp.all_servers())
