@@ -14,7 +14,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "cs": {
-      "rev": "c0b22d8570cef00d333888029dac39847a8a6431",
+      "rev": "8a1fc3cfd4deac670024c9d13508cbe152bf4648",
       "src": "https://github.com/estevesnp/cs"
     },
     "debugprint.nvim": {
