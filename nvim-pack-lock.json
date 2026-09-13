@@ -14,7 +14,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "cs": {
-      "rev": "4952eb98cd9483246cc9039ed97268ae49b877a8",
+      "rev": "c0b22d8570cef00d333888029dac39847a8a6431",
       "src": "https://github.com/estevesnp/cs"
     },
     "debugprint.nvim": {
@@ -32,10 +32,6 @@
     "fidget.nvim": {
       "rev": "9e0201673e08e997e7cf52afca5565c70bd117f3",
       "src": "https://github.com/j-hui/fidget.nvim"
-    },
-    "fileline.nvim": {
-      "rev": "c116aa8dd7aa7e1db6938f872285e598dc9ee00b",
-      "src": "https://github.com/lewis6991/fileline.nvim"
     },
     "fzf-lua": {
       "rev": "05e44d38de0a79c11fba5f7bf8138791b1dbdd1e",
