@@ -29,6 +29,13 @@ return {
 }
 ```
 
+### zig
+
+by default, zls is the lsp used for zig.
+
+to use zigscient, set the env `ZIGSCIENT_LSP` to a non-empty string and
+make sure `zigscient` is in your path.
+
 ## notable dependencies
 
 - xclip/wl-clipboard (clipboard, check `:h clipboard`)
@@ -36,6 +43,7 @@ return {
 - tree-sitter cli (nvim-treesitter)
 - ripgrep (fzf)
 - fd (fzf)
+- zig (cs)
+- rust (mason, fff)
 - go (mason)
-- rust (mason)
 - npm (mason)

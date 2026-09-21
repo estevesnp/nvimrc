@@ -73,9 +73,18 @@ M.configs = {
   cssls = {},
 }
 
--- use zigscient if available in path, else use zls
-local zigscient_path = vim.fn.exepath("zigscient")
-if zigscient_path ~= "" then
+---@return string?, boolean
+local function check_use_zigscient()
+  local env = vim.env.ZIGSCIENT_LSP
+  if not env or env == "" then
+    return nil, false
+  end
+  local zigscient_path = vim.fn.exepath("zigscient")
+  return zigscient_path, zigscient_path ~= ""
+end
+
+local zigscient_path, use_zigscient = check_use_zigscient()
+if use_zigscient then
   M.configs.zigscient = {
     cmd = { zigscient_path },
     filetypes = { "zig", "zir" },
