@@ -1,8 +1,5 @@
 local Utils = require("config.utils")
 
---- use fff as main picker
-local main_fff = true
-
 local function fff_pack_cb()
   require("fff.download").download_or_build_binary()
 end
@@ -143,7 +140,7 @@ fzf_map("n", "<leader>si", function()
   FZF.files({ fd_opts = "--no-ignore-vcs " .. FZF.defaults.files.fd_opts })
 end, "search files inlcuding gitignored")
 fzf_map("n", "<leader>gi", function()
-  FZF.live_grep({ rg_opts = "--no-ignore " .. FZF.defaults.grep.rg_opts, })
+  FZF.live_grep({ rg_opts = "--no-ignore " .. FZF.defaults.grep.rg_opts })
 end, "grep files inlcuding gitignored")
 
 -- misc
@@ -153,89 +150,50 @@ fzf_map("n", "<leader>sq", FZF.quickfix, "search quickfix")
 fzf_map("n", "<leader>st", FZF.treesitter, "search treesitter")
 fzf_map("n", "<leader>sb", FZF.buffers, "search buffers")
 fzf_map("n", "<leader>so", FZF.oldfiles, "search old files")
-fzf_map("n", "<leader>se", FZF.global, "search everything (global)")
 fzf_map("n", "<leader>sk", function()
   FZF.keymaps({ show_details = false })
 end, "search keymaps")
 fzf_map("n", "<leader>sH", FZF.helptags, "search help")
 fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
-fzf_map({ "n", "v" }, "<leader>sv", FZF.grep_visual, "search visual selection")
-fzf_map("n", "<leader>/", FZF.lgrep_curbuf, "search current buffer")
-fzf_map("n", "<leader>sw", FZF.grep_cword, "search current word")
-fzf_map("n", "<leader>sW", FZF.grep_cWORD, "search current WORD")
 
---- mixed bindings
+--- fff and fallback keybinds
 
 -- files
-fff_map("n", main_fff and "<leader>sf" or "<leader>af", function()
+fff_map("n", "<leader>sf", function()
   require("fff").find_files()
 end, "search files")
-fzf_map("n", main_fff and "<leader>af" or "<leader>sf", FZF.files, "search files")
-fzf_map("n", main_fff and "<leader>aF" or "<leader>sF", function()
-  FZF.files({ follow = true })
-end, "search files (follow symlinks)")
+fzf_map("n", "<leader>af", FZF.files, "search files")
 
--- search here
-fff_map("n", main_fff and "<leader>sh" or "<leader>Sh", function()
+fff_map("n", "<leader>sh", function()
   local buf_dir = Utils.buf_dir()
   require("fff").find_files({
     title = "search from " .. buf_dir,
     cwd = buf_dir,
   })
 end, "search here, starting from buffer's dir")
-fzf_map("n", main_fff and "<leader>Sh" or "<leader>sh", function()
-  local buf_dir = Utils.buf_dir()
-  FZF.files({
-    header = "search from " .. buf_dir,
-    cwd = buf_dir,
-  })
-end, "search here, starting from buffer's dir")
 
--- config files
-fff_map("n", main_fff and "<leader>sc" or "<leader>Sc", function()
+fff_map("n", "<leader>sc", function()
   require("fff").find_files({
     title = "config files",
     cwd = "~/.config",
   })
 end, "search config files")
-fzf_map("n", main_fff and "<leader>Sc" or "<leader>sc", function()
-  FZF.files({
-    header = "config files",
-    cwd = "~/.config",
-    follow = true,
-  })
-end, "search config files")
 
--- dotfiles
-fff_map("n", main_fff and "<leader>s." or "<leader>S.", function()
+fff_map("n", "<leader>s.", function()
   require("fff").find_files({
     title = "dotfiles",
     cwd = "~/.dotfiles",
   })
 end, "search dotfiles")
-fzf_map("n", main_fff and "<leader>S." or "<leader>s.", function()
-  FZF.files({
-    header = "dotfiles",
-    cwd = "~/.dotfiles",
-  })
-end, "search dotfiles")
 
--- neovim files
-fff_map("n", main_fff and "<leader>sn" or "<leader>Sn", function()
+fff_map("n", "<leader>sn", function()
   require("fff").find_files({
     title = "neovim files",
     cwd = vim.fn.stdpath("config"),
   })
 end, "search neovim files")
-fzf_map("n", main_fff and "<leader>Sn" or "<leader>sn", function()
-  FZF.files({
-    header = "neovim files",
-    cwd = vim.fn.stdpath("config"),
-  })
-end, "search neovim files")
 
--- stdlib files
-fff_map("n", main_fff and "<leader>sl" or "<leader>Sl", function()
+fff_map("n", "<leader>sl", function()
   local stdlib_lang = Utils.get_stdlib_with_fallback()
   if stdlib_lang then
     require("fff").find_files({
@@ -244,40 +202,26 @@ fff_map("n", main_fff and "<leader>sl" or "<leader>Sl", function()
     })
   end
 end, "search stdlib files")
-fzf_map("n", main_fff and "<leader>Sl" or "<leader>sl", function()
-  local stdlib_lang = Utils.get_stdlib_with_fallback()
-  if stdlib_lang then
-    FZF.files({
-      header = stdlib_lang.lang .. " stdlib files",
-      cwd = stdlib_lang.stdlib,
-    })
-  end
-end, "search stdlib files")
 
 -- grep
-fff_map("n", main_fff and "<leader>sg" or "<leader>ag", function()
+fff_map("n", "<leader>sg", function()
   require("fff").live_grep()
 end, "search grep")
-fzf_map("n", main_fff and "<leader>ag" or "<leader>sg", FZF.live_grep, "search grep")
+fzf_map("n", "<leader>ag", FZF.live_grep, "search grep")
 
--- grep here
-fff_map("n", main_fff and "<leader>gh" or "<leader>Gh", function()
+fff_map({ "n", "v" }, "<leader>gw", function()
+  require("fff").live_grep_under_cursor()
+end, "grep current word")
+
+fff_map("n", "<leader>gh", function()
   local buf_dir = Utils.buf_dir()
   require("fff").live_grep({
     cwd = buf_dir,
     title = "Grep from " .. buf_dir,
   })
 end, "grep here, starting from buffer's dir")
-fzf_map("n", main_fff and "<leader>Gh" or "<leader>gh", function()
-  local buf_dir = Utils.buf_dir()
-  FZF.live_grep({
-    winopts = { title = "Grep from " .. buf_dir },
-    cwd = buf_dir,
-  })
-end, "grep here, starting from buffer's dir")
 
--- grep stdlib
-fff_map("n", main_fff and "<leader>gl" or "<leader>Gl", function()
+fff_map("n", "<leader>gl", function()
   local stdlib_lang = Utils.get_stdlib_with_fallback()
   if stdlib_lang then
     require("fff").live_grep({
@@ -286,18 +230,9 @@ fff_map("n", main_fff and "<leader>gl" or "<leader>Gl", function()
     })
   end
 end, "grep stdlib")
-fzf_map("n", main_fff and "<leader>Gl" or "<leader>gl", function()
-  local stdlib_lang = Utils.get_stdlib_with_fallback()
-  if stdlib_lang then
-    FZF.live_grep({
-      winopts = { title = "Grep " .. stdlib_lang.lang .. " stdlib" },
-      cwd = stdlib_lang.stdlib,
-    })
-  end
-end, "grep stdlib")
 
 -- resume picker
-fff_map("n", main_fff and "<leader>sr" or "<leader>sR", function()
+fff_map("n", "<leader>sr", function()
   require("fff").resume()
 end, "resume picker")
-fzf_map("n", main_fff and "<leader>sR" or "<leader>sr", FZF.resume, "resume picker")
+fzf_map("n", "<leader>sR", FZF.resume, "resume picker")
