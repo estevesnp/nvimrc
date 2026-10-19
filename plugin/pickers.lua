@@ -158,50 +158,84 @@ fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
 
 --- fff and fallback keybinds
 
+---@class MapInDirOpts
+---@field dir_fetcher fun(): {dir: string, title: string} | nil
+---@field fff_keybind string
+---@field fzf_keybind string
+---@field description string
+
+---@param opts MapInDirOpts
+local function map_in_dir(opts)
+  fff_map("n", opts.fff_keybind, function()
+    local fetched = opts.dir_fetcher()
+    if fetched then
+      require("fff").find_files({ title = fetched.title, cwd = fetched.dir })
+    end
+  end, opts.description)
+
+  fzf_map("n", opts.fzf_keybind, function()
+    local fetched = opts.dir_fetcher()
+    if fetched then
+      FZF.files({ prompt = fetched.title, cwd = fetched.dir })
+    end
+  end, opts.description)
+end
+
 -- files
 fff_map("n", "<leader>sf", function()
   require("fff").find_files()
 end, "search files")
 fzf_map("n", "<leader>af", FZF.files, "search files")
 
-fff_map("n", "<leader>sh", function()
-  local buf_dir = Utils.buf_dir()
-  require("fff").find_files({
-    title = "search from " .. buf_dir,
-    cwd = buf_dir,
-  })
-end, "search here, starting from buffer's dir")
+map_in_dir({
+  fff_keybind = "<leader>sh",
+  fzf_keybind = "<leader>ah",
+  description = "search here, starting from buffer's dir",
+  dir_fetcher = function()
+    local buf_dir = Utils.buf_dir()
+    return { dir = buf_dir, title = "search from " .. buf_dir }
+  end,
+})
 
-fff_map("n", "<leader>sc", function()
-  require("fff").find_files({
-    title = "config files",
-    cwd = "~/.config",
-  })
-end, "search config files")
+map_in_dir({
+  fff_keybind = "<leader>sc",
+  fzf_keybind = "<leader>ac",
+  description = "search config files",
+  dir_fetcher = function()
+    return { dir = "~/.config", title = "config" }
+  end,
+})
 
-fff_map("n", "<leader>s.", function()
-  require("fff").find_files({
-    title = "dotfiles",
-    cwd = "~/.dotfiles",
-  })
-end, "search dotfiles")
+map_in_dir({
+  fff_keybind = "<leader>s.",
+  fzf_keybind = "<leader>a.",
+  description = "search dotfiles",
+  dir_fetcher = function()
+    return { dir = "~/.dotfiles", title = "dotfiles" }
+  end,
+})
 
-fff_map("n", "<leader>sn", function()
-  require("fff").find_files({
-    title = "neovim files",
-    cwd = vim.fn.stdpath("config"),
-  })
-end, "search neovim files")
+map_in_dir({
+  fff_keybind = "<leader>sn",
+  fzf_keybind = "<leader>an",
+  description = "search neovim files",
+  dir_fetcher = function()
+    return { dir = vim.fn.stdpath("config"), title = "neovim files" }
+  end,
+})
 
-fff_map("n", "<leader>sl", function()
-  local stdlib_lang = Utils.get_stdlib_with_fallback()
-  if stdlib_lang then
-    require("fff").find_files({
-      title = stdlib_lang.lang .. " stdlib files",
-      cwd = stdlib_lang.stdlib,
-    })
-  end
-end, "search stdlib files")
+map_in_dir({
+  fff_keybind = "<leader>sl",
+  fzf_keybind = "<leader>al",
+  description = "search stdlib files",
+  dir_fetcher = function()
+    local stdlib_lang = Utils.get_stdlib_with_fallback()
+    if not stdlib_lang then
+      return nil
+    end
+    return { dir = stdlib_lang.stdlib, title = stdlib_lang.lang .. " stdlib files" }
+  end,
+})
 
 -- grep
 fff_map("n", "<leader>sg", function()
@@ -235,4 +269,4 @@ end, "grep stdlib")
 fff_map("n", "<leader>sr", function()
   require("fff").resume()
 end, "resume picker")
-fzf_map("n", "<leader>sR", FZF.resume, "resume picker")
+fzf_map("n", "<leader>ar", FZF.resume, "resume picker")
