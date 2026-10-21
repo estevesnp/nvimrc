@@ -243,7 +243,7 @@ fff_map("n", "<leader>sg", function()
 end, "search grep")
 fzf_map("n", "<leader>ag", FZF.live_grep, "search grep")
 
-fff_map({ "n", "v" }, "<leader>gw", function()
+fff_map({ "n", "x" }, "<leader>gw", function()
   require("fff").live_grep_under_cursor()
 end, "grep current word")
 
