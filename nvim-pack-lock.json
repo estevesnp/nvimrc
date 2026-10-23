@@ -14,7 +14,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "cs": {
-      "rev": "d7af50c1db08bde888d4f538d40273d18102b043",
+      "rev": "8149f9e53a3cb48f58664cae2e9ce2ca04644687",
       "src": "https://github.com/estevesnp/cs"
     },
     "debugprint.nvim": {
@@ -34,15 +34,15 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "fzf-lua": {
-      "rev": "5beb1bf72b0810da6ccee50f6087c2f005aeb737",
+      "rev": "5dca84ef44f37b960a128a43d044ee348ff86fb4",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
+      "rev": "683137003522aebd6948358334164a6ba2ca7cd5",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "grug-far.nvim": {
-      "rev": "bbde8ef5ae46ceee2c3bd8b21fc048c5f8ffbfc0",
+      "rev": "91b7e58b6ffc6ddad5acb7a7c1df21257724449e",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
     },
     "indent-blankline.nvim": {
@@ -130,7 +130,7 @@
       "src": "https://github.com/tpope/vim-surround"
     },
     "zdiff.nvim": {
-      "rev": "6e2a105d7cc138b25e2907589ad2c5251e608424",
+      "rev": "219c544b79c942a81d5f03a4270c4ba11fbf0112",
       "src": "https://github.com/martindur/zdiff.nvim"
     }
   }

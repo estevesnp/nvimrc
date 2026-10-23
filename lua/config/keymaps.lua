@@ -75,7 +75,7 @@ map("n", "<leader>cd", function()
   local buf_dir = require("config.utils").buf_dir()
   vim.cmd.cd(buf_dir)
   print("changed cwd to " .. buf_dir)
-end, {desc = "set cwd to buffer's dir"})
+end, { desc = "set cwd to buffer's dir" })
 
 -- term
 map("t", "<C-[>", [[<C-\><C-n>]], { desc = "exit term mode" })

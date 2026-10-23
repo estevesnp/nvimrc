@@ -167,7 +167,7 @@ end
 
 ---creates a mapping function with a namespace prepended in the description
 ---@param namespace string the namespace for the mappings.
----@return function map the vim.keymap.set function with the namespace in the description.
+---@return fun(more: string|string[], keys: string, func: function|string, desc: string|nil, opts: table|nil) map the vim.keymap.set function with the namespace in the description.
 function M.namespaced_keymap(namespace)
   --- @param mode string|string[] the mode(s) for the keymap ('n', 'v', { 'n', 'i' }, etc.).
   --- @param keys string the keys to map
