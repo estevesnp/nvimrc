@@ -54,7 +54,7 @@ map("n", "<leader>ts", Gitsigns.toggle_signs, "toggle git signs")
 
 local diff_against_different_base = false
 
-map("n", "<leader>td", function()
+map("n", "<leader>tm", function()
   diff_against_different_base = not diff_against_different_base
   if diff_against_different_base then
     Gitsigns.change_base("main", true)
