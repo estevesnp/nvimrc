@@ -161,8 +161,8 @@ end
 ---@return string curr_dir normalized current buffer's dir
 function M.buf_dir()
   local cur_buf_dir = vim.fn.expand("%:p:h")
-  local trimmed_dir = cur_buf_dir:gsub("^oil://", "")
-  return trimmed_dir
+  local parsed = vim.uri.parse(cur_buf_dir)
+  return assert(parsed).path
 end
 
 ---creates a mapping function with a namespace prepended in the description
