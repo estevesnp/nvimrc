@@ -154,7 +154,7 @@ fzf_map("n", "<leader>sk", function()
   FZF.keymaps({ show_details = false })
 end, "search keymaps")
 fzf_map("n", "<leader>sH", FZF.helptags, "search help")
-fzf_map("n", "<leader>sz", FZF.builtin, "search fzf commands")
+fzf_map("n", "<leader>sZ", FZF.builtin, "search fzf commands")
 
 --- fff and fallback keybinds
 
@@ -242,6 +242,11 @@ fff_map("n", "<leader>sg", function()
   require("fff").live_grep()
 end, "search grep")
 fzf_map("n", "<leader>ag", FZF.live_grep, "search grep")
+fff_map("n", "<leader>sz", function()
+  require("fff").live_grep({ grep = {
+    modes = { "fuzzy", "plain", "regex", "definition_only" },
+  } })
+end, "fuzzy grep")
 
 fff_map({ "n", "x" }, "<leader>gw", function()
   require("fff").live_grep_under_cursor()
