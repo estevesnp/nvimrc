@@ -162,7 +162,7 @@ end
 function M.buf_dir()
   local cur_buf_dir = vim.fn.expand("%:p:h")
   local parsed = vim.uri.parse(cur_buf_dir)
-  return assert(parsed).path
+  return parsed and parsed.path or cur_buf_dir
 end
 
 ---creates a mapping function with a namespace prepended in the description

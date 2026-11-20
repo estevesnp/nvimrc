@@ -10,7 +10,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "cs": {
-      "rev": "8f2d2aa7dba676ccc88af6f6a5c0c14cc0d69cb9",
+      "rev": "052df369b5d3e1a9a2dbb6ea1a490a658f3de2ef",
       "src": "https://github.com/estevesnp/cs"
     },
     "debugprint.nvim": {
@@ -22,7 +22,7 @@
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
     "fff": {
-      "rev": "ab3002a9bfbef53874dd0b56608e34d281791b4c",
+      "rev": "9a7b1c8fc1d20236a255bf3ddb24eeb761bd6bd9",
       "src": "https://github.com/dmtrKovalenko/fff"
     },
     "fidget.nvim": {
@@ -58,15 +58,15 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.align": {
-      "rev": "7b52efc663139c498e5aa7de1dd54cdafa6a5ee0",
+      "rev": "b66a8300762ba0ec34236c995f6d45031f9d089c",
       "src": "https://github.com/nvim-mini/mini.align"
     },
     "mini.pairs": {
-      "rev": "eea81afc1b4de898de9bb310c2225f9225fd42b9",
+      "rev": "e332261859814c307e72458222070f84b6d6f4e8",
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "mini.trailspace": {
-      "rev": "2b58478e717a8ea016d42f611cf7fbcf7b7c0037",
+      "rev": "50b96b876a3d599d7d61696ba947ac02f890ab74",
       "src": "https://github.com/nvim-mini/mini.trailspace"
     },
     "nvim-dap": {
